@@ -21,6 +21,40 @@
   // ─── Global Chart Instances ──────────────────────────────
   const charts = {};
 
+  // ─── Global Date Filter State ───────────────────────────
+  let rawData = null; // Stored raw MTD data from JSONs ({ ontime, fillrate, vehicles })
+  let selectedDate = null; // null means "Cả tháng" (MTD), otherwise "YYYY-MM-DD"
+  const MIN_DATE = '2026-05-01';
+  const MAX_DATE = '2026-05-25';
+
+  const PROVINCE_PATTERNS = {
+    'Hải Phòng': [/haiphong/i, /hai\s*phong/i, /hp/i, /hph/i],
+    'Thái Nguyên': [/thainguyen/i, /thai\s*nguyen/i, /tn/i, /tng/i],
+    'Bắc Giang': [/bacgiang/i, /bac\s*giang/i, /bg/i, /bgi/i],
+    'Phú Thọ': [/phutho/i, /phu\s*tho/i, /pt/i, /pth/i],
+    'Tuyên Quang': [/tuyenquang/i, /tuyen\s*quang/i, /tq/i, /tqu/i],
+    'Sơn La': [/sonla/i, /son\s*la/i, /sl/i, /sla/i],
+    'Lào Cai': [/laocai/i, /lao\s*cai/i, /lc/i, /lca/i],
+    'Vĩnh Phúc': [/vinhphuc/i, /vinh\s*phuc/i, /vp/i, /vph/i],
+    'Quảng Ninh': [/quangninh/i, /quang\s*ninh/i, /qn/i, /qni/i],
+    'Hoà Bình': [/hoabinh/i, /hoa\s*binh/i, /hb/i, /hbi/i],
+    'Lạng Sơn': [/langson/i, /lang\s*son/i, /ls/i, /lso/i],
+    'Yên Bái': [/yenbai/i, /yen\s*bai/i, /yb/i, /yba/i]
+  };
+
+  function getProvinceFromRoute(route) {
+    if (!route) return null;
+    const cleaned = route.toLowerCase().replace(/\s+/g, '').replace(/_/g, '');
+    for (const prov in PROVINCE_PATTERNS) {
+      for (const pat of PROVINCE_PATTERNS[prov]) {
+        if (pat.test(cleaned)) {
+          return prov;
+        }
+      }
+    }
+    return null;
+  }
+
   // ─── Detail Table State ─────────────────────────────
   const ROWS_PER_PAGE = 20;
   let ontimeDetailData = [];
@@ -1424,6 +1458,436 @@
     });
   }
 
+  // ═══════════════════════════════════════════════════════════
+  //  GLOBAL DATE FILTER LOGIC
+  // ═══════════════════════════════════════════════════════════
+
+  function destroyAllCharts() {
+    for (const key in charts) {
+      if (charts[key]) {
+        charts[key].destroy();
+        charts[key] = null;
+      }
+    }
+  }
+
+  function formatVietnameseDate(dateStr) {
+    if (!dateStr) return 'Cả tháng MTD';
+    const dateObj = new Date(dateStr);
+    const days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+    const dayName = days[dateObj.getDay()];
+    const parts = dateStr.split('-');
+    return `${dayName}, ${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+
+  function getFilteredDataForDate(dateStr) {
+    if (!dateStr) return rawData;
+    
+    const shortDateStr = shortDate(dateStr); // e.g. "25/05"
+    
+    // Filter ontime detail
+    const dailyOntimeTrips = ontimeDetailData.filter(r => r.date === shortDateStr);
+    const dailyFillTrips = fillDetailData.filter(r => r.date === shortDateStr);
+    
+    // Calculate daily overall KPIs
+    const ontimeDailyEntry = rawData.ontime.daily.find(d => d.date === dateStr) || { ontime_rate: 0, trips: 0 };
+    const fillDailyEntry = rawData.fillrate.daily.find(d => d.date === dateStr) || { fillrate_kg: 0, fillrate_don: 0, trips: 0 };
+    const vehicleDailyEntry = rawData.vehicles.daily_usage.find(d => d.date === dateStr) || { active_vehicles: 0, total_trips: 0, avg_trips_per_vehicle: 0, avg_km: 0 };
+
+    // 1. Ontime Aggregations
+    // by_lane_type
+    const lanes = {};
+    dailyOntimeTrips.forEach(t => {
+      if (!lanes[t.lane]) lanes[t.lane] = { trips: 0, ontime_sum: 0 };
+      lanes[t.lane].trips++;
+      lanes[t.lane].ontime_sum += t.ontime;
+    });
+    const by_lane_type = Object.keys(lanes).map(lane => ({
+      lane_type: lane,
+      ontime_rate: lanes[lane].ontime_sum / lanes[lane].trips,
+      trips: lanes[lane].trips
+    }));
+    
+    // by_partner_type
+    const ptypes = {};
+    dailyOntimeTrips.forEach(t => {
+      if (!ptypes[t.ptype]) ptypes[t.ptype] = { trips: 0, ontime_sum: 0 };
+      ptypes[t.ptype].trips++;
+      ptypes[t.ptype].ontime_sum += t.ontime;
+    });
+    const by_partner_type = Object.keys(ptypes).map(pt => ({
+      partner_type: pt,
+      ontime_rate: ptypes[pt].ontime_sum / ptypes[pt].trips,
+      trips: ptypes[pt].trips
+    }));
+    
+    // by_partner
+    const partners = {};
+    dailyOntimeTrips.forEach(t => {
+      if (!partners[t.partner]) partners[t.partner] = { trips: 0, ontime_sum: 0 };
+      partners[t.partner].trips++;
+      partners[t.partner].ontime_sum += t.ontime;
+    });
+    const by_partner = Object.keys(partners).map(p => ({
+      partner: p,
+      ontime_rate: partners[p].ontime_sum / partners[p].trips,
+      trips: partners[p].trips
+    }));
+
+    // by_province
+    const provinces = {};
+    dailyOntimeTrips.forEach(t => {
+      const prov = getProvinceFromRoute(t.route);
+      if (prov) {
+        if (!provinces[prov]) provinces[prov] = { trips: 0, ontime_sum: 0 };
+        provinces[prov].trips++;
+        provinces[prov].ontime_sum += t.ontime;
+      }
+    });
+    const by_province = Object.keys(provinces).map(prov => ({
+      province: prov,
+      ontime_rate: provinces[prov].ontime_sum / provinces[prov].trips,
+      trips: provinces[prov].trips
+    }));
+
+    // worst routes (Group by route, filter trips >= 2 if possible, or >= 1 since it's a single day)
+    const routesOntime = {};
+    dailyOntimeTrips.forEach(t => {
+      if (t.route) {
+        if (!routesOntime[t.route]) routesOntime[t.route] = { trips: 0, ontime_sum: 0, lane: t.lane, partner: t.partner };
+        routesOntime[t.route].trips++;
+        routesOntime[t.route].ontime_sum += t.ontime;
+      }
+    });
+    const worst_routes_ontime = Object.keys(routesOntime).map(r => ({
+      route: r,
+      lane_type: routesOntime[r].lane,
+      partner: routesOntime[r].partner,
+      trips: routesOntime[r].trips,
+      ontime_rate: routesOntime[r].ontime_sum / routesOntime[r].trips
+    })).sort((a,b) => a.ontime_rate - b.ontime_rate).slice(0, 10);
+
+    // 2. Fillrate Aggregations
+    // by_lane_type
+    const fillLanes = {};
+    dailyFillTrips.forEach(t => {
+      if (!fillLanes[t.lane]) fillLanes[t.lane] = { trips: 0, kg_sum: 0, don_sum: 0, kg_count: 0, don_count: 0 };
+      fillLanes[t.lane].trips++;
+      if (t.fr_kg != null) { fillLanes[t.lane].kg_sum += t.fr_kg; fillLanes[t.lane].kg_count++; }
+      if (t.fr_don != null) { fillLanes[t.lane].don_sum += t.fr_don; fillLanes[t.lane].don_count++; }
+    });
+    const by_lane_type_fill = Object.keys(fillLanes).map(lane => ({
+      lane_type: lane,
+      fillrate_kg: fillLanes[lane].kg_count > 0 ? fillLanes[lane].kg_sum / fillLanes[lane].kg_count : 0,
+      fillrate_don: fillLanes[lane].don_count > 0 ? fillLanes[lane].don_sum / fillLanes[lane].don_count : 0,
+      trips: fillLanes[lane].trips
+    }));
+
+    // by_ncc
+    const fillNcc = {};
+    dailyFillTrips.forEach(t => {
+      if (!fillNcc[t.ncc]) fillNcc[t.ncc] = { trips: 0, kg_sum: 0, don_sum: 0, kg_count: 0, don_count: 0 };
+      fillNcc[t.ncc].trips++;
+      if (t.fr_kg != null) { fillNcc[t.ncc].kg_sum += t.fr_kg; fillNcc[t.ncc].kg_count++; }
+      if (t.fr_don != null) { fillNcc[t.ncc].don_sum += t.fr_don; fillNcc[t.ncc].don_count++; }
+    });
+    const by_ncc_fill = Object.keys(fillNcc).map(n => ({
+      ncc: n,
+      fillrate_kg: fillNcc[n].kg_count > 0 ? fillNcc[n].kg_sum / fillNcc[n].kg_count : 0,
+      fillrate_don: fillNcc[n].don_count > 0 ? fillNcc[n].don_sum / fillNcc[n].don_count : 0,
+      trips: fillNcc[n].trips
+    }));
+
+    // worst routes
+    const routesFill = {};
+    dailyFillTrips.forEach(t => {
+      if (t.route) {
+        if (!routesFill[t.route]) routesFill[t.route] = { trips: 0, kg_sum: 0, don_sum: 0, kg_count: 0, don_count: 0, lane: t.lane, ncc: t.ncc };
+        routesFill[t.route].trips++;
+        if (t.fr_kg != null) { routesFill[t.route].kg_sum += t.fr_kg; routesFill[t.route].kg_count++; }
+        if (t.fr_don != null) { routesFill[t.route].don_sum += t.fr_don; routesFill[t.route].don_count++; }
+      }
+    });
+    const worst_routes_fill = Object.keys(routesFill).map(r => ({
+      route: r,
+      lane_type: routesFill[r].lane,
+      ncc: routesFill[r].ncc,
+      trips: routesFill[r].trips,
+      fillrate_kg: routesFill[r].kg_count > 0 ? routesFill[r].kg_sum / routesFill[r].kg_count : 0,
+      fillrate_don: routesFill[r].don_count > 0 ? routesFill[r].don_sum / routesFill[r].don_count : 0
+    })).sort((a,b) => a.fillrate_kg - b.fillrate_kg).slice(0, 10);
+
+    // 3. Vehicles Aggregations
+    // Group by plate to find top vehicles for this day
+    const dailyVehicles = {};
+    dailyFillTrips.forEach(t => {
+      if (t.plate) {
+        if (!dailyVehicles[t.plate]) dailyVehicles[t.plate] = { trips: 0, total_km: 0, cap: t.cap };
+        dailyVehicles[t.plate].trips++;
+        dailyVehicles[t.plate].total_km += t.km;
+      }
+    });
+    
+    // by_load_capacity
+    const capacities = {};
+    Object.values(dailyVehicles).forEach(v => {
+      const capName = v.cap ? v.cap + ' kg' : 'Khác';
+      if (!capacities[capName]) capacities[capName] = { count: 0, cap_raw: v.cap };
+      capacities[capName].count++;
+    });
+    const totalVehiclesCount = Object.keys(dailyVehicles).length;
+    const by_load_capacity = Object.keys(capacities).map(c => ({
+      capacity: c,
+      capacity_raw: capacities[c].cap_raw,
+      count: capacities[c].count,
+      percentage: totalVehiclesCount > 0 ? capacities[c].count / totalVehiclesCount : 0
+    }));
+
+    // top15_most_used
+    const top15_most_used = Object.keys(dailyVehicles).map(plate => ({
+      plate,
+      trips: dailyVehicles[plate].trips,
+      trips_per_day: dailyVehicles[plate].trips,
+      km_per_day: dailyVehicles[plate].total_km,
+      total_km: dailyVehicles[plate].total_km
+    })).sort((a,b) => b.trips - a.trips).slice(0, 15);
+
+    // top15_least_used
+    const top15_least_used = Object.keys(dailyVehicles).map(plate => ({
+      plate,
+      trips: dailyVehicles[plate].trips,
+      days_active: 1,
+      trips_per_day: dailyVehicles[plate].trips,
+      km_per_day: dailyVehicles[plate].total_km,
+      total_km: dailyVehicles[plate].total_km
+    })).sort((a,b) => a.trips - b.trips).slice(0, 15);
+
+    // Filter anomalies for this specific day
+    const anomalyPlates = new Set(rawData.vehicles.anomaly_vehicles.map(v => v.plate));
+    const anomaly_vehicles = Object.keys(dailyVehicles)
+      .filter(plate => anomalyPlates.has(plate))
+      .map(plate => {
+        const orig = rawData.vehicles.anomaly_vehicles.find(v => v.plate === plate);
+        return {
+          plate,
+          reason: orig ? orig.reason : 'Không rõ',
+          trips: dailyVehicles[plate].trips,
+          days_active: 1,
+          trips_per_day: dailyVehicles[plate].trips,
+          km_per_day: dailyVehicles[plate].total_km
+        };
+      });
+
+    return {
+      ontime: {
+        metadata: { ...rawData.ontime.metadata, total_trips: ontimeDailyEntry.trips },
+        overall: { ontime_rate: ontimeDailyEntry.ontime_rate, total_trips: ontimeDailyEntry.trips },
+        daily: rawData.ontime.daily, // Keep trend lines intact
+        by_lane_type,
+        by_partner_type,
+        by_partner,
+        by_province,
+        top10_worst_routes: worst_routes_ontime
+      },
+      fillrate: {
+        metadata: { ...rawData.fillrate.metadata, total_trips: fillDailyEntry.trips },
+        overall: { fillrate_kg: fillDailyEntry.fillrate_kg, fillrate_don: fillDailyEntry.fillrate_don, total_trips: fillDailyEntry.trips },
+        daily: rawData.fillrate.daily, // Keep trend lines intact
+        by_lane_type: by_lane_type_fill,
+        by_ncc: by_ncc_fill,
+        top10_worst_routes: worst_routes_fill
+      },
+      vehicles: {
+        metadata: rawData.vehicles.metadata,
+        summary: {
+          total_vehicles: totalVehiclesCount,
+          avg_trips_per_day: vehicleDailyEntry.avg_trips_per_vehicle,
+          avg_km_per_day: vehicleDailyEntry.avg_km,
+          anomaly_count: anomaly_vehicles.length
+        },
+        daily_usage: rawData.vehicles.daily_usage, // Keep trend lines intact
+        by_load_capacity,
+        top15_most_used,
+        top15_least_used,
+        anomaly_vehicles
+      }
+    };
+  }
+
+  function highlightTrendChartPoints(dateStr) {
+    const shortD = dateStr ? shortDate(dateStr) : null;
+
+    // Highlight Ontime Trend Chart
+    if (charts.ontimeTrend && rawData) {
+      const daily = rawData.ontime.daily;
+      const radii = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
+      const hoverRadii = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
+      const bgColors = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+      
+      charts.ontimeTrend.data.datasets[0].pointRadius = radii;
+      charts.ontimeTrend.data.datasets[0].pointHoverRadius = hoverRadii;
+      charts.ontimeTrend.data.datasets[0].pointBackgroundColor = bgColors;
+      charts.ontimeTrend.update('none');
+    }
+
+    // Highlight Fillrate Trend Chart
+    if (charts.fillrateTrend && rawData) {
+      const daily = rawData.fillrate.daily;
+      charts.fillrateTrend.data.datasets[0].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
+      charts.fillrateTrend.data.datasets[0].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
+      charts.fillrateTrend.data.datasets[0].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+      
+      charts.fillrateTrend.data.datasets[1].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
+      charts.fillrateTrend.data.datasets[1].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
+      charts.fillrateTrend.data.datasets[1].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#7c5cfc');
+      
+      charts.fillrateTrend.update('none');
+    }
+
+    // Highlight Vehicle Trend Chart
+    if (charts.vehicleTrend && rawData) {
+      const daily = rawData.vehicles.daily_usage;
+      charts.vehicleTrend.data.datasets[1].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
+      charts.vehicleTrend.data.datasets[1].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
+      charts.vehicleTrend.data.datasets[1].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+      
+      charts.vehicleTrend.data.datasets[2].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
+      charts.vehicleTrend.data.datasets[2].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
+      charts.vehicleTrend.data.datasets[2].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#fbbf24');
+      
+      charts.vehicleTrend.update('none');
+    }
+  }
+
+  function handleDateChange(newDate) {
+    selectedDate = newDate;
+
+    // 1. Update Date Filter UI
+    const btnPrev = $('#btnPrevDate');
+    const btnNext = $('#btnNextDate');
+    const datePicker = $('#dateInputPicker');
+    const dateDisplay = $('#dateTextDisplay');
+    const chipAll = $('#chipAllMonth');
+    const chipYest = $('#chipYesterday');
+
+    if (chipAll) chipAll.classList.remove('active');
+    if (chipYest) chipYest.classList.remove('active');
+
+    if (!selectedDate) {
+      if (chipAll) chipAll.classList.add('active');
+      if (dateDisplay) dateDisplay.textContent = 'Cả tháng MTD';
+      if (datePicker) datePicker.value = '';
+    } else {
+      if (selectedDate === MAX_DATE) {
+        if (chipYest) chipYest.classList.add('active');
+      }
+      if (dateDisplay) dateDisplay.textContent = formatVietnameseDate(selectedDate);
+      if (datePicker) datePicker.value = selectedDate;
+    }
+
+    // 2. Destroy existing charts to prevent Canvas reuse warnings
+    destroyAllCharts();
+
+    // 3. Get the correct data set (filtered or raw)
+    const activeData = getFilteredDataForDate(selectedDate);
+
+    // 4. Render KPIs with dynamic counting animations
+    renderKPIs(activeData);
+
+    // 5. Render Chart Tabs
+    renderOntimeTab(activeData.ontime);
+    renderFillrateTab(activeData.fillrate);
+    renderVehiclesTab(activeData.vehicles);
+
+    // 6. Trigger filter on the detailed tables so they show only this day's trips
+    if (selectedDate) {
+      const shortDateStr = shortDate(selectedDate);
+      ontimeFilteredData = ontimeDetailData.filter(r => r.date === shortDateStr);
+      fillFilteredData = fillDetailData.filter(r => r.date === shortDateStr);
+    } else {
+      ontimeFilteredData = [...ontimeDetailData];
+      fillFilteredData = [...fillDetailData];
+    }
+    
+    // Reset pagination
+    ontimeCurrentPage = 1;
+    fillCurrentPage = 1;
+    
+    // Render pages
+    renderOntimeDetailPage();
+    renderFillDetailPage();
+
+    // Highlight the selected day on the trend line charts
+    highlightTrendChartPoints(selectedDate);
+  }
+
+  function handlePrevDate() {
+    if (!selectedDate) {
+      handleDateChange(MAX_DATE);
+      return;
+    }
+    const currentDate = new Date(selectedDate);
+    currentDate.setDate(currentDate.getDate() - 1);
+    const formatted = formatDateISO(currentDate);
+    if (formatted >= MIN_DATE) {
+      handleDateChange(formatted);
+    } else {
+      handleDateChange(MAX_DATE); // Wrap to max
+    }
+  }
+
+  function handleNextDate() {
+    if (!selectedDate) {
+      handleDateChange(MIN_DATE);
+      return;
+    }
+    const currentDate = new Date(selectedDate);
+    currentDate.setDate(currentDate.getDate() + 1);
+    const formatted = formatDateISO(currentDate);
+    if (formatted <= MAX_DATE) {
+      handleDateChange(formatted);
+    } else {
+      handleDateChange(MIN_DATE); // Wrap to min
+    }
+  }
+
+  function formatDateISO(dateObj) {
+    const y = dateObj.getFullYear();
+    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const d = String(dateObj.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  function initDateFilterBar() {
+    const btnPrev = $('#btnPrevDate');
+    const btnNext = $('#btnNextDate');
+    const datePicker = $('#dateInputPicker');
+    const chipAll = $('#chipAllMonth');
+    const chipYest = $('#chipYesterday');
+
+    if (btnPrev) btnPrev.addEventListener('click', handlePrevDate);
+    if (btnNext) btnNext.addEventListener('click', handleNextDate);
+    
+    if (datePicker) {
+      datePicker.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (val) {
+          if (val >= MIN_DATE && val <= MAX_DATE) {
+            handleDateChange(val);
+          } else {
+            alert(`Vui lòng chọn ngày từ ${shortDate(MIN_DATE)} đến ${shortDate(MAX_DATE)}/2026`);
+            datePicker.value = selectedDate || '';
+          }
+        } else {
+          handleDateChange(null);
+        }
+      });
+    }
+
+    if (chipAll) chipAll.addEventListener('click', () => handleDateChange(null));
+    if (chipYest) chipYest.addEventListener('click', () => handleDateChange(MAX_DATE));
+  }
+
   async function init() {
     setupChartDefaults();
     initTabs();
@@ -1431,18 +1895,20 @@
 
     try {
       const data = await loadAllData();
+      rawData = data;
 
       // Hide loading, show dashboard
       $('#loadingOverlay').classList.add('hidden');
       $('#dashboardContainer').style.display = '';
 
-      // Render everything
-      renderKPIs(data);
-      renderOntimeTab(data.ontime);
-      renderFillrateTab(data.fillrate);
-      renderVehiclesTab(data.vehicles);
-
+      // Load detailed tables data first so we have the raw trip details for daily filtering!
       await loadDetailData();
+
+      // Initialize the Date Filter Bar listeners
+      initDateFilterBar();
+
+      // Start with "Cả tháng" (MTD) view
+      handleDateChange(null);
 
     } catch (err) {
       console.error('Dashboard init error:', err);
