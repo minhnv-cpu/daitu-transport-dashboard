@@ -1226,3 +1226,166 @@ body::before {
   transform: translateY(1px);
 }
 
+/* ─── Global Date Filter Bar ─────────────────────────── */
+.date-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+.date-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.date-nav-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.date-nav-btn:hover {
+  background: rgba(0, 229, 160, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: scale(1.05);
+}
+
+.date-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.date-display {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 190px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Styled HTML5 Date Input */
+.date-picker-container {
+  display: flex;
+  align-items: center;
+}
+
+#dateInputPicker {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+#dateInputPicker:focus, #dateInputPicker:hover {
+  border-color: var(--accent-primary);
+  background: rgba(0, 229, 160, 0.06);
+  box-shadow: 0 0 10px rgba(0, 229, 160, 0.15);
+}
+
+/* Customize date calendar icon for webkit browsers */
+#dateInputPicker::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(120deg); /* Beautiful teal tint calendar icon */
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+#dateInputPicker::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.quick-date-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.chip-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.chip-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+/* Active segments styling */
+.chip-btn#chipAllMonth.active {
+  background: rgba(0, 229, 160, 0.12);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(0, 229, 160, 0.15);
+}
+
+.chip-btn#chipYesterday.active {
+  background: rgba(255, 159, 67, 0.12); /* Mockup peach amber background */
+  border-color: #ff9f43; /* Warm amber borders */
+  color: #ff9f43; /* Warm amber text color */
+  box-shadow: 0 0 12px rgba(255, 159, 67, 0.15);
+}
+
+@media (max-width: 768px) {
+  .date-filter-bar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .date-filter-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .date-display {
+    min-width: unset;
+    flex: 1;
+  }
+  .date-picker-container, #dateInputPicker {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .quick-date-chips {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
