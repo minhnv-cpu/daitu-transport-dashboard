@@ -770,3 +770,97 @@ body {
   transform: translateY(-1px);
 }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ─── PROGRESS BAR TABLE (KTC style) ──────────────── */
+.progress-table-wrapper {
+  overflow-x: auto;
+}
+.progress-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+.progress-table thead th {
+  padding: 10px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--t3);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.progress-table thead th.col-trips {
+  text-align: right;
+}
+.progress-table tbody tr {
+  transition: background 0.15s ease;
+}
+.progress-table tbody tr:hover {
+  background: rgba(255, 108, 10, 0.04);
+}
+.progress-table tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border);
+}
+.progress-table td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+.progress-table td.col-name {
+  font-weight: 600;
+  color: var(--t1);
+  white-space: nowrap;
+  width: 160px;
+  min-width: 120px;
+}
+.progress-table td.col-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.progress-table td.col-trips {
+  text-align: right;
+  font-weight: 500;
+  color: var(--t2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  width: 100px;
+}
+
+/* Inline bar */
+.inline-bar-wrap {
+  flex: 1;
+  height: 10px;
+  background: var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 80px;
+}
+.inline-bar {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.inline-bar-label {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 52px;
+  text-align: right;
+}
+.inline-bar-label.good { color: var(--green); }
+.inline-bar-label.warning { color: var(--orange); }
+.inline-bar-label.danger { color: var(--red); }
+
+@media (max-width: 640px) {
+  .progress-table td.col-name { width: auto; min-width: 80px; font-size: 12px; }
+  .progress-table td.col-bar { gap: 8px; }
+  .inline-bar-wrap { min-width: 50px; }
+  .inline-bar-label { font-size: 12px; min-width: 42px; }
+}
