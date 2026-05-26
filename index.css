@@ -1230,7 +1230,7 @@ body::before {
 .date-filter-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -1239,6 +1239,49 @@ body::before {
   margin-bottom: 24px;
   backdrop-filter: blur(20px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+/* Filter Mode Selector Segment */
+.filter-mode-selector {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+
+.mode-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #00b894 100%);
+  color: #050510;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+}
+
+.filter-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -1277,10 +1320,10 @@ body::before {
 }
 
 .date-display {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
-  min-width: 190px;
+  min-width: 180px;
   text-align: center;
   letter-spacing: -0.01em;
   font-family: 'Inter', sans-serif;
@@ -1313,7 +1356,7 @@ body::before {
 
 /* Customize date calendar icon for webkit browsers */
 #dateInputPicker::-webkit-calendar-picker-indicator {
-  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(120deg); /* Beautiful teal tint calendar icon */
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(120deg); /* Beautiful teal calendar icon */
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.2s;
@@ -1323,15 +1366,88 @@ body::before {
   opacity: 1;
 }
 
+/* Range Picker Controls */
+.range-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.range-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.range-field input[type="date"] {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.range-field input[type="date"]:focus,
+.range-field input[type="date"]:hover {
+  border-color: var(--accent-primary);
+  background: rgba(0, 229, 160, 0.06);
+  box-shadow: 0 0 10px rgba(0, 229, 160, 0.15);
+}
+
+.range-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(120deg);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.apply-range-btn {
+  background: linear-gradient(135deg, #ff9f43 0%, #ff8c2b 100%);
+  border: none;
+  color: #0b0f19;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(255, 159, 67, 0.2);
+  outline: none;
+}
+
+.apply-range-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 159, 67, 0.35);
+}
+
+.apply-range-btn:active {
+  transform: translateY(1px);
+}
+
+/* Quick Date Chips */
 .quick-date-chips {
   display: flex;
   gap: 8px;
 }
 
 .chip-btn {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 159, 67, 0.08);
+  border: 1px solid rgba(255, 159, 67, 0.2);
+  color: #ff9f43;
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 12px;
@@ -1343,32 +1459,37 @@ body::before {
 }
 
 .chip-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
+  background: rgba(255, 159, 67, 0.15);
+  border-color: rgba(255, 159, 67, 0.4);
 }
 
-/* Active segments styling */
-.chip-btn#chipAllMonth.active {
-  background: rgba(0, 229, 160, 0.12);
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  box-shadow: 0 0 12px rgba(0, 229, 160, 0.15);
-}
-
-.chip-btn#chipYesterday.active {
-  background: rgba(255, 159, 67, 0.12); /* Mockup peach amber background */
-  border-color: #ff9f43; /* Warm amber borders */
-  color: #ff9f43; /* Warm amber text color */
-  box-shadow: 0 0 12px rgba(255, 159, 67, 0.15);
+@media (max-width: 1024px) {
+  .date-filter-bar {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
   .date-filter-bar {
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     padding: 16px;
     width: 100%;
     box-sizing: border-box;
+  }
+  .filter-mode-selector {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .filter-mode-selector .mode-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+  .filter-controls-group {
+    width: 100%;
+    justify-content: center;
   }
   .date-filter-container {
     width: 100%;
@@ -1382,10 +1503,28 @@ body::before {
     width: 100%;
     box-sizing: border-box;
   }
+  .range-picker-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .range-field {
+    justify-content: space-between;
+  }
+  .range-field input[type="date"] {
+    flex: 1;
+    max-width: 70%;
+  }
+  .apply-range-btn {
+    width: 100%;
+    text-align: center;
+  }
   .quick-date-chips {
     width: 100%;
     justify-content: center;
   }
 }
+
 
 
