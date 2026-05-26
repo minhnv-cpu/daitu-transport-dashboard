@@ -1,1 +1,2841 @@
-{"metadata":{"date_range":"01/05 - 25/05/2026","total_vehicles":1205,"total_days":25,"generated_at":"2026-05-26T15:32:40"},"summary":{"total_vehicles":1205,"avg_trips_per_day":1.407,"avg_km_per_day":678.8906,"anomaly_count":295},"daily_usage":[{"date":"2026-05-01","active_vehicles":503,"total_trips":823,"avg_trips_per_vehicle":1.6362,"avg_km":227.6302},{"date":"2026-05-02","active_vehicles":503,"total_trips":882,"avg_trips_per_vehicle":1.7535,"avg_km":205.7123},{"date":"2026-05-03","active_vehicles":504,"total_trips":873,"avg_trips_per_vehicle":1.7321,"avg_km":201.1329},{"date":"2026-05-04","active_vehicles":562,"total_trips":974,"avg_trips_per_vehicle":1.7331,"avg_km":284.9527},{"date":"2026-05-05","active_vehicles":561,"total_trips":993,"avg_trips_per_vehicle":1.7701,"avg_km":209.5775},{"date":"2026-05-06","active_vehicles":585,"total_trips":1074,"avg_trips_per_vehicle":1.8359,"avg_km":246.8169},{"date":"2026-05-07","active_vehicles":595,"total_trips":1071,"avg_trips_per_vehicle":1.8,"avg_km":283.3743},{"date":"2026-05-08","active_vehicles":594,"total_trips":1049,"avg_trips_per_vehicle":1.766,"avg_km":288.129},{"date":"2026-05-09","active_vehicles":577,"total_trips":1011,"avg_trips_per_vehicle":1.7522,"avg_km":267.5638},{"date":"2026-05-10","active_vehicles":554,"total_trips":936,"avg_trips_per_vehicle":1.6895,"avg_km":255.9206},{"date":"2026-05-11","active_vehicles":544,"total_trips":952,"avg_trips_per_vehicle":1.75,"avg_km":284.6362},{"date":"2026-05-12","active_vehicles":580,"total_trips":1064,"avg_trips_per_vehicle":1.8345,"avg_km":266.0862},{"date":"2026-05-13","active_vehicles":578,"total_trips":1036,"avg_trips_per_vehicle":1.7924,"avg_km":253.8552},{"date":"2026-05-14","active_vehicles":585,"total_trips":1043,"avg_trips_per_vehicle":1.7829,"avg_km":285.5109},{"date":"2026-05-15","active_vehicles":580,"total_trips":1010,"avg_trips_per_vehicle":1.7414,"avg_km":290.211},{"date":"2026-05-16","active_vehicles":563,"total_trips":1013,"avg_trips_per_vehicle":1.7993,"avg_km":268.1187},{"date":"2026-05-17","active_vehicles":547,"total_trips":974,"avg_trips_per_vehicle":1.7806,"avg_km":259.2508},{"date":"2026-05-18","active_vehicles":556,"total_trips":966,"avg_trips_per_vehicle":1.7374,"avg_km":263.5977},{"date":"2026-05-19","active_vehicles":576,"total_trips":1053,"avg_trips_per_vehicle":1.8281,"avg_km":245.7321},{"date":"2026-05-20","active_vehicles":563,"total_trips":1010,"avg_trips_per_vehicle":1.794,"avg_km":272.3421},{"date":"2026-05-21","active_vehicles":580,"total_trips":1059,"avg_trips_per_vehicle":1.8259,"avg_km":280.4143},{"date":"2026-05-22","active_vehicles":581,"total_trips":1021,"avg_trips_per_vehicle":1.7573,"avg_km":297.2871},{"date":"2026-05-23","active_vehicles":578,"total_trips":1016,"avg_trips_per_vehicle":1.7578,"avg_km":261.2048},{"date":"2026-05-24","active_vehicles":552,"total_trips":920,"avg_trips_per_vehicle":1.6667,"avg_km":260.9625},{"date":"2026-05-25","active_vehicles":545,"total_trips":961,"avg_trips_per_vehicle":1.7633,"avg_km":271.1213}],"by_load_capacity":[{"capacity":"1100 kg","capacity_raw":1100,"count":5,"percentage":0.0041},{"capacity":"1900 kg","capacity_raw":1900,"count":461,"percentage":0.3826},{"capacity":"5000 kg","capacity_raw":5000,"count":76,"percentage":0.0631},{"capacity":"6000 kg","capacity_raw":6000,"count":32,"percentage":0.0266},{"capacity":"8000 kg","capacity_raw":8000,"count":11,"percentage":0.0091},{"capacity":"8001 kg","capacity_raw":8001,"count":568,"percentage":0.4714},{"capacity":"40000 kg","capacity_raw":40000,"count":52,"percentage":0.0432}],"top15_least_used":[{"plate":"17H01991","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"17H03013","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"17H03375","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9,"total_km":1666.9},{"plate":"20E00149","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"20G00117","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8,"total_km":1641.8},{"plate":"20G00154","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"20H00972","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"20H00974","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1669.4,"total_km":1669.4},{"plate":"20H01507","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"20H01522","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.8,"total_km":1682.8},{"plate":"20H03904","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"20H03905","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9,"total_km":1666.9},{"plate":"20H03909","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5,"total_km":1688.5},{"plate":"26H02419","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":428.2,"total_km":428.2},{"plate":"26H02817","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":177.1,"total_km":177.1}],"top15_most_used":[{"plate":"29H71197","trips":131,"days_active":25,"trips_per_day":5.24,"km_per_day":77.78,"total_km":1944.5},{"plate":"50H16968","trips":105,"days_active":25,"trips_per_day":4.2,"km_per_day":118.644,"total_km":2966.1},{"plate":"29H36264","trips":103,"days_active":25,"trips_per_day":4.12,"km_per_day":109.484,"total_km":2737.1},{"plate":"29K07597","trips":101,"days_active":25,"trips_per_day":4.04,"km_per_day":68.62,"total_km":1715.5},{"plate":"50H18544","trips":99,"days_active":25,"trips_per_day":3.96,"km_per_day":151.492,"total_km":3787.3},{"plate":"50E37167","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":207.08,"total_km":5177.0},{"plate":"50H18487","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":138.62,"total_km":3465.5},{"plate":"50H79457","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":94.564,"total_km":2364.1},{"plate":"29H95864","trips":92,"days_active":24,"trips_per_day":3.8333,"km_per_day":127.175,"total_km":3052.2},{"plate":"50H06499","trips":88,"days_active":25,"trips_per_day":3.52,"km_per_day":200.996,"total_km":5024.9},{"plate":"50H18466","trips":88,"days_active":25,"trips_per_day":3.52,"km_per_day":126.376,"total_km":3159.4},{"plate":"50H04556","trips":87,"days_active":25,"trips_per_day":3.48,"km_per_day":129.352,"total_km":3233.8},{"plate":"50H00626","trips":86,"days_active":25,"trips_per_day":3.44,"km_per_day":135.228,"total_km":3380.7},{"plate":"50H04478","trips":86,"days_active":23,"trips_per_day":3.7391,"km_per_day":128.3217,"total_km":2951.4},{"plate":"50H16944","trips":86,"days_active":24,"trips_per_day":3.5833,"km_per_day":105.8583,"total_km":2540.6}],"anomaly_vehicles":[{"plate":"17H01991","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"17H03013","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"17H03375","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"20E00149","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20G00117","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"20G00154","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H00972","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H00974","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1669.4},{"plate":"20H00983","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H01507","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H01522","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.8},{"plate":"20H02036","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H03904","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H03905","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"20H03909","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"20H04744","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1665.15},{"plate":"29C61838","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29C94043","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":3064.8},{"plate":"29C97654","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":72,"days_active":25,"trips_per_day":2.88,"km_per_day":103.636},{"plate":"29E08321","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29E10651","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29E12808","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.4},{"plate":"29E25769","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"29E26216","reason":"Km/ngày quá cao (> 2σ: 2023.473 km)","trips":4,"days_active":4,"trips_per_day":1.0,"km_per_day":2024.675},{"plate":"29E26713","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"29E26714","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":2182.3},{"plate":"29E26720","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1618.5},{"plate":"29E26721","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1719.15},{"plate":"29E26727","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"29E26734","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":2204.25},{"plate":"29E26742","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"29E34867","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.1},{"plate":"29E35331","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"29E35371","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"29E37796","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"29E44027","reason":"Km/ngày quá cao (> 2σ: 2023.473 km)","trips":3,"days_active":3,"trips_per_day":1.0,"km_per_day":2025.2667},{"plate":"29E50582","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":3,"days_active":1,"trips_per_day":3.0,"km_per_day":105.8},{"plate":"29E51743","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"29E57014","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1529.95},{"plate":"29E60482","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":2564.6},{"plate":"29E60526","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.1},{"plate":"29E60540","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1529.95},{"plate":"29E60558","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1599.55},{"plate":"29E62819","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":100.56},{"plate":"29E64483","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29E64536","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29E71381","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1664.95},{"plate":"29E71390","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"29E71472","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"29E72957","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"29E74975","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1659.5},{"plate":"29E75043","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1608.4},{"plate":"29G01337","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1791.5},{"plate":"29H06425","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":78.884},{"plate":"29H22609","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":84,"days_active":23,"trips_per_day":3.6522,"km_per_day":279.4957},{"plate":"29H22623","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":57,"days_active":19,"trips_per_day":3.0,"km_per_day":178.6526},{"plate":"29H22642","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":80,"days_active":25,"trips_per_day":3.2,"km_per_day":121.692},{"plate":"29H29672","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H32729","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":129.208},{"plate":"29H34755","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H34760","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H36264","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":103,"days_active":25,"trips_per_day":4.12,"km_per_day":109.484},{"plate":"29H38368","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":107.3},{"plate":"29H46140","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":70,"days_active":25,"trips_per_day":2.8,"km_per_day":116.12},{"plate":"29H55030","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H71197","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":131,"days_active":25,"trips_per_day":5.24,"km_per_day":77.78},{"plate":"29H72112","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H72877","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H74297","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1557.3},{"plate":"29H75397","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H75978","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H76501","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":73,"days_active":25,"trips_per_day":2.92,"km_per_day":73.432},{"plate":"29H76785","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1781.8},{"plate":"29H76908","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"29H76991","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1791.5},{"plate":"29H78091","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H78740","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H78863","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1659.5},{"plate":"29H80025","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H81343","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":118.156},{"plate":"29H81542","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1695.5},{"plate":"29H81633","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1600.35},{"plate":"29H81645","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1572.2},{"plate":"29H81837","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29H82053","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H82163","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H82195","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"29H83764","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"29H84009","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1502.6},{"plate":"29H84469","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"29H85348","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":53,"days_active":19,"trips_per_day":2.7895,"km_per_day":53.3789},{"plate":"29H85802","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":73,"days_active":25,"trips_per_day":2.92,"km_per_day":102.732},{"plate":"29H88189","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":69,"days_active":25,"trips_per_day":2.76,"km_per_day":88.636},{"plate":"29H92017","reason":"Km/ngày quá cao (> 2σ: 2023.473 km)","trips":7,"days_active":7,"trips_per_day":1.0,"km_per_day":2222.9286},{"plate":"29H95864","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":92,"days_active":24,"trips_per_day":3.8333,"km_per_day":127.175},{"plate":"29H99505","reason":"Km/ngày quá cao (> 2σ: 2023.473 km)","trips":3,"days_active":3,"trips_per_day":1.0,"km_per_day":2025.9333},{"plate":"29H99521","reason":"Km/ngày quá cao (> 2σ: 2023.473 km)","trips":3,"days_active":3,"trips_per_day":1.0,"km_per_day":2084.5333},{"plate":"29H99575","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":3064.8},{"plate":"29H99668","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1504.2},{"plate":"29K02164","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":92.784},{"plate":"29K02211","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29K02338","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29K05425","reason":"Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":2563.4},{"plate":"29K05606","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":99.44},{"plate":"29K05671","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"29K05794","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.5},{"plate":"29K07597","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":101,"days_active":25,"trips_per_day":4.04,"km_per_day":68.62},{"plate":"29K10513","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"29K10678","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1693.05},{"plate":"29K11044","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"29K11681","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"29K25767","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"29LD31962","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":171.476},{"plate":"29LD32928","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":117.9},{"plate":"29X2964","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":80,"days_active":22,"trips_per_day":3.6364,"km_per_day":101.2091},{"plate":"30M04167","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":69.1},{"plate":"34C08078","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"34E04872","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"35H03639","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"35H04712","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"35H06602","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"35H06713","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"37H08707","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1693.9},{"plate":"37H08726","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"37H08850","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1695.5},{"plate":"37H08981","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H14504","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1712.85},{"plate":"37H14543","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H14556","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H14687","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H17272","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H17347","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1701.5},{"plate":"37H17359","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"37H17384","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1714.5},{"plate":"37H17608","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1701.5},{"plate":"38H02970","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"38H04152","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"49H08066","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1692.5},{"plate":"50D18409","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50E14416","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50E18662","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1715.5},{"plate":"50E18713","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1727.9},{"plate":"50E19992","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50E21351","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":58.376},{"plate":"50E33190","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"50E34613","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":107.164},{"plate":"50E35543","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":72,"days_active":25,"trips_per_day":2.88,"km_per_day":58.948},{"plate":"50E35629","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":60.2},{"plate":"50E35964","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":108.172},{"plate":"50E36620","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"50E37167","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":207.08},{"plate":"50E39162","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50E47404","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"50E48601","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.1},{"plate":"50E88454","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"50E88456","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"50H00405","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":84,"days_active":25,"trips_per_day":3.36,"km_per_day":137.976},{"plate":"50H00430","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":64,"days_active":21,"trips_per_day":3.0476,"km_per_day":79.7524},{"plate":"50H00440","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":64,"days_active":22,"trips_per_day":2.9091,"km_per_day":215.0727},{"plate":"50H00466","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":69,"days_active":24,"trips_per_day":2.875,"km_per_day":99.2917},{"plate":"50H00499","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":72,"days_active":24,"trips_per_day":3.0,"km_per_day":147.2833},{"plate":"50H00513","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":64,"days_active":23,"trips_per_day":2.7826,"km_per_day":104.3304},{"plate":"50H00597","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":84,"days_active":23,"trips_per_day":3.6522,"km_per_day":164.7391},{"plate":"50H00601","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":85,"days_active":25,"trips_per_day":3.4,"km_per_day":102.884},{"plate":"50H00622","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":74,"days_active":25,"trips_per_day":2.96,"km_per_day":117.024},{"plate":"50H00626","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":86,"days_active":25,"trips_per_day":3.44,"km_per_day":135.228},{"plate":"50H00633","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":22,"trips_per_day":3.4091,"km_per_day":173.3545},{"plate":"50H00645","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":68,"days_active":24,"trips_per_day":2.8333,"km_per_day":232.5125},{"plate":"50H00678","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":71,"days_active":25,"trips_per_day":2.84,"km_per_day":236.02},{"plate":"50H01553","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"50H04403","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":77,"days_active":25,"trips_per_day":3.08,"km_per_day":84.22},{"plate":"50H04420","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":77,"days_active":24,"trips_per_day":3.2083,"km_per_day":158.0542},{"plate":"50H04478","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":86,"days_active":23,"trips_per_day":3.7391,"km_per_day":128.3217},{"plate":"50H04502","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":80,"days_active":25,"trips_per_day":3.2,"km_per_day":189.892},{"plate":"50H04556","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":87,"days_active":25,"trips_per_day":3.48,"km_per_day":129.352},{"plate":"50H04572","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":69,"days_active":25,"trips_per_day":2.76,"km_per_day":106.28},{"plate":"50H04784","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":83,"days_active":25,"trips_per_day":3.32,"km_per_day":189.148},{"plate":"50H06259","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H06429","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":70,"days_active":24,"trips_per_day":2.9167,"km_per_day":153.7792},{"plate":"50H06437","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":71,"days_active":25,"trips_per_day":2.84,"km_per_day":139.976},{"plate":"50H06497","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":70,"days_active":23,"trips_per_day":3.0435,"km_per_day":108.9609},{"plate":"50H06499","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":88,"days_active":25,"trips_per_day":3.52,"km_per_day":200.996},{"plate":"50H06594","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":67,"days_active":21,"trips_per_day":3.1905,"km_per_day":150.3095},{"plate":"50H07337","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":66,"days_active":24,"trips_per_day":2.75,"km_per_day":82.4708},{"plate":"50H12174","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1706.9},{"plate":"50H16596","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":85,"days_active":25,"trips_per_day":3.4,"km_per_day":183.576},{"plate":"50H16636","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":69,"days_active":25,"trips_per_day":2.76,"km_per_day":121.232},{"plate":"50H16728","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":23,"trips_per_day":3.2609,"km_per_day":58.7739},{"plate":"50H16857","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":83,"days_active":22,"trips_per_day":3.7727,"km_per_day":134.8},{"plate":"50H16944","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":86,"days_active":24,"trips_per_day":3.5833,"km_per_day":105.8583},{"plate":"50H16946","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":85,"days_active":23,"trips_per_day":3.6957,"km_per_day":135.1261},{"plate":"50H16968","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":105,"days_active":25,"trips_per_day":4.2,"km_per_day":118.644},{"plate":"50H17489","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1673.05},{"plate":"50H18466","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":88,"days_active":25,"trips_per_day":3.52,"km_per_day":126.376},{"plate":"50H18487","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":138.62},{"plate":"50H18544","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":99,"days_active":25,"trips_per_day":3.96,"km_per_day":151.492},{"plate":"50H18692","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":81,"days_active":22,"trips_per_day":3.6818,"km_per_day":150.8636},{"plate":"50H18706","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":86,"days_active":25,"trips_per_day":3.44,"km_per_day":147.412},{"plate":"50H18714","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":77,"days_active":23,"trips_per_day":3.3478,"km_per_day":124.4},{"plate":"50H18721","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":65,"days_active":23,"trips_per_day":2.8261,"km_per_day":220.8},{"plate":"50H18798","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":77,"days_active":25,"trips_per_day":3.08,"km_per_day":100.912},{"plate":"50H18835","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":86,"days_active":24,"trips_per_day":3.5833,"km_per_day":139.0417},{"plate":"50H18840","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":84,"days_active":25,"trips_per_day":3.36,"km_per_day":181.428},{"plate":"50H22621","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":64,"days_active":23,"trips_per_day":2.7826,"km_per_day":68.113},{"plate":"50H24536","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.1},{"plate":"50H24595","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"50H24826","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1709.7},{"plate":"50H24990","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"50H25249","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":57,"days_active":20,"trips_per_day":2.85,"km_per_day":141.925},{"plate":"50H26108","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":68,"days_active":25,"trips_per_day":2.72,"km_per_day":130.0},{"plate":"50H44961","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"50H52176","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H62398","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":77,"days_active":25,"trips_per_day":3.08,"km_per_day":47.816},{"plate":"50H68229","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"50H68287","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1699.3},{"plate":"50H68597","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"50H68727","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"50H70504","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H75677","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"50H78547","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H79457","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":94,"days_active":25,"trips_per_day":3.76,"km_per_day":94.564},{"plate":"50H81896","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H83396","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":47,"days_active":16,"trips_per_day":2.9375,"km_per_day":65.225},{"plate":"50H87811","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"50H91721","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"51C17667","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51C70380","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51C75754","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51C94986","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"51C99728","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51D04692","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51D11506","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51D32262","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51D47051","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"51E00568","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"57L9109","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"60C09684","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1683.0},{"plate":"60C13154","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1637.2},{"plate":"60C53704","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1671.1},{"plate":"60H00816","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.3},{"plate":"60H00898","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1690.9},{"plate":"60H02513","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.8},{"plate":"60H02630","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"60H02780","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.3},{"plate":"60H02891","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"60H04049","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1682.8},{"plate":"60H08536","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.8},{"plate":"60H08565","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1690.9},{"plate":"60H08620","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"60H08621","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1690.9},{"plate":"60H08679","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"60H26185","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"60H29323","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1677.5},{"plate":"60H29329","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.9},{"plate":"60H31408","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1686.85},{"plate":"60H37043","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1711.2},{"plate":"61H21023","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"62H05373","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"62H06017","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"62H08670","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1791.5},{"plate":"63C12464","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"63C15414","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"63E01586","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"63H00072","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"63H01202","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"63H02439","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"66H07322","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"73H00241","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"77H08246","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"86C00944","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"88H00572","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":75,"days_active":25,"trips_per_day":3.0,"km_per_day":114.856},{"plate":"89A61906","reason":"Số chuyến/ngày quá cao (> 2σ: 2.6959)","trips":70,"days_active":25,"trips_per_day":2.8,"km_per_day":105.708},{"plate":"89C06299","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"89C22242","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"89G00399","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1666.9},{"plate":"89H00448","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"89H00540","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1730.4},{"plate":"89H02333","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"89H03744","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"89H03753","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1823.15},{"plate":"89H05002","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"89H05004","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1801.2},{"plate":"89H07978","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1692.5},{"plate":"89H08369","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1641.8},{"plate":"89H09102","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":2,"days_active":2,"trips_per_day":1.0,"km_per_day":1694.8},{"plate":"89H09164","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1730.4},{"plate":"89H09183","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"89H09217","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1682.8},{"plate":"89H09261","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"89H09273","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1845.1},{"plate":"89H09282","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1689.0},{"plate":"89H13030","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1697.1},{"plate":"89H16463","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1692.5},{"plate":"98H06348","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5},{"plate":"98H22512","reason":"Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)","trips":1,"days_active":1,"trips_per_day":1.0,"km_per_day":1688.5}]}
+{
+  "metadata": {
+    "date_range": "01/05 - 25/05/2026",
+    "total_vehicles": 1205,
+    "total_days": 25,
+    "generated_at": "2026-05-26T19:13:51"
+  },
+  "summary": {
+    "total_vehicles": 1205,
+    "avg_trips_per_day": 1.407,
+    "avg_km_per_day": 678.8906,
+    "anomaly_count": 295
+  },
+  "daily_usage": [
+    {
+      "date": "2026-05-01",
+      "active_vehicles": 503,
+      "total_trips": 823,
+      "avg_trips_per_vehicle": 1.6362,
+      "avg_km": 227.6302
+    },
+    {
+      "date": "2026-05-02",
+      "active_vehicles": 503,
+      "total_trips": 882,
+      "avg_trips_per_vehicle": 1.7535,
+      "avg_km": 205.7123
+    },
+    {
+      "date": "2026-05-03",
+      "active_vehicles": 504,
+      "total_trips": 873,
+      "avg_trips_per_vehicle": 1.7321,
+      "avg_km": 201.1329
+    },
+    {
+      "date": "2026-05-04",
+      "active_vehicles": 562,
+      "total_trips": 974,
+      "avg_trips_per_vehicle": 1.7331,
+      "avg_km": 284.9527
+    },
+    {
+      "date": "2026-05-05",
+      "active_vehicles": 561,
+      "total_trips": 993,
+      "avg_trips_per_vehicle": 1.7701,
+      "avg_km": 209.5775
+    },
+    {
+      "date": "2026-05-06",
+      "active_vehicles": 585,
+      "total_trips": 1074,
+      "avg_trips_per_vehicle": 1.8359,
+      "avg_km": 246.8169
+    },
+    {
+      "date": "2026-05-07",
+      "active_vehicles": 595,
+      "total_trips": 1071,
+      "avg_trips_per_vehicle": 1.8,
+      "avg_km": 283.3743
+    },
+    {
+      "date": "2026-05-08",
+      "active_vehicles": 594,
+      "total_trips": 1049,
+      "avg_trips_per_vehicle": 1.766,
+      "avg_km": 288.129
+    },
+    {
+      "date": "2026-05-09",
+      "active_vehicles": 577,
+      "total_trips": 1011,
+      "avg_trips_per_vehicle": 1.7522,
+      "avg_km": 267.5638
+    },
+    {
+      "date": "2026-05-10",
+      "active_vehicles": 554,
+      "total_trips": 936,
+      "avg_trips_per_vehicle": 1.6895,
+      "avg_km": 255.9206
+    },
+    {
+      "date": "2026-05-11",
+      "active_vehicles": 544,
+      "total_trips": 952,
+      "avg_trips_per_vehicle": 1.75,
+      "avg_km": 284.6362
+    },
+    {
+      "date": "2026-05-12",
+      "active_vehicles": 580,
+      "total_trips": 1064,
+      "avg_trips_per_vehicle": 1.8345,
+      "avg_km": 266.0862
+    },
+    {
+      "date": "2026-05-13",
+      "active_vehicles": 578,
+      "total_trips": 1036,
+      "avg_trips_per_vehicle": 1.7924,
+      "avg_km": 253.8552
+    },
+    {
+      "date": "2026-05-14",
+      "active_vehicles": 585,
+      "total_trips": 1043,
+      "avg_trips_per_vehicle": 1.7829,
+      "avg_km": 285.5109
+    },
+    {
+      "date": "2026-05-15",
+      "active_vehicles": 580,
+      "total_trips": 1010,
+      "avg_trips_per_vehicle": 1.7414,
+      "avg_km": 290.211
+    },
+    {
+      "date": "2026-05-16",
+      "active_vehicles": 563,
+      "total_trips": 1013,
+      "avg_trips_per_vehicle": 1.7993,
+      "avg_km": 268.1187
+    },
+    {
+      "date": "2026-05-17",
+      "active_vehicles": 547,
+      "total_trips": 974,
+      "avg_trips_per_vehicle": 1.7806,
+      "avg_km": 259.2508
+    },
+    {
+      "date": "2026-05-18",
+      "active_vehicles": 556,
+      "total_trips": 966,
+      "avg_trips_per_vehicle": 1.7374,
+      "avg_km": 263.5977
+    },
+    {
+      "date": "2026-05-19",
+      "active_vehicles": 576,
+      "total_trips": 1053,
+      "avg_trips_per_vehicle": 1.8281,
+      "avg_km": 245.7321
+    },
+    {
+      "date": "2026-05-20",
+      "active_vehicles": 563,
+      "total_trips": 1010,
+      "avg_trips_per_vehicle": 1.794,
+      "avg_km": 272.3421
+    },
+    {
+      "date": "2026-05-21",
+      "active_vehicles": 580,
+      "total_trips": 1059,
+      "avg_trips_per_vehicle": 1.8259,
+      "avg_km": 280.4143
+    },
+    {
+      "date": "2026-05-22",
+      "active_vehicles": 581,
+      "total_trips": 1021,
+      "avg_trips_per_vehicle": 1.7573,
+      "avg_km": 297.2871
+    },
+    {
+      "date": "2026-05-23",
+      "active_vehicles": 578,
+      "total_trips": 1016,
+      "avg_trips_per_vehicle": 1.7578,
+      "avg_km": 261.2048
+    },
+    {
+      "date": "2026-05-24",
+      "active_vehicles": 552,
+      "total_trips": 920,
+      "avg_trips_per_vehicle": 1.6667,
+      "avg_km": 260.9625
+    },
+    {
+      "date": "2026-05-25",
+      "active_vehicles": 545,
+      "total_trips": 961,
+      "avg_trips_per_vehicle": 1.7633,
+      "avg_km": 271.1213
+    }
+  ],
+  "by_load_capacity": [
+    {
+      "capacity": "1100 kg",
+      "capacity_raw": 1100,
+      "count": 5,
+      "percentage": 0.0041
+    },
+    {
+      "capacity": "1900 kg",
+      "capacity_raw": 1900,
+      "count": 461,
+      "percentage": 0.3826
+    },
+    {
+      "capacity": "5000 kg",
+      "capacity_raw": 5000,
+      "count": 76,
+      "percentage": 0.0631
+    },
+    {
+      "capacity": "6000 kg",
+      "capacity_raw": 6000,
+      "count": 32,
+      "percentage": 0.0266
+    },
+    {
+      "capacity": "8000 kg",
+      "capacity_raw": 8000,
+      "count": 11,
+      "percentage": 0.0091
+    },
+    {
+      "capacity": "8001 kg",
+      "capacity_raw": 8001,
+      "count": 568,
+      "percentage": 0.4714
+    },
+    {
+      "capacity": "40000 kg",
+      "capacity_raw": 40000,
+      "count": 52,
+      "percentage": 0.0432
+    }
+  ],
+  "top15_least_used": [
+    {
+      "plate": "17H01991",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "17H03013",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "17H03375",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9,
+      "total_km": 1666.9
+    },
+    {
+      "plate": "20E00149",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "20G00117",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8,
+      "total_km": 1641.8
+    },
+    {
+      "plate": "20G00154",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "20H00972",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "20H00974",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1669.4,
+      "total_km": 1669.4
+    },
+    {
+      "plate": "20H01507",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "20H01522",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8,
+      "total_km": 1682.8
+    },
+    {
+      "plate": "20H03904",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "20H03905",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9,
+      "total_km": 1666.9
+    },
+    {
+      "plate": "20H03909",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5,
+      "total_km": 1688.5
+    },
+    {
+      "plate": "26H02419",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 428.2,
+      "total_km": 428.2
+    },
+    {
+      "plate": "26H02817",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 177.1,
+      "total_km": 177.1
+    }
+  ],
+  "top15_most_used": [
+    {
+      "plate": "29H71197",
+      "trips": 131,
+      "days_active": 25,
+      "trips_per_day": 5.24,
+      "km_per_day": 77.78,
+      "total_km": 1944.5
+    },
+    {
+      "plate": "50H16968",
+      "trips": 105,
+      "days_active": 25,
+      "trips_per_day": 4.2,
+      "km_per_day": 118.644,
+      "total_km": 2966.1
+    },
+    {
+      "plate": "29H36264",
+      "trips": 103,
+      "days_active": 25,
+      "trips_per_day": 4.12,
+      "km_per_day": 109.484,
+      "total_km": 2737.1
+    },
+    {
+      "plate": "29K07597",
+      "trips": 101,
+      "days_active": 25,
+      "trips_per_day": 4.04,
+      "km_per_day": 68.62,
+      "total_km": 1715.5
+    },
+    {
+      "plate": "50H18544",
+      "trips": 99,
+      "days_active": 25,
+      "trips_per_day": 3.96,
+      "km_per_day": 151.492,
+      "total_km": 3787.3
+    },
+    {
+      "plate": "50E37167",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 207.08,
+      "total_km": 5177.0
+    },
+    {
+      "plate": "50H18487",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 138.62,
+      "total_km": 3465.5
+    },
+    {
+      "plate": "50H79457",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 94.564,
+      "total_km": 2364.1
+    },
+    {
+      "plate": "29H95864",
+      "trips": 92,
+      "days_active": 24,
+      "trips_per_day": 3.8333,
+      "km_per_day": 127.175,
+      "total_km": 3052.2
+    },
+    {
+      "plate": "50H06499",
+      "trips": 88,
+      "days_active": 25,
+      "trips_per_day": 3.52,
+      "km_per_day": 200.996,
+      "total_km": 5024.9
+    },
+    {
+      "plate": "50H18466",
+      "trips": 88,
+      "days_active": 25,
+      "trips_per_day": 3.52,
+      "km_per_day": 126.376,
+      "total_km": 3159.4
+    },
+    {
+      "plate": "50H04556",
+      "trips": 87,
+      "days_active": 25,
+      "trips_per_day": 3.48,
+      "km_per_day": 129.352,
+      "total_km": 3233.8
+    },
+    {
+      "plate": "50H00626",
+      "trips": 86,
+      "days_active": 25,
+      "trips_per_day": 3.44,
+      "km_per_day": 135.228,
+      "total_km": 3380.7
+    },
+    {
+      "plate": "50H04478",
+      "trips": 86,
+      "days_active": 23,
+      "trips_per_day": 3.7391,
+      "km_per_day": 128.3217,
+      "total_km": 2951.4
+    },
+    {
+      "plate": "50H16944",
+      "trips": 86,
+      "days_active": 24,
+      "trips_per_day": 3.5833,
+      "km_per_day": 105.8583,
+      "total_km": 2540.6
+    }
+  ],
+  "anomaly_vehicles": [
+    {
+      "plate": "17H01991",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "17H03013",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "17H03375",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "20E00149",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20G00117",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "20G00154",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H00972",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H00974",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1669.4
+    },
+    {
+      "plate": "20H00983",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H01507",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H01522",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8
+    },
+    {
+      "plate": "20H02036",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H03904",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H03905",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "20H03909",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "20H04744",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1665.15
+    },
+    {
+      "plate": "29C61838",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29C94043",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 3064.8
+    },
+    {
+      "plate": "29C97654",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 72,
+      "days_active": 25,
+      "trips_per_day": 2.88,
+      "km_per_day": 103.636
+    },
+    {
+      "plate": "29E08321",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29E10651",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29E12808",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.4
+    },
+    {
+      "plate": "29E25769",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "29E26216",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km)",
+      "trips": 4,
+      "days_active": 4,
+      "trips_per_day": 1.0,
+      "km_per_day": 2024.675
+    },
+    {
+      "plate": "29E26713",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "29E26714",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 2182.3
+    },
+    {
+      "plate": "29E26720",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1618.5
+    },
+    {
+      "plate": "29E26721",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1719.15
+    },
+    {
+      "plate": "29E26727",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "29E26734",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 2204.25
+    },
+    {
+      "plate": "29E26742",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "29E34867",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.1
+    },
+    {
+      "plate": "29E35331",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "29E35371",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "29E37796",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "29E44027",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km)",
+      "trips": 3,
+      "days_active": 3,
+      "trips_per_day": 1.0,
+      "km_per_day": 2025.2667
+    },
+    {
+      "plate": "29E50582",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 3,
+      "days_active": 1,
+      "trips_per_day": 3.0,
+      "km_per_day": 105.8
+    },
+    {
+      "plate": "29E51743",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "29E57014",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1529.95
+    },
+    {
+      "plate": "29E60482",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 2564.6
+    },
+    {
+      "plate": "29E60526",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.1
+    },
+    {
+      "plate": "29E60540",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1529.95
+    },
+    {
+      "plate": "29E60558",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1599.55
+    },
+    {
+      "plate": "29E62819",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 100.56
+    },
+    {
+      "plate": "29E64483",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29E64536",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29E71381",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1664.95
+    },
+    {
+      "plate": "29E71390",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "29E71472",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "29E72957",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "29E74975",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1659.5
+    },
+    {
+      "plate": "29E75043",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1608.4
+    },
+    {
+      "plate": "29G01337",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1791.5
+    },
+    {
+      "plate": "29H06425",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 78.884
+    },
+    {
+      "plate": "29H22609",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 84,
+      "days_active": 23,
+      "trips_per_day": 3.6522,
+      "km_per_day": 279.4957
+    },
+    {
+      "plate": "29H22623",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 57,
+      "days_active": 19,
+      "trips_per_day": 3.0,
+      "km_per_day": 178.6526
+    },
+    {
+      "plate": "29H22642",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 80,
+      "days_active": 25,
+      "trips_per_day": 3.2,
+      "km_per_day": 121.692
+    },
+    {
+      "plate": "29H29672",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H32729",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 129.208
+    },
+    {
+      "plate": "29H34755",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H34760",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H36264",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 103,
+      "days_active": 25,
+      "trips_per_day": 4.12,
+      "km_per_day": 109.484
+    },
+    {
+      "plate": "29H38368",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 107.3
+    },
+    {
+      "plate": "29H46140",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 70,
+      "days_active": 25,
+      "trips_per_day": 2.8,
+      "km_per_day": 116.12
+    },
+    {
+      "plate": "29H55030",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H71197",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 131,
+      "days_active": 25,
+      "trips_per_day": 5.24,
+      "km_per_day": 77.78
+    },
+    {
+      "plate": "29H72112",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H72877",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H74297",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1557.3
+    },
+    {
+      "plate": "29H75397",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H75978",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H76501",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 73,
+      "days_active": 25,
+      "trips_per_day": 2.92,
+      "km_per_day": 73.432
+    },
+    {
+      "plate": "29H76785",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1781.8
+    },
+    {
+      "plate": "29H76908",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "29H76991",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1791.5
+    },
+    {
+      "plate": "29H78091",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H78740",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H78863",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1659.5
+    },
+    {
+      "plate": "29H80025",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H81343",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 118.156
+    },
+    {
+      "plate": "29H81542",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1695.5
+    },
+    {
+      "plate": "29H81633",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1600.35
+    },
+    {
+      "plate": "29H81645",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1572.2
+    },
+    {
+      "plate": "29H81837",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29H82053",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H82163",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H82195",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "29H83764",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "29H84009",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1502.6
+    },
+    {
+      "plate": "29H84469",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "29H85348",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 53,
+      "days_active": 19,
+      "trips_per_day": 2.7895,
+      "km_per_day": 53.3789
+    },
+    {
+      "plate": "29H85802",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 73,
+      "days_active": 25,
+      "trips_per_day": 2.92,
+      "km_per_day": 102.732
+    },
+    {
+      "plate": "29H88189",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 69,
+      "days_active": 25,
+      "trips_per_day": 2.76,
+      "km_per_day": 88.636
+    },
+    {
+      "plate": "29H92017",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km)",
+      "trips": 7,
+      "days_active": 7,
+      "trips_per_day": 1.0,
+      "km_per_day": 2222.9286
+    },
+    {
+      "plate": "29H95864",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 92,
+      "days_active": 24,
+      "trips_per_day": 3.8333,
+      "km_per_day": 127.175
+    },
+    {
+      "plate": "29H99505",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km)",
+      "trips": 3,
+      "days_active": 3,
+      "trips_per_day": 1.0,
+      "km_per_day": 2025.9333
+    },
+    {
+      "plate": "29H99521",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km)",
+      "trips": 3,
+      "days_active": 3,
+      "trips_per_day": 1.0,
+      "km_per_day": 2084.5333
+    },
+    {
+      "plate": "29H99575",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 3064.8
+    },
+    {
+      "plate": "29H99668",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1504.2
+    },
+    {
+      "plate": "29K02164",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 92.784
+    },
+    {
+      "plate": "29K02211",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29K02338",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29K05425",
+      "reason": "Km/ngày quá cao (> 2σ: 2023.473 km); Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 2563.4
+    },
+    {
+      "plate": "29K05606",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 99.44
+    },
+    {
+      "plate": "29K05671",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "29K05794",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.5
+    },
+    {
+      "plate": "29K07597",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 101,
+      "days_active": 25,
+      "trips_per_day": 4.04,
+      "km_per_day": 68.62
+    },
+    {
+      "plate": "29K10513",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "29K10678",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1693.05
+    },
+    {
+      "plate": "29K11044",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "29K11681",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "29K25767",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "29LD31962",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 171.476
+    },
+    {
+      "plate": "29LD32928",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 117.9
+    },
+    {
+      "plate": "29X2964",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 80,
+      "days_active": 22,
+      "trips_per_day": 3.6364,
+      "km_per_day": 101.2091
+    },
+    {
+      "plate": "30M04167",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 69.1
+    },
+    {
+      "plate": "34C08078",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "34E04872",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "35H03639",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "35H04712",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "35H06602",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "35H06713",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "37H08707",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1693.9
+    },
+    {
+      "plate": "37H08726",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "37H08850",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1695.5
+    },
+    {
+      "plate": "37H08981",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H14504",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1712.85
+    },
+    {
+      "plate": "37H14543",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H14556",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H14687",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H17272",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H17347",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1701.5
+    },
+    {
+      "plate": "37H17359",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "37H17384",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1714.5
+    },
+    {
+      "plate": "37H17608",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1701.5
+    },
+    {
+      "plate": "38H02970",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "38H04152",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "49H08066",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1692.5
+    },
+    {
+      "plate": "50D18409",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50E14416",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50E18662",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1715.5
+    },
+    {
+      "plate": "50E18713",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1727.9
+    },
+    {
+      "plate": "50E19992",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50E21351",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 58.376
+    },
+    {
+      "plate": "50E33190",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "50E34613",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 107.164
+    },
+    {
+      "plate": "50E35543",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 72,
+      "days_active": 25,
+      "trips_per_day": 2.88,
+      "km_per_day": 58.948
+    },
+    {
+      "plate": "50E35629",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 60.2
+    },
+    {
+      "plate": "50E35964",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 108.172
+    },
+    {
+      "plate": "50E36620",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "50E37167",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 207.08
+    },
+    {
+      "plate": "50E39162",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50E47404",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "50E48601",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.1
+    },
+    {
+      "plate": "50E88454",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "50E88456",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "50H00405",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 84,
+      "days_active": 25,
+      "trips_per_day": 3.36,
+      "km_per_day": 137.976
+    },
+    {
+      "plate": "50H00430",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 64,
+      "days_active": 21,
+      "trips_per_day": 3.0476,
+      "km_per_day": 79.7524
+    },
+    {
+      "plate": "50H00440",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 64,
+      "days_active": 22,
+      "trips_per_day": 2.9091,
+      "km_per_day": 215.0727
+    },
+    {
+      "plate": "50H00466",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 69,
+      "days_active": 24,
+      "trips_per_day": 2.875,
+      "km_per_day": 99.2917
+    },
+    {
+      "plate": "50H00499",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 72,
+      "days_active": 24,
+      "trips_per_day": 3.0,
+      "km_per_day": 147.2833
+    },
+    {
+      "plate": "50H00513",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 64,
+      "days_active": 23,
+      "trips_per_day": 2.7826,
+      "km_per_day": 104.3304
+    },
+    {
+      "plate": "50H00597",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 84,
+      "days_active": 23,
+      "trips_per_day": 3.6522,
+      "km_per_day": 164.7391
+    },
+    {
+      "plate": "50H00601",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 85,
+      "days_active": 25,
+      "trips_per_day": 3.4,
+      "km_per_day": 102.884
+    },
+    {
+      "plate": "50H00622",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 74,
+      "days_active": 25,
+      "trips_per_day": 2.96,
+      "km_per_day": 117.024
+    },
+    {
+      "plate": "50H00626",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 86,
+      "days_active": 25,
+      "trips_per_day": 3.44,
+      "km_per_day": 135.228
+    },
+    {
+      "plate": "50H00633",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 22,
+      "trips_per_day": 3.4091,
+      "km_per_day": 173.3545
+    },
+    {
+      "plate": "50H00645",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 68,
+      "days_active": 24,
+      "trips_per_day": 2.8333,
+      "km_per_day": 232.5125
+    },
+    {
+      "plate": "50H00678",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 71,
+      "days_active": 25,
+      "trips_per_day": 2.84,
+      "km_per_day": 236.02
+    },
+    {
+      "plate": "50H01553",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "50H04403",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 77,
+      "days_active": 25,
+      "trips_per_day": 3.08,
+      "km_per_day": 84.22
+    },
+    {
+      "plate": "50H04420",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 77,
+      "days_active": 24,
+      "trips_per_day": 3.2083,
+      "km_per_day": 158.0542
+    },
+    {
+      "plate": "50H04478",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 86,
+      "days_active": 23,
+      "trips_per_day": 3.7391,
+      "km_per_day": 128.3217
+    },
+    {
+      "plate": "50H04502",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 80,
+      "days_active": 25,
+      "trips_per_day": 3.2,
+      "km_per_day": 189.892
+    },
+    {
+      "plate": "50H04556",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 87,
+      "days_active": 25,
+      "trips_per_day": 3.48,
+      "km_per_day": 129.352
+    },
+    {
+      "plate": "50H04572",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 69,
+      "days_active": 25,
+      "trips_per_day": 2.76,
+      "km_per_day": 106.28
+    },
+    {
+      "plate": "50H04784",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 83,
+      "days_active": 25,
+      "trips_per_day": 3.32,
+      "km_per_day": 189.148
+    },
+    {
+      "plate": "50H06259",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H06429",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 70,
+      "days_active": 24,
+      "trips_per_day": 2.9167,
+      "km_per_day": 153.7792
+    },
+    {
+      "plate": "50H06437",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 71,
+      "days_active": 25,
+      "trips_per_day": 2.84,
+      "km_per_day": 139.976
+    },
+    {
+      "plate": "50H06497",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 70,
+      "days_active": 23,
+      "trips_per_day": 3.0435,
+      "km_per_day": 108.9609
+    },
+    {
+      "plate": "50H06499",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 88,
+      "days_active": 25,
+      "trips_per_day": 3.52,
+      "km_per_day": 200.996
+    },
+    {
+      "plate": "50H06594",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 67,
+      "days_active": 21,
+      "trips_per_day": 3.1905,
+      "km_per_day": 150.3095
+    },
+    {
+      "plate": "50H07337",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 66,
+      "days_active": 24,
+      "trips_per_day": 2.75,
+      "km_per_day": 82.4708
+    },
+    {
+      "plate": "50H12174",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1706.9
+    },
+    {
+      "plate": "50H16596",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 85,
+      "days_active": 25,
+      "trips_per_day": 3.4,
+      "km_per_day": 183.576
+    },
+    {
+      "plate": "50H16636",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 69,
+      "days_active": 25,
+      "trips_per_day": 2.76,
+      "km_per_day": 121.232
+    },
+    {
+      "plate": "50H16728",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 23,
+      "trips_per_day": 3.2609,
+      "km_per_day": 58.7739
+    },
+    {
+      "plate": "50H16857",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 83,
+      "days_active": 22,
+      "trips_per_day": 3.7727,
+      "km_per_day": 134.8
+    },
+    {
+      "plate": "50H16944",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 86,
+      "days_active": 24,
+      "trips_per_day": 3.5833,
+      "km_per_day": 105.8583
+    },
+    {
+      "plate": "50H16946",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 85,
+      "days_active": 23,
+      "trips_per_day": 3.6957,
+      "km_per_day": 135.1261
+    },
+    {
+      "plate": "50H16968",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 105,
+      "days_active": 25,
+      "trips_per_day": 4.2,
+      "km_per_day": 118.644
+    },
+    {
+      "plate": "50H17489",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1673.05
+    },
+    {
+      "plate": "50H18466",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 88,
+      "days_active": 25,
+      "trips_per_day": 3.52,
+      "km_per_day": 126.376
+    },
+    {
+      "plate": "50H18487",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 138.62
+    },
+    {
+      "plate": "50H18544",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 99,
+      "days_active": 25,
+      "trips_per_day": 3.96,
+      "km_per_day": 151.492
+    },
+    {
+      "plate": "50H18692",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 81,
+      "days_active": 22,
+      "trips_per_day": 3.6818,
+      "km_per_day": 150.8636
+    },
+    {
+      "plate": "50H18706",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 86,
+      "days_active": 25,
+      "trips_per_day": 3.44,
+      "km_per_day": 147.412
+    },
+    {
+      "plate": "50H18714",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 77,
+      "days_active": 23,
+      "trips_per_day": 3.3478,
+      "km_per_day": 124.4
+    },
+    {
+      "plate": "50H18721",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 65,
+      "days_active": 23,
+      "trips_per_day": 2.8261,
+      "km_per_day": 220.8
+    },
+    {
+      "plate": "50H18798",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 77,
+      "days_active": 25,
+      "trips_per_day": 3.08,
+      "km_per_day": 100.912
+    },
+    {
+      "plate": "50H18835",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 86,
+      "days_active": 24,
+      "trips_per_day": 3.5833,
+      "km_per_day": 139.0417
+    },
+    {
+      "plate": "50H18840",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 84,
+      "days_active": 25,
+      "trips_per_day": 3.36,
+      "km_per_day": 181.428
+    },
+    {
+      "plate": "50H22621",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 64,
+      "days_active": 23,
+      "trips_per_day": 2.7826,
+      "km_per_day": 68.113
+    },
+    {
+      "plate": "50H24536",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.1
+    },
+    {
+      "plate": "50H24595",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "50H24826",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1709.7
+    },
+    {
+      "plate": "50H24990",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "50H25249",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 57,
+      "days_active": 20,
+      "trips_per_day": 2.85,
+      "km_per_day": 141.925
+    },
+    {
+      "plate": "50H26108",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 68,
+      "days_active": 25,
+      "trips_per_day": 2.72,
+      "km_per_day": 130.0
+    },
+    {
+      "plate": "50H44961",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "50H52176",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H62398",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 77,
+      "days_active": 25,
+      "trips_per_day": 3.08,
+      "km_per_day": 47.816
+    },
+    {
+      "plate": "50H68229",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "50H68287",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1699.3
+    },
+    {
+      "plate": "50H68597",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "50H68727",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "50H70504",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H75677",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "50H78547",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H79457",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 94,
+      "days_active": 25,
+      "trips_per_day": 3.76,
+      "km_per_day": 94.564
+    },
+    {
+      "plate": "50H81896",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H83396",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 47,
+      "days_active": 16,
+      "trips_per_day": 2.9375,
+      "km_per_day": 65.225
+    },
+    {
+      "plate": "50H87811",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "50H91721",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "51C17667",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51C70380",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51C75754",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51C94986",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "51C99728",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51D04692",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51D11506",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51D32262",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51D47051",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "51E00568",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "57L9109",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "60C09684",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1683.0
+    },
+    {
+      "plate": "60C13154",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1637.2
+    },
+    {
+      "plate": "60C53704",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1671.1
+    },
+    {
+      "plate": "60H00816",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.3
+    },
+    {
+      "plate": "60H00898",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1690.9
+    },
+    {
+      "plate": "60H02513",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8
+    },
+    {
+      "plate": "60H02630",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "60H02780",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.3
+    },
+    {
+      "plate": "60H02891",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "60H04049",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8
+    },
+    {
+      "plate": "60H08536",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8
+    },
+    {
+      "plate": "60H08565",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1690.9
+    },
+    {
+      "plate": "60H08620",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "60H08621",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1690.9
+    },
+    {
+      "plate": "60H08679",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "60H26185",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "60H29323",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1677.5
+    },
+    {
+      "plate": "60H29329",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.9
+    },
+    {
+      "plate": "60H31408",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1686.85
+    },
+    {
+      "plate": "60H37043",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1711.2
+    },
+    {
+      "plate": "61H21023",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "62H05373",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "62H06017",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "62H08670",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1791.5
+    },
+    {
+      "plate": "63C12464",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "63C15414",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "63E01586",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "63H00072",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "63H01202",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "63H02439",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "66H07322",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "73H00241",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "77H08246",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "86C00944",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "88H00572",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 75,
+      "days_active": 25,
+      "trips_per_day": 3.0,
+      "km_per_day": 114.856
+    },
+    {
+      "plate": "89A61906",
+      "reason": "Số chuyến/ngày quá cao (> 2σ: 2.6959)",
+      "trips": 70,
+      "days_active": 25,
+      "trips_per_day": 2.8,
+      "km_per_day": 105.708
+    },
+    {
+      "plate": "89C06299",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "89C22242",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "89G00399",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1666.9
+    },
+    {
+      "plate": "89H00448",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "89H00540",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1730.4
+    },
+    {
+      "plate": "89H02333",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "89H03744",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "89H03753",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1823.15
+    },
+    {
+      "plate": "89H05002",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "89H05004",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1801.2
+    },
+    {
+      "plate": "89H07978",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1692.5
+    },
+    {
+      "plate": "89H08369",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1641.8
+    },
+    {
+      "plate": "89H09102",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 2,
+      "days_active": 2,
+      "trips_per_day": 1.0,
+      "km_per_day": 1694.8
+    },
+    {
+      "plate": "89H09164",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1730.4
+    },
+    {
+      "plate": "89H09183",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "89H09217",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1682.8
+    },
+    {
+      "plate": "89H09261",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "89H09273",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1845.1
+    },
+    {
+      "plate": "89H09282",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1689.0
+    },
+    {
+      "plate": "89H13030",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1697.1
+    },
+    {
+      "plate": "89H16463",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1692.5
+    },
+    {
+      "plate": "98H06348",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    },
+    {
+      "plate": "98H22512",
+      "reason": "Xe đường dài xuất hiện ít ngày (≤2 ngày, km/ngày > 1500)",
+      "trips": 1,
+      "days_active": 1,
+      "trips_per_day": 1.0,
+      "km_per_day": 1688.5
+    }
+  ]
+}
