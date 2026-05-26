@@ -1262,8 +1262,27 @@
     const btnCancelSso = $('#btnCancelSso');
     const btnSaveSso = $('#btnSaveSso');
     const inputSessionToken = $('#inputSessionToken');
+    const inputApiUrl = $('#inputApiUrl');
+    const btnOpenSettings = $('#btnOpenSettings');
 
     if (!btnRefresh) return;
+
+    // Helper to get base API URL dynamically
+    function getApiUrl(endpoint) {
+      const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      if (isLocal) {
+        return endpoint;
+      }
+      
+      let tunnelUrl = localStorage.getItem('api_tunnel_url') || '';
+      if (tunnelUrl) {
+        if (tunnelUrl.endsWith('/')) {
+          tunnelUrl = tunnelUrl.slice(0, -1);
+        }
+        return tunnelUrl + endpoint;
+      }
+      return null;
+    }
 
     // Helper to open modal
     function openSsoModal() {
@@ -1271,7 +1290,9 @@
         ssoModal.classList.add('active');
         if (inputSessionToken) {
           inputSessionToken.value = '';
-          inputSessionToken.focus();
+        }
+        if (inputApiUrl) {
+          inputApiUrl.value = localStorage.getItem('api_tunnel_url') || '';
         }
       }
     }
@@ -1283,13 +1304,31 @@
 
     if (btnCloseSsoModal) btnCloseSsoModal.addEventListener('click', closeSsoModal);
     if (btnCancelSso) btnCancelSso.addEventListener('click', closeSsoModal);
+    if (btnOpenSettings) btnOpenSettings.addEventListener('click', openSsoModal);
 
-    // Save token from modal and run sync
-    if (btnSaveSso && inputSessionToken) {
+    // Save token and settings from modal and run sync
+    if (btnSaveSso) {
       btnSaveSso.addEventListener('click', async () => {
-        const token = inputSessionToken.value.trim();
+        const token = inputSessionToken ? inputSessionToken.value.trim() : '';
+        const apiUrlVal = inputApiUrl ? inputApiUrl.value.trim() : '';
+
+        // Save Tunnel URL to localstorage
+        if (apiUrlVal) {
+          localStorage.setItem('api_tunnel_url', apiUrlVal);
+        } else {
+          localStorage.removeItem('api_tunnel_url');
+        }
+
+        // Check if we are running online and no token is entered, we can just save the API URL
+        const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        if (!isLocal && !apiUrlVal) {
+          alert('Vui lòng cấu hình Đường dẫn kết nối Máy chủ API để chạy online!');
+          return;
+        }
+
         if (!token) {
-          alert('Vui lòng nhập mã metabase.SESSION!');
+          alert('✓ Đã lưu cấu hình kết nối API Server!');
+          closeSsoModal();
           return;
         }
 
@@ -1298,8 +1337,14 @@
         btnSaveSso.textContent = 'Đang lưu token...';
 
         try {
+          const apiSaveUrl = getApiUrl('/api/save_session');
+          if (!apiSaveUrl) {
+            alert('✗ Chưa cấu hình đường dẫn máy chủ API!');
+            return;
+          }
+
           // Save session token to backend .env
-          const saveResp = await fetch('/api/save_session', {
+          const saveResp = await fetch(apiSaveUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ session_token: token })
@@ -1308,8 +1353,10 @@
 
           if (saveRes.success) {
             btnSaveSso.textContent = 'Đang đồng bộ dữ liệu...';
+            
+            const apiRefreshUrl = getApiUrl('/api/refresh');
             // Now run direct refresh
-            const refreshResp = await fetch('/api/refresh', { method: 'POST' });
+            const refreshResp = await fetch(apiRefreshUrl, { method: 'POST' });
             const refreshRes = await refreshResp.json();
 
             if (refreshRes.success) {
@@ -1336,14 +1383,23 @@
     btnRefresh.addEventListener('click', async () => {
       if (btnRefresh.disabled) return;
 
+      const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      const apiRefreshUrl = getApiUrl('/api/refresh');
+
+      if (!isLocal && !apiRefreshUrl) {
+        alert('Cảnh báo: Bạn đang truy cập trực tuyến. Vui lòng nhấp vào biểu tượng bánh răng ⚙️ bên cạnh để cấu hình đường dẫn API Secure Tunnel của máy chủ!');
+        openSsoModal();
+        return;
+      }
+
       btnRefresh.disabled = true;
       btnRefresh.classList.add('spinning');
       const textSpan = btnRefresh.querySelector('.refresh-text');
-      const origText = textSpan.textContent;
-      textSpan.textContent = 'Đang đồng bộ...';
+      const origText = textSpan ? textSpan.textContent : 'Làm mới';
+      if (textSpan) textSpan.textContent = 'Đang đồng bộ...';
 
       try {
-        const resp = await fetch('/api/refresh', { method: 'POST' });
+        const resp = await fetch(apiRefreshUrl, { method: 'POST' });
         const res = await resp.json();
 
         if (res.success) {
@@ -1355,11 +1411,15 @@
         }
       } catch (err) {
         console.error(err);
-        alert('✗ Không thể kết nối với máy chủ API.\nVui lòng đảm bảo bạn đang chạy server.py chứ không phải python -m http.server.');
+        if (!isLocal) {
+          alert('✗ Không thể kết nối với máy chủ API.\nVui lòng đảm bảo:\n1. Server.py đang chạy trên máy tính của bạn.\n2. Secure Tunnel (localhost.run) đang mở.\n3. Đường dẫn API Tunnel của bạn đã chính xác và chưa hết hạn.');
+        } else {
+          alert('✗ Không thể kết nối với máy chủ cục bộ.\nVui lòng đảm bảo bạn đang chạy python server.py chứ không phải python -m http.server.');
+        }
       } finally {
         btnRefresh.disabled = false;
         btnRefresh.classList.remove('spinning');
-        textSpan.textContent = origText;
+        if (textSpan) textSpan.textContent = origText;
       }
     });
   }
