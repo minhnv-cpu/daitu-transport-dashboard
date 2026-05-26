@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Vận Tải — Cụm Đài Tư</title>
+  <meta name="description" content="Dashboard giám sát vận tải Cụm Đài Tư — theo dõi Ontime, Lấp đầy, Hiệu suất xe hàng ngày." />
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js v4 + Annotation Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ==================== LOADING OVERLAY ==================== -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-logo">🚛</div>
+    <div class="loading-text">Đang tải dữ liệu vận tải...</div>
+  </div>
+
+  <!-- ==================== MAIN DASHBOARD ==================== -->
+  <div class="dashboard-container" id="dashboardContainer" style="display:none;">
+
+    <!-- ===== HEADER ===== -->
+    <header class="dashboard-header">
+      <div class="header-main-row">
+        <h1 class="dashboard-title">🚛 Dashboard Vận Tải — Cụm Đài Tư</h1>
+        <div class="header-actions">
+          <button class="refresh-btn" id="btnRefreshData" title="Làm mới dữ liệu từ data-bi.ghn.vn">
+            <span class="refresh-icon">🔄</span>
+            <span class="refresh-text">Làm mới dữ liệu</span>
+          </button>
+        </div>
+      </div>
+      <div class="header-info-row">
+        <p class="dashboard-subtitle" id="dateRangeSubtitle">Đang tải...</p>
+        <span class="separator-dot">•</span>
+        <p class="last-updated" id="lastUpdatedTime">Cập nhật: Đang tải...</p>
+      </div>
+    </header>
+
+
+    <!-- ===== KPI SUMMARY ===== -->
+    <div class="kpi-grid">
+      <!-- KPI 1: Ontime MTD -->
+      <div class="kpi-card" id="kpiOntime">
+        <div class="kpi-label">Ontime MTD</div>
+        <div class="kpi-value accent-primary" id="kpiOntimeValue">—</div>
+        <div class="kpi-sub" id="kpiOntimeSub">—</div>
+      </div>
+      <!-- KPI 2: Fill Rate MTD -->
+      <div class="kpi-card" id="kpiFillrate">
+        <div class="kpi-label">Lấp Đầy MTD</div>
+        <div class="kpi-value accent-gradient" id="kpiFillrateValue">—</div>
+        <div class="kpi-sub" id="kpiFillrateSub">—</div>
+      </div>
+      <!-- KPI 3: Total Vehicles -->
+      <div class="kpi-card" id="kpiVehicles">
+        <div class="kpi-label">Tổng Xe Hoạt Động <span class="kpi-note">(unique)</span></div>
+        <div class="kpi-value accent-primary" id="kpiVehiclesValue">—</div>
+        <div class="kpi-sub" id="kpiVehiclesSub">—</div>
+      </div>
+    </div>
+
+    <!-- ===== TAB NAVIGATION ===== -->
+    <nav class="tab-nav" id="tabNav">
+      <button class="tab-btn active" data-tab="ontime" id="tabBtnOntime">📊 Chỉ Số Ontime</button>
+      <button class="tab-btn" data-tab="fillrate" id="tabBtnFillrate">📦 Tỷ Lệ Lấp Đầy</button>
+      <button class="tab-btn" data-tab="vehicles" id="tabBtnVehicles">🚛 Hiệu Suất Xe</button>
+    </nav>
+
+    <!-- ===== TAB CONTENT ===== -->
+    <div class="tab-content-wrapper">
+
+      <!-- ────── TAB 1: ONTIME ────── -->
+      <div class="tab-panel active" id="panelOntime">
+
+        <!-- Trend Ontime -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">📈</span> Trend Ontime theo ngày</div>
+          <div class="chart-container line-chart">
+            <canvas id="chartOntimeTrend"></canvas>
+          </div>
+        </div>
+
+        <!-- Ontime by Lane + Partner Type -->
+        <div class="grid-2">
+          <div class="section-card">
+            <div class="section-title"><span class="title-icon">🛣️</span> Ontime theo loại tuyến</div>
+            <div class="chart-container donut-chart">
+              <canvas id="chartOntimeLane"></canvas>
+            </div>
+          </div>
+          <div class="section-card">
+            <div class="section-title"><span class="title-icon">🤝</span> Ontime theo loại đối tác</div>
+            <div class="chart-container donut-chart">
+              <canvas id="chartOntimePartnerType"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ontime by Partner -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">🏢</span> Ontime theo Nhà Cung Cấp</div>
+          <div class="chart-container horizontal-bar-chart" id="chartOntimePartnerWrapper">
+            <canvas id="chartOntimePartner"></canvas>
+          </div>
+        </div>
+
+        <!-- Ontime by Province -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">🗺️</span> Ontime theo Tỉnh/KCT Miền Bắc</div>
+          <div class="chart-container bar-chart" id="chartOntimeProvinceWrapper">
+            <canvas id="chartOntimeProvince"></canvas>
+          </div>
+        </div>
+
+        <!-- Top 10 Worst Routes -->
+        <div class="section-card alert-section">
+          <div class="section-title"><span class="title-icon">🚨</span> Top 10 Tuyến Ontime Thấp Nhất</div>
+          <div class="data-table-wrapper">
+            <table class="data-table alert-table" id="tableOntimeWorst">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tuyến</th>
+                  <th>Loại tuyến</th>
+                  <th>NCC</th>
+                  <th>Số chuyến</th>
+                  <th>%Ontime</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Detail Table -->
+        <div class="section-card detail-section">
+          <div class="section-title"><span class="title-icon">📋</span> Thông Tin Chi Tiết Chuyến</div>
+          <div class="search-bar">
+            <div class="search-field">
+              <label for="searchOntimeCode">Mã Chuyến</label>
+              <input type="text" id="searchOntimeCode" placeholder="Tìm mã chuyến..." autocomplete="off" />
+            </div>
+            <div class="search-field">
+              <label for="searchOntimePlate">Biển kiểm soát</label>
+              <input type="text" id="searchOntimePlate" placeholder="Tìm biển số..." autocomplete="off" />
+            </div>
+            <div class="search-field">
+              <label for="searchOntimeNCC">Nhà cung cấp</label>
+              <input type="text" id="searchOntimeNCC" placeholder="Tìm NCC..." autocomplete="off" />
+            </div>
+            <button class="search-clear-btn" id="clearOntimeSearch">✕ Xóa bộ lọc</button>
+          </div>
+          <div class="detail-table-info">
+            <span id="ontimeDetailCount">Đang tải...</span>
+            <button class="download-btn" id="downloadOntimeCSV">📥 Tải xuống CSV</button>
+          </div>
+          <div class="detail-table-container">
+            <table class="data-table detail-table" id="tableOntimeDetail">
+              <thead>
+                <tr>
+                  <th>Mã Chuyến</th>
+                  <th>Ngày</th>
+                  <th>Loại Tuyến</th>
+                  <th>NCC</th>
+                  <th>Loại ĐT</th>
+                  <th>Tuyến</th>
+                  <th>Biển Số</th>
+                  <th>Điểm Lỗi</th>
+                  <th>Điểm Dừng</th>
+                  <th>%Ontime</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="paginationOntime">
+            <button class="page-btn" id="ontimePrevBtn">‹ Trước</button>
+            <span class="page-info" id="ontimePageInfo">Trang 1</span>
+            <button class="page-btn" id="ontimeNextBtn">Sau ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────── TAB 2: FILL RATE ────── -->
+      <div class="tab-panel" id="panelFillrate">
+
+        <!-- Trend Fill Rate -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">📈</span> Trend Lấp đầy theo ngày</div>
+          <div class="chart-container line-chart">
+            <canvas id="chartFillrateTrend"></canvas>
+          </div>
+        </div>
+
+        <!-- Fill Rate by Lane Type -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">🛣️</span> Lấp đầy theo loại tuyến</div>
+          <div class="chart-container bar-chart">
+            <canvas id="chartFillrateLane"></canvas>
+          </div>
+        </div>
+
+        <!-- Fill Rate by NCC -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">🏢</span> Lấp đầy theo NCC</div>
+          <div class="chart-container horizontal-bar-chart" id="chartFillrateNCCWrapper">
+            <canvas id="chartFillrateNCC"></canvas>
+          </div>
+        </div>
+
+        <!-- Top 10 Worst Fill Rate Routes -->
+        <div class="section-card alert-section">
+          <div class="section-title"><span class="title-icon">🚨</span> Top 10 Tuyến Lấp Đầy Thấp Nhất</div>
+          <div class="data-table-wrapper">
+            <table class="data-table alert-table" id="tableFillrateWorst">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Mã tuyến</th>
+                  <th>Loại tuyến</th>
+                  <th>NCC</th>
+                  <th>Số chuyến</th>
+                  <th>Lấp đầy (kg)</th>
+                  <th>Lấp đầy (đơn)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Detail Table -->
+        <div class="section-card detail-section">
+          <div class="section-title"><span class="title-icon">📋</span> Thông Tin Chi Tiết Chuyến</div>
+          <div class="search-bar">
+            <div class="search-field">
+              <label for="searchFillCode">Mã Chuyến</label>
+              <input type="text" id="searchFillCode" placeholder="Tìm mã chuyến..." autocomplete="off" />
+            </div>
+            <div class="search-field">
+              <label for="searchFillPlate">Biển kiểm soát</label>
+              <input type="text" id="searchFillPlate" placeholder="Tìm biển số..." autocomplete="off" />
+            </div>
+            <div class="search-field">
+              <label for="searchFillNCC">Nhà cung cấp</label>
+              <input type="text" id="searchFillNCC" placeholder="Tìm NCC..." autocomplete="off" />
+            </div>
+            <button class="search-clear-btn" id="clearFillSearch">✕ Xóa bộ lọc</button>
+          </div>
+          <div class="detail-table-info">
+            <span id="fillDetailCount">Đang tải...</span>
+            <button class="download-btn" id="downloadFillCSV">📥 Tải xuống CSV</button>
+          </div>
+          <div class="detail-table-container">
+            <table class="data-table detail-table" id="tableFillDetail">
+              <thead>
+                <tr>
+                  <th>Mã Chuyến</th>
+                  <th>Ngày</th>
+                  <th>Mã Tuyến</th>
+                  <th>Loại Tuyến</th>
+                  <th>NCC</th>
+                  <th>Biển Số</th>
+                  <th>Tải Trọng</th>
+                  <th>Km</th>
+                  <th>LĐ (kg)</th>
+                  <th>LĐ (đơn)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="paginationFill">
+            <button class="page-btn" id="fillPrevBtn">‹ Trước</button>
+            <span class="page-info" id="fillPageInfo">Trang 1</span>
+            <button class="page-btn" id="fillNextBtn">Sau ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────── TAB 3: VEHICLES ────── -->
+      <div class="tab-panel" id="panelVehicles">
+
+        <!-- Vehicle Metric Cards -->
+        <div class="grid-4 mb-12">
+          <div class="metric-card">
+            <span class="metric-icon">🚛</span>
+            <div class="metric-label">Tổng xe hoạt động <span class="metric-note">(unique)</span></div>
+            <div class="metric-value" id="metricTotalVehicles">—</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-icon">📊</span>
+            <div class="metric-label">TB Chuyến/ngày</div>
+            <div class="metric-value" id="metricAvgTrips">—</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-icon">🛣️</span>
+            <div class="metric-label">TB Km/ngày</div>
+            <div class="metric-value" id="metricAvgKm">—</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-icon">⚠️</span>
+            <div class="metric-label">Xe bất thường</div>
+            <div class="metric-value danger" id="metricAnomaly">—</div>
+          </div>
+        </div>
+
+        <!-- Daily Vehicle Usage Trend -->
+        <div class="section-card">
+          <div class="section-title"><span class="title-icon">📈</span> Trend sử dụng xe theo ngày</div>
+          <div class="chart-container multi-axis-chart">
+            <canvas id="chartVehicleTrend"></canvas>
+          </div>
+        </div>
+
+        <!-- Vehicle by Capacity + Top 15 Most Used -->
+        <div class="grid-2">
+          <div class="section-card">
+            <div class="section-title"><span class="title-icon">⚖️</span> Phân bổ xe theo tải trọng</div>
+            <div class="chart-container donut-chart">
+              <canvas id="chartVehicleCapacity"></canvas>
+            </div>
+          </div>
+          <div class="section-card">
+            <div class="section-title"><span class="title-icon">🏆</span> Top 15 Xe Hoạt Động Nhiều Nhất</div>
+            <div class="chart-container horizontal-bar-chart" id="chartVehicleTopWrapper">
+              <canvas id="chartVehicleTop"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top 15 Least Used -->
+        <div class="section-card alert-section">
+          <div class="section-title"><span class="title-icon">🚨</span> Top 15 Xe Ít Sử Dụng Nhất</div>
+          <div class="data-table-wrapper">
+            <table class="data-table alert-table" id="tableLeastUsed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Biển số</th>
+                  <th>Số chuyến</th>
+                  <th>Ngày hoạt động</th>
+                  <th>Chuyến/ngày</th>
+                  <th>Km/ngày</th>
+                  <th>Tổng km</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Anomaly Vehicles -->
+        <div class="section-card warning-section">
+          <div class="section-title"><span class="title-icon">⚠️</span> Xe Hoạt Động Bất Thường</div>
+          <div class="data-table-wrapper">
+            <table class="data-table warning-table" id="tableAnomaly">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Biển số</th>
+                  <th>Lý do</th>
+                  <th>Số chuyến</th>
+                  <th>Ngày HĐ</th>
+                  <th>Chuyến/ngày</th>
+                  <th>Km/ngày</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tab-content-wrapper -->
+
+    <!-- ===== ERROR STATE ===== -->
+    <div class="error-state" id="errorState">
+      <div class="error-icon">⚠️</div>
+      <div class="error-title">Không thể tải dữ liệu</div>
+      <div class="error-message">
+        Vui lòng kiểm tra các file dữ liệu JSON trong thư mục <strong>data/</strong> và thử lại.
+      </div>
+      <button class="retry-btn" id="retryBtn" onclick="location.reload()">Thử lại</button>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="dashboard-footer">
+      Powered by <span>AI Analytics</span> • Dữ liệu từ baocao.ghn.vn
+    </footer>
+
+  </div><!-- /dashboard-container -->
+
+  <!--
+    FALLBACK: If serving via file:// protocol, fetch() may fail.
+    Load JSON as script tags that set global variables.
+    Uncomment these and create corresponding .js wrappers if needed:
+  -->
+  <!--
+  <script src="data/ontime.js"></script>
+  <script src="data/fillrate.js"></script>
+  <script src="data/vehicles.js"></script>
+  -->
+
+  <!-- ==================== SSO COOKIE CONFIG MODAL ==================== -->
+  <div class="modal-overlay" id="ssoModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">🔐 Cấu Hình Kết Nối Metabase (Google SSO)</h2>
+        <button class="modal-close-btn" id="btnCloseSsoModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">Hệ thống Metabase của GHN sử dụng đăng nhập liên kết qua tài khoản Google. Để tự động hóa đồng bộ dữ liệu, vui lòng cung cấp mã phiên đăng nhập (Session Cookie) của bạn:</p>
+        
+        <div class="instruction-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-desc">Đăng nhập vào <a href="https://data-bi.ghn.vn" target="_blank" class="accent-link">data-bi.ghn.vn</a> trên trình duyệt của bạn.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-desc">Nhấn phím <strong>F12</strong> (hoặc click chuột phải chọn <strong>Kiểm tra</strong>) -> Chọn thẻ <strong>Application</strong> (hoặc <strong>Storage/Bộ nhớ</strong>).</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-desc">Chọn mục <strong>Cookies</strong> -> <code>https://data-bi.ghn.vn</code>.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-desc">Tìm dòng có cột Name là <strong>metabase.SESSION</strong>, nhấp đúp vào cột Value và sao chép (Copy).</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputSessionToken">Dán mã metabase.SESSION vào đây:</label>
+          <textarea id="inputSessionToken" placeholder="Ví dụ: 8a4c876b-da84-4822-bc58-52c67b2d56a1..." rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn secondary" id="btnCancelSso">Hủy bỏ</button>
+        <button class="modal-btn primary" id="btnSaveSso">Lưu & Đồng bộ ngay 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
