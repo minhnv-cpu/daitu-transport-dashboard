@@ -41,6 +41,9 @@
             <span class="refresh-icon">🔄</span>
             <span class="refresh-text">Làm mới dữ liệu</span>
           </button>
+          <button class="settings-btn" id="btnOpenSettings" title="Cấu hình kết nối API & Metabase">
+            <span class="settings-icon">⚙️</span>
+          </button>
         </div>
       </div>
       <div class="header-info-row">
@@ -445,14 +448,22 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="inputSessionToken">Dán mã metabase.SESSION vào đây:</label>
-          <textarea id="inputSessionToken" placeholder="Ví dụ: 8a4c876b-da84-4822-bc58-52c67b2d56a1..." rows="3"></textarea>
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="inputApiUrl" style="display: block; font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">1. Đường dẫn Máy chủ API (Chỉ cấu hình khi xem online):</label>
+          <input type="text" id="inputApiUrl" placeholder="Ví dụ: https://xxxxxx.lhr.life" style="width: 100%; padding: 10px 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; box-sizing: border-box; transition: all 0.25s ease;" />
+          <p style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; line-height: 1.4; margin-bottom: 0;">
+            * Khi xem online, dán đường dẫn secure tunnel của máy chủ API đang chạy trên máy tính của bạn (dạng <code>https://xxxx.lhr.life</code>). Bỏ trống nếu xem trực tiếp trên localhost.
+          </p>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="inputSessionToken" style="display: block; font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">2. Cập nhật mã metabase.SESSION mới (Nếu cần):</label>
+          <textarea id="inputSessionToken" placeholder="Ví dụ: 8a4c876b-da84-4822-bc58-52c67b2d56a1..." rows="2" style="width: 100%; padding: 10px 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; box-sizing: border-box; resize: none; transition: all 0.25s ease;"></textarea>
         </div>
       </div>
       <div class="modal-footer">
         <button class="modal-btn secondary" id="btnCancelSso">Hủy bỏ</button>
-        <button class="modal-btn primary" id="btnSaveSso">Lưu & Đồng bộ ngay 🚀</button>
+        <button class="modal-btn primary" id="btnSaveSso">Lưu Cấu Hình 🚀</button>
       </div>
     </div>
   </div>
