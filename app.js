@@ -545,46 +545,46 @@
   }
 
   // --- Horizontal Bar: by Partner (sorted ascending) ---
-  function renderOntimePartnerBar(byPartner) {\r
-    const sorted = [...byPartner].sort((a, b) => b.ontime_rate - a.ontime_rate);\r
-    const tbody = document.querySelector('#tableOntimePartnerBar tbody');\r
-    if (!tbody) return;\r
-    tbody.innerHTML = sorted.map(d => {\r
-      const pct = (d.ontime_rate * 100).toFixed(1);\r
-      const cls = ontimeClass(d.ontime_rate);\r
-      const color = ontimeColor(d.ontime_rate);\r
-      return `<tr>\r
-        <td class="col-name">${d.partner || '—'}</td>\r
-        <td class="col-bar">\r
-          <div class="inline-bar-wrap">\r
-            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>\r
-          </div>\r
-          <span class="inline-bar-label ${cls}">${pct}%</span>\r
-        </td>\r
-        <td class="col-trips">${fmtNum(d.trips)}</td>\r
-      </tr>`;\r
-    }).join('');\r
+  function renderOntimePartnerBar(byPartner) {
+    const sorted = [...byPartner].sort((a, b) => b.ontime_rate - a.ontime_rate);
+    const tbody = document.querySelector('#tableOntimePartnerBar tbody');
+    if (!tbody) return;
+    tbody.innerHTML = sorted.map(d => {
+      const pct = (d.ontime_rate * 100).toFixed(1);
+      const cls = ontimeClass(d.ontime_rate);
+      const color = ontimeColor(d.ontime_rate);
+      return `<tr>
+        <td class="col-name">${d.partner || '—'}</td>
+        <td class="col-bar">
+          <div class="inline-bar-wrap">
+            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>
+          </div>
+          <span class="inline-bar-label ${cls}">${pct}%</span>
+        </td>
+        <td class="col-trips">${fmtNum(d.trips)}</td>
+      </tr>`;
+    }).join('');
   }
 
-  function renderOntimeProvinceBar(byProvince) {\r
-    const sorted = [...byProvince].sort((a, b) => b.ontime_rate - a.ontime_rate);\r
-    const tbody = document.querySelector('#tableOntimeProvinceBar tbody');\r
-    if (!tbody) return;\r
-    tbody.innerHTML = sorted.map(d => {\r
-      const pct = (d.ontime_rate * 100).toFixed(1);\r
-      const cls = ontimeClass(d.ontime_rate);\r
-      const color = ontimeColor(d.ontime_rate);\r
-      return `<tr>\r
-        <td class="col-name">${d.province || '—'}</td>\r
-        <td class="col-bar">\r
-          <div class="inline-bar-wrap">\r
-            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>\r
-          </div>\r
-          <span class="inline-bar-label ${cls}">${pct}%</span>\r
-        </td>\r
-        <td class="col-trips">${fmtNum(d.trips)}</td>\r
-      </tr>`;\r
-    }).join('');\r
+  function renderOntimeProvinceBar(byProvince) {
+    const sorted = [...byProvince].sort((a, b) => b.ontime_rate - a.ontime_rate);
+    const tbody = document.querySelector('#tableOntimeProvinceBar tbody');
+    if (!tbody) return;
+    tbody.innerHTML = sorted.map(d => {
+      const pct = (d.ontime_rate * 100).toFixed(1);
+      const cls = ontimeClass(d.ontime_rate);
+      const color = ontimeColor(d.ontime_rate);
+      return `<tr>
+        <td class="col-name">${d.province || '—'}</td>
+        <td class="col-bar">
+          <div class="inline-bar-wrap">
+            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>
+          </div>
+          <span class="inline-bar-label ${cls}">${pct}%</span>
+        </td>
+        <td class="col-trips">${fmtNum(d.trips)}</td>
+      </tr>`;
+    }).join('');
   }
 
   // --- Table: Top 10 Worst Ontime Routes ---
