@@ -263,6 +263,48 @@
     animateCount($('#kpiVehiclesValue'), totalV, '');
     $('#kpiVehiclesSub').textContent = 'Biển số duy nhất | TB ' + fmtDec(vehicles.summary.avg_trips_per_day) + ' chuyến/ngày';
 
+    // ─── DYNAMIC N-1 COMPARISON ─────────────────────────────
+    let prevData = null;
+    let compareText = '';
+
+    if (filterMode === 'single') {
+      const prevDate = getPrevDateISO(selectedDate);
+      if (prevDate >= MIN_DATE) {
+        prevData = getFilteredDataForDate(prevDate, prevDate);
+        compareText = `so với ngày trước (${shortDate(prevDate)})`;
+      }
+    } else if (filterMode === 'range') {
+      const len = Math.round((new Date(endDateVal) - new Date(startDateVal)) / (1000 * 60 * 60 * 24)) + 1;
+      const prevStart = new Date(startDateVal);
+      prevStart.setDate(prevStart.getDate() - len);
+      const prevEnd = new Date(startDateVal);
+      prevEnd.setDate(prevEnd.getDate() - 1);
+      
+      const prevStartStr = formatDateISO(prevStart);
+      const prevEndStr = formatDateISO(prevEnd);
+      
+      if (prevStartStr >= MIN_DATE) {
+        prevData = getFilteredDataForDate(prevStartStr, prevEndStr);
+        compareText = `so với ${len} ngày trước`;
+      }
+    }
+
+    renderComparison('kpiOntimeCompare', ontimeRate, prevData ? prevData.ontime.overall.ontime_rate : null, compareText);
+    renderComparison('kpiFillrateCompare', frKg, prevData ? prevData.fillrate.overall.fillrate_kg : null, compareText);
+    renderComparison('kpiVehiclesCompare', totalV, prevData ? prevData.vehicles.summary.total_vehicles : null, compareText, false);
+
+    // ─── DYNAMIC ROUTE BREAKDOWN DETAILS ─────────────────────
+    renderWorstRouteDetail('kpiOntimeRouteDetail', ontime.top10_worst_routes, 'Tuyến tệ nhất', '%Ontime', true);
+    renderWorstRouteDetail('kpiFillrateRouteDetail', fillrate.top10_worst_routes, 'Tuyến tệ nhất', '%KG', false);
+    
+    // Vehicles Worst Route: show least used vehicle
+    if (vehicles.top15_least_used && vehicles.top15_least_used.length > 0) {
+      const leastUsed = vehicles.top15_least_used[0];
+      $('#kpiVehiclesRouteDetail').innerHTML = `<span class="worst-badge">Ít HĐ nhất:</span> ${leastUsed.plate} (${leastUsed.trips} chuyến, ${fmtDec(leastUsed.km_per_day, 0)} km/ngày)`;
+    } else {
+      $('#kpiVehiclesRouteDetail').textContent = 'Mọi xe hoạt động bình thường';
+    }
+
     // Date range subtitle
     const dateRange = ontime.metadata.date_range || fillrate.metadata.date_range || '';
     $('#dateRangeSubtitle').textContent = 'Dữ liệu MTD: ' + dateRange;
@@ -272,6 +314,51 @@
     if ($('#lastUpdatedTime')) {
       $('#lastUpdatedTime').textContent = 'Cập nhật: ' + formatTimestamp(lastUpdated);
     }
+  }
+
+  function getPrevDateISO(isoStr) {
+    if (!isoStr) return '';
+    const d = new Date(isoStr);
+    d.setDate(d.getDate() - 1);
+    return formatDateISO(d);
+  }
+
+  function renderComparison(elementId, currentVal, prevVal, compareText, isPercent = true) {
+    const el = $('#' + elementId);
+    if (!el) return;
+    
+    if (prevVal == null || isNaN(prevVal) || currentVal == null || isNaN(currentVal)) {
+      el.innerHTML = `<span class="compare-label">Lũy kế MTD (Không so sánh)</span>`;
+      el.className = 'kpi-compare-row neutral';
+      return;
+    }
+
+    const diff = currentVal - prevVal;
+    const diffPctStr = isPercent ? (diff * 100).toFixed(1) + '%' : (diff > 0 ? '+' : '') + diff.toLocaleString('vi-VN');
+    const displayDiff = diff > 0 ? `▲ +${diffPctStr}` : (diff < 0 ? `▼ ${diffPctStr}` : `■ 0.0%`);
+    
+    let stateClass = 'neutral';
+    if (diff > 0) stateClass = 'up';
+    if (diff < 0) stateClass = 'down';
+
+    el.innerHTML = `<span class="compare-badge">${displayDiff}</span> <span class="compare-text">${compareText}</span>`;
+    el.className = `kpi-compare-row ${stateClass}`;
+  }
+
+  function renderWorstRouteDetail(elementId, worstRoutesArray, prefix, label, isOntime = true) {
+    const el = $('#' + elementId);
+    if (!el) return;
+    
+    if (!worstRoutesArray || worstRoutesArray.length === 0) {
+      el.textContent = 'Không có tuyến vi phạm';
+      return;
+    }
+    
+    const worst = worstRoutesArray[0];
+    const name = worst.route;
+    const val = isOntime ? (worst.ontime_rate * 100).toFixed(1) + '%' : (worst.fillrate_kg * 100).toFixed(1) + '%';
+    
+    el.innerHTML = `<span class="worst-badge">${prefix}:</span> ${name} (${val} ${label})`;
   }
 
 
