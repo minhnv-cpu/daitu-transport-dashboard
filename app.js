@@ -305,11 +305,6 @@
       $('#kpiVehiclesRouteDetail').textContent = 'Mọi xe hoạt động bình thường';
     }
 
-    // Date range subtitle
-    const dateRange = ontime.metadata.date_range || fillrate.metadata.date_range || '';
-    const subtitleEl = $('#dateRangeSubtitle');
-    if (subtitleEl) subtitleEl.textContent = 'Dữ liệu MTD: ' + dateRange;
-
     // Last updated
     const lastUpdated = ontime.metadata.generated_at || fillrate.metadata.generated_at || '';
     if ($('#lastUpdatedTime')) {
@@ -329,8 +324,13 @@
     if (!el) return;
     
     if (prevVal == null || isNaN(prevVal) || currentVal == null || isNaN(currentVal)) {
-      el.innerHTML = `<span class="compare-label">Lũy kế MTD (Không so sánh)</span>`;
+      el.innerHTML = `<span class="compare-label">Lũy kế toàn tháng — Chọn "Xem theo ngày" để so sánh N-1</span>`;
       el.className = 'kpi-compare-row neutral';
+      el.onclick = function() {
+        filterMode = 'single';
+        selectedDate = MAX_DATE;
+        handleDateChange();
+      };
       return;
     }
 
@@ -344,6 +344,7 @@
 
     el.innerHTML = `<span class="compare-badge">${displayDiff}</span> <span class="compare-text">${compareText}</span>`;
     el.className = `kpi-compare-row ${stateClass}`;
+    el.onclick = null;
   }
 
   function renderWorstRouteDetail(elementId, worstRoutesArray, prefix, label, isOntime = true) {
@@ -355,11 +356,15 @@
       return;
     }
     
-    const worst = worstRoutesArray[0];
-    const name = worst.route;
-    const val = isOntime ? (worst.ontime_rate * 100).toFixed(1) + '%' : (worst.fillrate_kg * 100).toFixed(1) + '%';
+    // Show up to 3 worst routes
+    const top3 = worstRoutesArray.slice(0, 3);
+    const parts = top3.map((item, i) => {
+      const name = item.route;
+      const val = isOntime ? (item.ontime_rate * 100).toFixed(1) + '%' : (item.fillrate_kg * 100).toFixed(1) + '%';
+      return `<span class="worst-badge">${i + 1}.</span> ${name} <span style="color:var(--danger);font-weight:700">(${val})</span>`;
+    });
     
-    el.innerHTML = `<span class="worst-badge">${prefix}:</span> ${name} (${val} ${label})`;
+    el.innerHTML = `<span style="font-weight:700;color:var(--accent-secondary)">${prefix}:</span> ${parts.join(' · ')}`;
   }
 
 
