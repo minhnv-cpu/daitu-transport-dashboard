@@ -189,7 +189,9 @@
   // ─── Data Loading ────────────────────────────────────────
 
   async function loadJSON(path) {
-    const resp = await fetch(path);
+    const cacheBuster = 't=' + Date.now();
+    const url = path.includes('?') ? `${path}&${cacheBuster}` : `${path}?${cacheBuster}`;
+    const resp = await fetch(url);
     if (!resp.ok) throw new Error(`HTTP ${resp.status} loading ${path}`);
     return resp.json();
   }
