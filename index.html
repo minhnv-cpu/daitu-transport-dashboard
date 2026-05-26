@@ -55,21 +55,42 @@
 
     <!-- ==================== GLOBAL DATE FILTER BAR ==================== -->
     <div class="date-filter-bar">
-      <div class="date-filter-container">
-        <button class="date-nav-btn" id="btnPrevDate" title="Ngày trước">‹</button>
-        <div class="date-display" id="dateTextDisplay">Cả tháng MTD</div>
-        <button class="date-nav-btn" id="btnNextDate" title="Ngày sau">›</button>
+      <div class="filter-mode-selector">
+        <button class="mode-btn active" data-mode="all" id="btnModeAll">Cả tháng</button>
+        <button class="mode-btn" data-mode="single" id="btnModeSingle">Xem theo ngày</button>
+        <button class="mode-btn" data-mode="range" id="btnModeRange">Khoảng ngày</button>
       </div>
-      
-      <div class="date-picker-container">
-        <input type="date" id="dateInputPicker" min="2026-05-01" max="2026-05-25" />
+
+      <div class="filter-controls-group" id="controlsSingleDay" style="display: none;">
+        <div class="date-filter-container">
+          <button class="date-nav-btn" id="btnPrevDate" title="Ngày trước">‹</button>
+          <div class="date-display" id="dateTextDisplay">Cả tháng MTD</div>
+          <button class="date-nav-btn" id="btnNextDate" title="Ngày sau">›</button>
+        </div>
+        <div class="date-picker-container">
+          <input type="date" id="dateInputPicker" min="2026-05-01" max="2026-05-25" />
+        </div>
       </div>
-      
-      <div class="quick-date-chips">
-        <button class="chip-btn active" id="chipAllMonth">Cả tháng</button>
+
+      <div class="filter-controls-group" id="controlsDateRange" style="display: none;">
+        <div class="range-picker-container">
+          <div class="range-field">
+            <label>Từ ngày</label>
+            <input type="date" id="rangeStartDate" min="2026-05-01" max="2026-05-25" />
+          </div>
+          <div class="range-field">
+            <label>Đến ngày</label>
+            <input type="date" id="rangeEndDate" min="2026-05-01" max="2026-05-25" />
+          </div>
+          <button class="apply-range-btn" id="btnApplyRange">Áp dụng ⚡</button>
+        </div>
+      </div>
+
+      <div class="quick-date-chips" id="quickChipsContainer" style="display: none;">
         <button class="chip-btn" id="chipYesterday">Hôm qua</button>
       </div>
     </div>
+
 
     <!-- ===== KPI SUMMARY ===== -->
     <div class="kpi-grid">
