@@ -6,10 +6,9 @@
   <title>Dashboard Vận Tải — Cụm Đài Tư</title>
   <meta name="description" content="Dashboard giám sát vận tải Cụm Đài Tư — theo dõi Ontime, Lấp đầy, Hiệu suất xe hàng ngày." />
 
-  <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Chart.js v4 + Annotation Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -20,7 +19,7 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="index.css?v=3.0" />
+  <link rel="stylesheet" href="index.css?v=4.0" />
 </head>
 <body>
 
@@ -34,35 +33,47 @@
   <!-- ==================== MAIN DASHBOARD ==================== -->
   <div class="dashboard-container" id="dashboardContainer" style="display:none;">
 
-    <!-- ===== HEADER ===== -->
-    <header class="dashboard-header">
-      <div class="header-main-row">
-        <h1 class="dashboard-title">🚛 Dashboard Vận Tải — Cụm Đài Tư</h1>
-        <div class="header-actions">
-          <div class="data-source-badge" id="dataSourceBadge" title="Nguồn dữ liệu hiện tại">
-            <span class="source-dot"></span>
-            <span class="source-text" id="dataSourceText">JSON gốc</span>
+    <!-- ===== HEADER (KTC HN02 style) ===== -->
+    <header class="hdr">
+      <div class="hdr-left">
+        <a class="ghn-logo" href="#">
+          <div class="ghn-logo-icon">GHN</div>
+          <div class="ghn-logo-text">
+            <strong>VậN TẢI</strong>
+            <span>Cụm Đài Tư</span>
           </div>
-          <button class="upload-btn" id="btnOpenUpload" title="Upload file Excel">
-            <span class="upload-icon">📤</span>
-            <span class="upload-text">Upload Excel</span>
-          </button>
-          <button class="refresh-btn" id="btnRefreshData" title="Làm mới dữ liệu từ data-bi.ghn.vn">
-            <span class="refresh-icon">🔄</span>
-            <span class="refresh-text">Làm mới dữ liệu</span>
-          </button>
-          <button class="settings-btn" id="btnOpenSettings" title="Cấu hình kết nối API & Metabase">
-            <span class="settings-icon">⚙️</span>
-          </button>
+        </a>
+        <div class="hdr-divider"></div>
+        <div>
+          <div class="hdr-title">Dashboard Vận Tải</div>
+          <div class="hdr-sub" id="lastUpdatedTime">Cập nhật: Đang tải...</div>
         </div>
       </div>
-      <div class="header-info-row">
-        <p class="last-updated" id="lastUpdatedTime">Cập nhật: Đang tải...</p>
+      <div class="hdr-right">
+        <div class="clock-wrap">
+          <div class="clock" id="headerClock">--:--:--</div>
+          <div class="clock-d" id="headerDate"></div>
+        </div>
+        <div class="data-source-badge" id="dataSourceBadge" title="Nguồn dữ liệu">
+          <span class="source-dot"></span>
+          <span class="source-text" id="dataSourceText">JSON gốc</span>
+        </div>
+        <button class="upload-btn" id="btnOpenUpload" title="Upload file Excel">
+          <span class="upload-icon">📤</span>
+          <span class="upload-text">Upload Excel</span>
+        </button>
+        <button class="refresh-btn" id="btnRefreshData" title="Làm mới dữ liệu">
+          <span class="refresh-icon">🔄</span>
+          <span class="refresh-text">Làm mới</span>
+        </button>
+        <button class="settings-btn" id="btnOpenSettings" title="Cấu hình">
+          <span class="settings-icon">⚙️</span>
+        </button>
       </div>
     </header>
 
-    <!-- ==================== GLOBAL DATE FILTER BAR ==================== -->
-    <div class="date-filter-bar">
+    <!-- ==================== DATE NAVIGATION BAR ==================== -->
+    <div class="datenav">
       <div class="filter-mode-selector">
         <button class="mode-btn active" data-mode="all" id="btnModeAll">Cả tháng</button>
         <button class="mode-btn" data-mode="single" id="btnModeSingle">Xem theo ngày</button>
@@ -71,12 +82,12 @@
 
       <div class="filter-controls-group" id="controlsSingleDay" style="display: none;">
         <div class="date-filter-container">
-          <button class="date-nav-btn" id="btnPrevDate" title="Ngày trước">‹</button>
-          <div class="date-display" id="dateTextDisplay">Cả tháng MTD</div>
-          <button class="date-nav-btn" id="btnNextDate" title="Ngày sau">›</button>
+          <button class="datenav-btn" id="btnPrevDate" title="Ngày trước">‹</button>
+          <div class="datenav-label" id="dateTextDisplay">Cả tháng MTD</div>
+          <button class="datenav-btn" id="btnNextDate" title="Ngày sau">›</button>
         </div>
         <div class="date-picker-container">
-          <input type="date" id="dateInputPicker" min="2026-05-01" max="2026-05-25" />
+          <input type="date" class="datenav-input" id="dateInputPicker" min="2026-05-01" max="2026-05-25" />
         </div>
       </div>
 
@@ -84,18 +95,18 @@
         <div class="range-picker-container">
           <div class="range-field">
             <label>Từ ngày</label>
-            <input type="date" id="rangeStartDate" min="2026-05-01" max="2026-05-25" />
+            <input type="date" class="datenav-input" id="rangeStartDate" min="2026-05-01" max="2026-05-25" />
           </div>
           <div class="range-field">
             <label>Đến ngày</label>
-            <input type="date" id="rangeEndDate" min="2026-05-01" max="2026-05-25" />
+            <input type="date" class="datenav-input" id="rangeEndDate" min="2026-05-01" max="2026-05-25" />
           </div>
           <button class="apply-range-btn" id="btnApplyRange">Áp dụng ⚡</button>
         </div>
       </div>
 
       <div class="quick-date-chips" id="quickChipsContainer" style="display: none;">
-        <button class="chip-btn" id="chipYesterday">Hôm qua</button>
+        <button class="datenav-today" id="chipYesterday">Hôm qua</button>
       </div>
     </div>
 
