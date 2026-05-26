@@ -425,26 +425,48 @@ body {
   font-size: 13px; font-weight: 700; color: var(--t1);
   text-transform: uppercase; letter-spacing: .5px;
 }
-.search-group { display: flex; gap: 8px; flex-wrap: wrap; }
-.search-input {
-  border: 1.5px solid var(--border2); border-radius: 8px;
-  padding: 6px 12px; font-family: inherit; font-size: 12px;
-  color: var(--t1); outline: none; min-width: 120px;
-  transition: border-color var(--dur);
+/* ─── DETAIL TABLES SEARCH BAR (Soft & Harmonious) ─── */
+.search-bar {
+  display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;
+  padding: 16px 20px; background: var(--bg); border-radius: 10px;
+  margin-bottom: 16px; border: 1px solid var(--border);
 }
-.search-input:focus { border-color: var(--orange); }
-.search-input::placeholder { color: var(--t3); }
-
-.search-btn, .download-csv-btn {
+.search-field {
+  flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 6px;
+}
+.search-field label {
+  font-size: 11px; font-weight: 700; color: var(--t2);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.search-field input {
   background: var(--surface); border: 1.5px solid var(--border2);
-  border-radius: 8px; padding: 6px 14px;
-  font-family: inherit; font-size: 12px; font-weight: 600;
-  color: var(--t2); cursor: pointer; transition: all var(--dur);
+  border-radius: 8px; padding: 8px 14px; color: var(--t1);
+  font-family: inherit; font-size: 13px; outline: none; width: 100%;
+  transition: all var(--dur) var(--ease);
 }
-.search-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-bg); }
+.search-field input::placeholder { color: var(--t3); }
+.search-field input:focus {
+  border-color: var(--orange); background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(255, 108, 10, 0.12);
+}
+.search-clear-btn {
+  background: var(--surface); color: var(--red); border: 1.5px solid rgba(229, 57, 53, 0.2);
+  border-radius: 8px; padding: 8px 16px; font-family: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; height: 37px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--dur) var(--ease);
+}
+.search-clear-btn:hover {
+  background: var(--red-bg); border-color: var(--red); transform: translateY(-1px);
+}
+.search-clear-btn:active { transform: translateY(0); }
+
 .download-csv-btn {
   background: var(--blue-bg); color: var(--blue);
   border-color: rgba(0,126,212,.2);
+  border-radius: 8px; padding: 6px 14px;
+  font-family: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all var(--dur);
 }
 .download-csv-btn:hover { background: var(--blue); color: white; }
 
