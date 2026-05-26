@@ -2074,12 +2074,445 @@
     }
   }
 
+  // ═══════════════════════════════════════════════════════
+  //  UPLOAD EXCEL INTEGRATION
+  // ═══════════════════════════════════════════════════════
+
+  let pendingOntimeData = null;
+  let pendingFillData = null;
+
+  function updateDataSourceBadge(isUploaded, periodLabel) {
+    const badge = $('#dataSourceBadge');
+    const text = $('#dataSourceText');
+    if (!badge || !text) return;
+    if (isUploaded) {
+      badge.classList.add('uploaded');
+      text.textContent = periodLabel || 'Excel upload';
+    } else {
+      badge.classList.remove('uploaded');
+      text.textContent = 'JSON gốc';
+    }
+  }
+
+  function updateDateRange(minDateStr, maxDateStr) {
+    if (!minDateStr || !maxDateStr) return;
+    // Update global date constants (they are let-declared now via the module pattern)
+    // We can't reassign const, so we write a helper
+    window.__dashMinDate = minDateStr;
+    window.__dashMaxDate = maxDateStr;
+    
+    // Update date input min/max attributes
+    const datePicker = $('#dateInputPicker');
+    const rangeStart = $('#rangeStartDate');
+    const rangeEnd = $('#rangeEndDate');
+    if (datePicker) { datePicker.min = minDateStr; datePicker.max = maxDateStr; }
+    if (rangeStart) { rangeStart.min = minDateStr; rangeStart.max = maxDateStr; }
+    if (rangeEnd) { rangeEnd.min = minDateStr; rangeEnd.max = maxDateStr; }
+  }
+
+  function getMinDate() { return window.__dashMinDate || MIN_DATE; }
+  function getMaxDate() { return window.__dashMaxDate || MAX_DATE; }
+
+  async function refreshArchiveList() {
+    const listEl = $('#archiveList');
+    if (!listEl) return;
+
+    try {
+      const archives = await UploadManager.listArchives();
+      const active = await UploadManager.getActiveUpload();
+      const activePeriod = active ? active.period : null;
+
+      if (archives.length === 0) {
+        listEl.innerHTML = '<div class="archive-empty">Chưa có dữ liệu lưu trữ</div>';
+        return;
+      }
+
+      listEl.innerHTML = archives.map(arc => {
+        const isActive = (arc.period === activePeriod);
+        const savedDate = new Date(arc.savedAt).toLocaleDateString('vi-VN');
+        const ontimeCount = arc.recordCount?.ontime || 0;
+        const fillCount = arc.recordCount?.fillrate || 0;
+        return `
+          <div class="archive-card ${isActive ? 'active' : ''}" data-period="${arc.period}">
+            <div class="archive-period">${arc.period}</div>
+            <div class="archive-meta">
+              Lưu: ${savedDate}<br>
+              Ontime: ${ontimeCount.toLocaleString()} · Fillrate: ${fillCount.toLocaleString()}
+            </div>
+            <div class="archive-actions">
+              <button class="archive-load-btn" data-period="${arc.period}">${isActive ? '✓ Đang dùng' : 'Tải'}</button>
+              <button class="archive-delete-btn" data-period="${arc.period}">🗑</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Event listeners
+      listEl.querySelectorAll('.archive-load-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const period = btn.dataset.period;
+          await loadArchiveData(period);
+        });
+      });
+
+      listEl.querySelectorAll('.archive-delete-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const period = btn.dataset.period;
+          if (confirm(`Xóa dữ liệu kỳ "${period}"?`)) {
+            await UploadManager.deleteArchive(period);
+            const active = await UploadManager.getActiveUpload();
+            if (active && active.period === period) {
+              await UploadManager.clearActiveUpload();
+              await reloadWithOriginalData();
+            }
+            await refreshArchiveList();
+          }
+        });
+      });
+    } catch (err) {
+      console.error('Error loading archives:', err);
+      listEl.innerHTML = '<div class="archive-empty">Lỗi tải danh sách lưu trữ</div>';
+    }
+  }
+
+  async function loadArchiveData(period) {
+    try {
+      const archive = await UploadManager.loadArchive(period);
+      if (!archive || !archive.data) {
+        alert('Không tìm thấy dữ liệu kỳ ' + period);
+        return;
+      }
+      const { data } = archive;
+      await UploadManager.setActiveUpload(period);
+      applyUploadedData(data, period);
+      await refreshArchiveList();
+
+      // Close modal
+      $('#uploadModal').classList.remove('active');
+    } catch (err) {
+      console.error('Error loading archive:', err);
+      alert('Lỗi tải dữ liệu: ' + err.message);
+    }
+  }
+
+  function applyUploadedData(summaryData, periodLabel) {
+    // Update rawData
+    rawData = {
+      ontime: summaryData.ontime,
+      fillrate: summaryData.fillrate,
+      vehicles: summaryData.vehicles
+    };
+
+    // Update detail data
+    if (summaryData.ontimeDetail) {
+      ontimeDetailData = summaryData.ontimeDetail;
+      ontimeFilteredData = [...ontimeDetailData];
+    }
+    if (summaryData.fillDetail) {
+      fillDetailData = summaryData.fillDetail;
+      fillFilteredData = [...fillDetailData];
+    }
+
+    // Update date range
+    if (summaryData.dateRange) {
+      updateDateRange(summaryData.dateRange.min, summaryData.dateRange.max);
+      startDateVal = summaryData.dateRange.min;
+      endDateVal = summaryData.dateRange.max;
+    }
+
+    // Update badge
+    updateDataSourceBadge(true, periodLabel);
+
+    // Reset to MTD and re-render
+    filterMode = 'all';
+    selectedDate = null;
+    destroyAllCharts();
+    handleDateChange();
+
+    initDetailSearch();
+  }
+
+  async function reloadWithOriginalData() {
+    try {
+      await UploadManager.clearActiveUpload();
+      const data = await loadAllData();
+      rawData = data;
+
+      // Reset date range to defaults
+      updateDateRange(MIN_DATE, MAX_DATE);
+      startDateVal = MIN_DATE;
+      endDateVal = MAX_DATE;
+
+      // Reload detail data
+      await loadDetailData();
+
+      updateDataSourceBadge(false);
+
+      filterMode = 'all';
+      selectedDate = null;
+      destroyAllCharts();
+      handleDateChange();
+    } catch (err) {
+      console.error('Error reloading original data:', err);
+      alert('Lỗi tải lại dữ liệu gốc: ' + err.message);
+    }
+  }
+
+  function resetUploadModal() {
+    pendingOntimeData = null;
+    pendingFillData = null;
+    $('#fileItemOntime').style.display = 'none';
+    $('#fileItemFillrate').style.display = 'none';
+    $('#uploadFileList').style.display = 'none';
+    $('#uploadPreview').style.display = 'none';
+    $('#uploadActions').style.display = 'none';
+    $('#uploadDropZone').style.display = '';
+    $('#uploadFileInput').value = '';
+  }
+
+  function updateUploadPreview() {
+    const hasOntime = pendingOntimeData && pendingOntimeData.length > 0;
+    const hasFill = pendingFillData && pendingFillData.length > 0;
+
+    if (!hasOntime && !hasFill) {
+      $('#uploadPreview').style.display = 'none';
+      $('#uploadActions').style.display = 'none';
+      return;
+    }
+
+    let html = '<strong>Tóm tắt dữ liệu:</strong><br>';
+    if (hasOntime) {
+      const dates = pendingOntimeData.map(r => r.dateISO).filter(Boolean).sort();
+      html += `📊 Ontime: <strong>${pendingOntimeData.length.toLocaleString()}</strong> chuyến`;
+      if (dates.length > 0) html += ` (${dates[0]} → ${dates[dates.length-1]})`;
+      html += '<br>';
+    }
+    if (hasFill) {
+      const dates = pendingFillData.map(r => r.dateISO).filter(Boolean).sort();
+      html += `📦 Lấp đầy: <strong>${pendingFillData.length.toLocaleString()}</strong> chuyến`;
+      if (dates.length > 0) html += ` (${dates[0]} → ${dates[dates.length-1]})`;
+    }
+
+    $('#previewSummary').innerHTML = html;
+    $('#uploadPreview').style.display = '';
+    $('#uploadActions').style.display = '';
+  }
+
+  async function handleFilesSelected(files) {
+    for (const file of files) {
+      try {
+        const wb = await UploadManager.readExcelFile(file);
+        const type = UploadManager.detectFileType(wb);
+
+        if (type === 'ontime') {
+          pendingOntimeData = UploadManager.parseOntimeExcel(wb);
+          $('#fileNameOntime').textContent = file.name;
+          $('#fileRowsOntime').textContent = pendingOntimeData.length.toLocaleString() + ' dòng';
+          $('#fileItemOntime').style.display = 'flex';
+        } else if (type === 'fillrate') {
+          pendingFillData = UploadManager.parseFillrateExcel(wb);
+          $('#fileNameFillrate').textContent = file.name;
+          $('#fileRowsFillrate').textContent = pendingFillData.length.toLocaleString() + ' dòng';
+          $('#fileItemFillrate').style.display = 'flex';
+        } else {
+          alert(`Không nhận diện được loại file "${file.name}".\nFile phải là Ontime hoặc Lấp đầy với đúng cột header.`);
+          continue;
+        }
+
+        $('#uploadFileList').style.display = '';
+        $('#uploadDropZone').style.display = 'none';
+        updateUploadPreview();
+      } catch (err) {
+        alert('Lỗi đọc file "' + file.name + '": ' + err.message);
+      }
+    }
+  }
+
+  function initUploadModal() {
+    const modal = $('#uploadModal');
+    const btnOpen = $('#btnOpenUpload');
+    const btnClose = $('#btnCloseUploadModal');
+    const dropZone = $('#uploadDropZone');
+    const fileInput = $('#uploadFileInput');
+    const btnApply = $('#btnApplyUpload');
+    const btnCancel = $('#btnCancelUpload');
+    const btnOriginal = $('#btnUseOriginal');
+
+    if (!modal || !btnOpen) return;
+
+    // Open modal
+    btnOpen.addEventListener('click', () => {
+      resetUploadModal();
+      refreshArchiveList();
+      modal.classList.add('active');
+    });
+
+    // Close modal
+    btnClose.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    // Drop zone
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      const files = Array.from(e.dataTransfer.files).filter(f =>
+        f.name.endsWith('.xlsx') || f.name.endsWith('.xls')
+      );
+      if (files.length > 0) handleFilesSelected(files);
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) handleFilesSelected(Array.from(fileInput.files));
+    });
+
+    // Remove file buttons
+    document.querySelectorAll('.file-remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+        if (type === 'ontime') {
+          pendingOntimeData = null;
+          $('#fileItemOntime').style.display = 'none';
+        } else {
+          pendingFillData = null;
+          $('#fileItemFillrate').style.display = 'none';
+        }
+        if (!pendingOntimeData && !pendingFillData) {
+          $('#uploadFileList').style.display = 'none';
+          $('#uploadDropZone').style.display = '';
+        }
+        updateUploadPreview();
+      });
+    });
+
+    // Cancel
+    btnCancel.addEventListener('click', () => {
+      resetUploadModal();
+    });
+
+    // Apply
+    btnApply.addEventListener('click', async () => {
+      const shouldMerge = $('#chkMergeData').checked;
+
+      let finalOntime = pendingOntimeData || [];
+      let finalFill = pendingFillData || [];
+
+      if (shouldMerge) {
+        // Merge with current data
+        if (pendingOntimeData && ontimeDetailData.length > 0) {
+          const result = UploadManager.mergeDetailData(ontimeDetailData, pendingOntimeData);
+          finalOntime = result.merged;
+        } else if (!pendingOntimeData) {
+          finalOntime = [...ontimeDetailData];
+        }
+
+        if (pendingFillData && fillDetailData.length > 0) {
+          const result = UploadManager.mergeDetailData(fillDetailData, pendingFillData);
+          finalFill = result.merged;
+        } else if (!pendingFillData) {
+          finalFill = [...fillDetailData];
+        }
+      }
+
+      // Build summary
+      const summaryData = UploadManager.buildSummaryData(finalOntime, finalFill);
+
+      // Determine period label
+      const periodLabel = summaryData.dateRange.min && summaryData.dateRange.max
+        ? summaryData.dateRange.min.substring(0, 7)
+        : new Date().toISOString().substring(0, 7);
+
+      // Archive current data first (if from JSON)
+      const currentActive = await UploadManager.getActiveUpload();
+      if (!currentActive && rawData) {
+        const currentPeriod = 'backup-' + MIN_DATE.substring(0, 7);
+        await UploadManager.saveArchive(currentPeriod, {
+          ontime: rawData.ontime,
+          fillrate: rawData.fillrate,
+          vehicles: rawData.vehicles,
+          ontimeDetail: ontimeDetailData,
+          fillDetail: fillDetailData,
+          dateRange: { min: MIN_DATE, max: MAX_DATE }
+        });
+      }
+
+      // Save new data
+      await UploadManager.saveArchive(periodLabel, summaryData);
+      await UploadManager.setActiveUpload(periodLabel);
+
+      // Apply
+      applyUploadedData(summaryData, periodLabel);
+
+      // Close modal
+      modal.classList.remove('active');
+      resetUploadModal();
+    });
+
+    // Use original data
+    if (btnOriginal) {
+      btnOriginal.addEventListener('click', async () => {
+        await reloadWithOriginalData();
+        await refreshArchiveList();
+      });
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════
+
   async function init() {
     setupChartDefaults();
     initTabs();
     initRefreshButton();
+    initUploadModal();
 
     try {
+      // Check for previously uploaded data in IndexedDB
+      let activeUpload = null;
+      try {
+        activeUpload = await UploadManager.getActiveUpload();
+      } catch (e) { /* IndexedDB not available */ }
+
+      if (activeUpload && activeUpload.period) {
+        // Try to load from archive
+        try {
+          const archive = await UploadManager.loadArchive(activeUpload.period);
+          if (archive && archive.data) {
+            // Load original data as fallback base
+            const baseData = await loadAllData();
+            rawData = baseData;
+
+            // Hide loading, show dashboard
+            $('#loadingOverlay').classList.add('hidden');
+            $('#dashboardContainer').style.display = '';
+
+            await loadDetailData();
+            initDateFilterBar();
+
+            // Apply archived upload data
+            applyUploadedData(archive.data, activeUpload.period);
+            return;
+          }
+        } catch (e) {
+          console.warn('Failed to load archived upload:', e);
+          await UploadManager.clearActiveUpload();
+        }
+      }
+
+      // Default: load from JSON files
       const data = await loadAllData();
       rawData = data;
 
@@ -2087,7 +2520,7 @@
       $('#loadingOverlay').classList.add('hidden');
       $('#dashboardContainer').style.display = '';
 
-      // Load detailed tables data first so we have the raw trip details for daily filtering!
+      // Load detailed tables data
       await loadDetailData();
 
       // Initialize the Date Filter Bar listeners
