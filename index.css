@@ -726,3 +726,47 @@ body {
   .kpi-value { font-size: 24px; }
   .tab-btn { padding: 6px 10px; font-size: 11px; }
 }
+
+/* ─── ERROR STATE ──────────────────────────────────── */
+.error-state {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+  animation: fadeIn 0.5s ease;
+}
+.error-state.visible {
+  display: block;
+}
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.error-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--red, #E53935);
+  margin-bottom: 8px;
+}
+.error-message {
+  font-size: 14px;
+  color: var(--t2, #4B5563);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.retry-btn {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--orange, #FF6C0A);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.retry-btn:hover {
+  background: var(--orange2, #FF8533);
+  transform: translateY(-1px);
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
