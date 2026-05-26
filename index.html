@@ -16,9 +16,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
+  <!-- SheetJS for Excel parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="index.css?v=2.1" />
+  <link rel="stylesheet" href="index.css?v=3.0" />
 </head>
 <body>
 
@@ -37,6 +39,14 @@
       <div class="header-main-row">
         <h1 class="dashboard-title">🚛 Dashboard Vận Tải — Cụm Đài Tư</h1>
         <div class="header-actions">
+          <div class="data-source-badge" id="dataSourceBadge" title="Nguồn dữ liệu hiện tại">
+            <span class="source-dot"></span>
+            <span class="source-text" id="dataSourceText">JSON gốc</span>
+          </div>
+          <button class="upload-btn" id="btnOpenUpload" title="Upload file Excel">
+            <span class="upload-icon">📤</span>
+            <span class="upload-text">Upload Excel</span>
+          </button>
           <button class="refresh-btn" id="btnRefreshData" title="Làm mới dữ liệu từ data-bi.ghn.vn">
             <span class="refresh-icon">🔄</span>
             <span class="refresh-text">Làm mới dữ liệu</span>
@@ -461,6 +471,70 @@
   <script src="data/vehicles.js"></script>
   -->
 
+  <!-- ==================== UPLOAD EXCEL MODAL ==================== -->
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-card upload-modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">📤 Upload Dữ Liệu Excel</h2>
+        <button class="modal-close-btn" id="btnCloseUploadModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Upload Section -->
+        <div class="upload-section">
+          <div class="upload-drop-zone" id="uploadDropZone">
+            <div class="drop-icon">📁</div>
+            <div class="drop-text">Kéo thả file Excel vào đây</div>
+            <div class="drop-subtext">hoặc click để chọn file (.xlsx, .xls)</div>
+            <input type="file" id="uploadFileInput" accept=".xlsx,.xls" multiple style="display:none" />
+          </div>
+
+          <div class="upload-file-list" id="uploadFileList" style="display:none">
+            <div class="file-item" id="fileItemOntime" style="display:none">
+              <span class="file-icon">📊</span>
+              <span class="file-name" id="fileNameOntime">—</span>
+              <span class="file-badge ontime-badge">Ontime</span>
+              <span class="file-rows" id="fileRowsOntime">0 dòng</span>
+              <button class="file-remove-btn" data-type="ontime">✕</button>
+            </div>
+            <div class="file-item" id="fileItemFillrate" style="display:none">
+              <span class="file-icon">📦</span>
+              <span class="file-name" id="fileNameFillrate">—</span>
+              <span class="file-badge fillrate-badge">Lấp đầy</span>
+              <span class="file-rows" id="fileRowsFillrate">0 dòng</span>
+              <button class="file-remove-btn" data-type="fillrate">✕</button>
+            </div>
+          </div>
+
+          <div class="upload-preview" id="uploadPreview" style="display:none">
+            <div class="preview-summary" id="previewSummary"></div>
+          </div>
+
+          <div class="upload-actions" id="uploadActions" style="display:none">
+            <label class="upload-option">
+              <input type="checkbox" id="chkMergeData" checked />
+              <span>Gộp với dữ liệu hiện tại (bỏ tick = thay thế hoàn toàn)</span>
+            </label>
+            <div class="upload-btn-group">
+              <button class="modal-btn secondary" id="btnCancelUpload">Hủy bỏ</button>
+              <button class="modal-btn primary" id="btnApplyUpload">Áp dụng dữ liệu 🚀</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Archive Section -->
+        <div class="archive-section">
+          <div class="archive-header">
+            <h3 class="archive-title">📂 Dữ liệu đã lưu trữ</h3>
+            <button class="btn-use-original" id="btnUseOriginal" title="Quay lại dùng dữ liệu JSON gốc">🔄 Dùng dữ liệu gốc</button>
+          </div>
+          <div class="archive-list" id="archiveList">
+            <div class="archive-empty">Chưa có dữ liệu lưu trữ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== SSO COOKIE CONFIG MODAL ==================== -->
   <div class="modal-overlay" id="ssoModal">
     <div class="modal-card">
@@ -511,6 +585,7 @@
   </div>
 
   <!-- App Logic -->
+  <script src="upload.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
