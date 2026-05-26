@@ -23,7 +23,10 @@
 
   // ─── Global Date Filter State ───────────────────────────
   let rawData = null; // Stored raw MTD data from JSONs ({ ontime, fillrate, vehicles })
-  let selectedDate = null; // null means "Cả tháng" (MTD), otherwise "YYYY-MM-DD"
+  let filterMode = 'all'; // 'all' | 'single' | 'range'
+  let selectedDate = null; // "YYYY-MM-DD" for single day
+  let startDateVal = '2026-05-01'; // "YYYY-MM-DD" for start range
+  let endDateVal = '2026-05-25'; // "YYYY-MM-DD" for end range
   const MIN_DATE = '2026-05-01';
   const MAX_DATE = '2026-05-25';
 
@@ -1480,19 +1483,62 @@
     return `${dayName}, ${parts[2]}/${parts[1]}/${parts[0]}`;
   }
 
-  function getFilteredDataForDate(dateStr) {
-    if (!dateStr) return rawData;
-    
-    const shortDateStr = shortDate(dateStr); // e.g. "25/05"
+  function isShortDateInRange(shortDateStr, startISO, endISO) {
+    const day = parseInt(shortDateStr.split('/')[0], 10);
+    const startDay = parseInt(startISO.split('-')[2], 10);
+    const endDay = parseInt(endISO.split('-')[2], 10);
+    return day >= startDay && day <= endDay;
+  }
+
+  function getFilteredDataForDate(startISO, endISO) {
+    if (filterMode === 'all') return rawData;
     
     // Filter ontime detail
-    const dailyOntimeTrips = ontimeDetailData.filter(r => r.date === shortDateStr);
-    const dailyFillTrips = fillDetailData.filter(r => r.date === shortDateStr);
+    const dailyOntimeTrips = ontimeDetailData.filter(r => isShortDateInRange(r.date, startISO, endISO));
+    const dailyFillTrips = fillDetailData.filter(r => isShortDateInRange(r.date, startISO, endISO));
     
-    // Calculate daily overall KPIs
-    const ontimeDailyEntry = rawData.ontime.daily.find(d => d.date === dateStr) || { ontime_rate: 0, trips: 0 };
-    const fillDailyEntry = rawData.fillrate.daily.find(d => d.date === dateStr) || { fillrate_kg: 0, fillrate_don: 0, trips: 0 };
-    const vehicleDailyEntry = rawData.vehicles.daily_usage.find(d => d.date === dateStr) || { active_vehicles: 0, total_trips: 0, avg_trips_per_vehicle: 0, avg_km: 0 };
+    // Calculate overall KPIs in range
+    const ontimeDailyEntries = rawData.ontime.daily.filter(d => d.date >= startISO && d.date <= endISO);
+    let totalOntimeTrips = 0;
+    let ontimeSum = 0;
+    ontimeDailyEntries.forEach(d => {
+      totalOntimeTrips += d.trips;
+      ontimeSum += d.ontime_rate * d.trips;
+    });
+    const overallOntimeRate = totalOntimeTrips > 0 ? ontimeSum / totalOntimeTrips : 0;
+
+    const fillDailyEntries = rawData.fillrate.daily.filter(d => d.date >= startISO && d.date <= endISO);
+    let totalFillTrips = 0;
+    let fillKgSum = 0;
+    let fillDonSum = 0;
+    fillDailyEntries.forEach(d => {
+      totalFillTrips += d.trips;
+      fillKgSum += d.fillrate_kg * d.trips;
+      fillDonSum += d.fillrate_don * d.trips;
+    });
+    const overallFillKg = totalFillTrips > 0 ? fillKgSum / totalFillTrips : 0;
+    const overallFillDon = totalFillTrips > 0 ? fillDonSum / totalFillTrips : 0;
+
+    const dailyVehicles = {};
+    dailyFillTrips.forEach(t => {
+      if (t.plate) {
+        if (!dailyVehicles[t.plate]) dailyVehicles[t.plate] = { trips: 0, total_km: 0, cap: t.cap };
+        dailyVehicles[t.plate].trips++;
+        dailyVehicles[t.plate].total_km += t.km;
+      }
+    });
+    const totalVehiclesCount = Object.keys(dailyVehicles).length;
+    
+    const vehicleDailyEntries = rawData.vehicles.daily_usage.filter(d => d.date >= startISO && d.date <= endISO);
+    let vehicleDaysCount = vehicleDailyEntries.length || 1;
+    let tripsSum = 0;
+    let kmSum = 0;
+    vehicleDailyEntries.forEach(d => {
+      tripsSum += d.avg_trips_per_vehicle;
+      kmSum += d.avg_km;
+    });
+    const avgTripsInRange = tripsSum / vehicleDaysCount;
+    const avgKmInRange = kmSum / vehicleDaysCount;
 
     // 1. Ontime Aggregations
     // by_lane_type
@@ -1550,7 +1596,7 @@
       trips: provinces[prov].trips
     }));
 
-    // worst routes (Group by route, filter trips >= 2 if possible, or >= 1 since it's a single day)
+    // worst routes
     const routesOntime = {};
     dailyOntimeTrips.forEach(t => {
       if (t.route) {
@@ -1618,16 +1664,6 @@
     })).sort((a,b) => a.fillrate_kg - b.fillrate_kg).slice(0, 10);
 
     // 3. Vehicles Aggregations
-    // Group by plate to find top vehicles for this day
-    const dailyVehicles = {};
-    dailyFillTrips.forEach(t => {
-      if (t.plate) {
-        if (!dailyVehicles[t.plate]) dailyVehicles[t.plate] = { trips: 0, total_km: 0, cap: t.cap };
-        dailyVehicles[t.plate].trips++;
-        dailyVehicles[t.plate].total_km += t.km;
-      }
-    });
-    
     // by_load_capacity
     const capacities = {};
     Object.values(dailyVehicles).forEach(v => {
@@ -1635,7 +1671,6 @@
       if (!capacities[capName]) capacities[capName] = { count: 0, cap_raw: v.cap };
       capacities[capName].count++;
     });
-    const totalVehiclesCount = Object.keys(dailyVehicles).length;
     const by_load_capacity = Object.keys(capacities).map(c => ({
       capacity: c,
       capacity_raw: capacities[c].cap_raw,
@@ -1647,8 +1682,8 @@
     const top15_most_used = Object.keys(dailyVehicles).map(plate => ({
       plate,
       trips: dailyVehicles[plate].trips,
-      trips_per_day: dailyVehicles[plate].trips,
-      km_per_day: dailyVehicles[plate].total_km,
+      trips_per_day: dailyVehicles[plate].trips / vehicleDaysCount,
+      km_per_day: dailyVehicles[plate].total_km / vehicleDaysCount,
       total_km: dailyVehicles[plate].total_km
     })).sort((a,b) => b.trips - a.trips).slice(0, 15);
 
@@ -1657,12 +1692,12 @@
       plate,
       trips: dailyVehicles[plate].trips,
       days_active: 1,
-      trips_per_day: dailyVehicles[plate].trips,
-      km_per_day: dailyVehicles[plate].total_km,
+      trips_per_day: dailyVehicles[plate].trips / vehicleDaysCount,
+      km_per_day: dailyVehicles[plate].total_km / vehicleDaysCount,
       total_km: dailyVehicles[plate].total_km
     })).sort((a,b) => a.trips - b.trips).slice(0, 15);
 
-    // Filter anomalies for this specific day
+    // anomalies
     const anomalyPlates = new Set(rawData.vehicles.anomaly_vehicles.map(v => v.plate));
     const anomaly_vehicles = Object.keys(dailyVehicles)
       .filter(plate => anomalyPlates.has(plate))
@@ -1673,16 +1708,16 @@
           reason: orig ? orig.reason : 'Không rõ',
           trips: dailyVehicles[plate].trips,
           days_active: 1,
-          trips_per_day: dailyVehicles[plate].trips,
-          km_per_day: dailyVehicles[plate].total_km
+          trips_per_day: dailyVehicles[plate].trips / vehicleDaysCount,
+          km_per_day: dailyVehicles[plate].total_km / vehicleDaysCount
         };
       });
 
     return {
       ontime: {
-        metadata: { ...rawData.ontime.metadata, total_trips: ontimeDailyEntry.trips },
-        overall: { ontime_rate: ontimeDailyEntry.ontime_rate, total_trips: ontimeDailyEntry.trips },
-        daily: rawData.ontime.daily, // Keep trend lines intact
+        metadata: { ...rawData.ontime.metadata, total_trips: totalOntimeTrips },
+        overall: { ontime_rate: overallOntimeRate, total_trips: totalOntimeTrips },
+        daily: rawData.ontime.daily,
         by_lane_type,
         by_partner_type,
         by_partner,
@@ -1690,9 +1725,9 @@
         top10_worst_routes: worst_routes_ontime
       },
       fillrate: {
-        metadata: { ...rawData.fillrate.metadata, total_trips: fillDailyEntry.trips },
-        overall: { fillrate_kg: fillDailyEntry.fillrate_kg, fillrate_don: fillDailyEntry.fillrate_don, total_trips: fillDailyEntry.trips },
-        daily: rawData.fillrate.daily, // Keep trend lines intact
+        metadata: { ...rawData.fillrate.metadata, total_trips: totalFillTrips },
+        overall: { fillrate_kg: overallFillKg, fillrate_don: overallFillDon, total_trips: totalFillTrips },
+        daily: rawData.fillrate.daily,
         by_lane_type: by_lane_type_fill,
         by_ncc: by_ncc_fill,
         top10_worst_routes: worst_routes_fill
@@ -1701,11 +1736,11 @@
         metadata: rawData.vehicles.metadata,
         summary: {
           total_vehicles: totalVehiclesCount,
-          avg_trips_per_day: vehicleDailyEntry.avg_trips_per_vehicle,
-          avg_km_per_day: vehicleDailyEntry.avg_km,
+          avg_trips_per_day: avgTripsInRange,
+          avg_km_per_day: avgKmInRange,
           anomaly_count: anomaly_vehicles.length
         },
-        daily_usage: rawData.vehicles.daily_usage, // Keep trend lines intact
+        daily_usage: rawData.vehicles.daily_usage,
         by_load_capacity,
         top15_most_used,
         top15_least_used,
@@ -1714,140 +1749,156 @@
     };
   }
 
-  function highlightTrendChartPoints(dateStr) {
-    const shortD = dateStr ? shortDate(dateStr) : null;
+  function highlightTrendChartPoints(startISO, endISO) {
+    if (!rawData) return;
+    
+    const startDay = startISO ? parseInt(startISO.split('-')[2], 10) : 999;
+    const endDay = endISO ? parseInt(endISO.split('-')[2], 10) : 999;
+    const rangeActive = (filterMode !== 'all');
 
-    // Highlight Ontime Trend Chart
-    if (charts.ontimeTrend && rawData) {
-      const daily = rawData.ontime.daily;
-      const radii = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
-      const hoverRadii = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
-      const bgColors = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+    function getStyleArrays(dailyList, defaultColor, highlightColor) {
+      const radii = [];
+      const hoverRadii = [];
+      const bgColors = [];
       
-      charts.ontimeTrend.data.datasets[0].pointRadius = radii;
-      charts.ontimeTrend.data.datasets[0].pointHoverRadius = hoverRadii;
-      charts.ontimeTrend.data.datasets[0].pointBackgroundColor = bgColors;
+      dailyList.forEach(d => {
+        const day = parseInt(d.date.split('-')[2], 10);
+        const inRange = rangeActive && (day >= startDay && day <= endDay);
+        
+        if (inRange) {
+          radii.push(filterMode === 'single' ? 7 : 5);
+          hoverRadii.push(filterMode === 'single' ? 9 : 7);
+          bgColors.push(highlightColor);
+        } else {
+          radii.push(rangeActive ? 1.5 : 3);
+          hoverRadii.push(rangeActive ? 4 : 6);
+          bgColors.push(rangeActive ? 'rgba(255,255,255,0.08)' : defaultColor);
+        }
+      });
+      return { radii, hoverRadii, bgColors };
+    }
+
+    if (charts.ontimeTrend) {
+      const styles = getStyleArrays(rawData.ontime.daily, '#00e5a0', '#ff9f43');
+      charts.ontimeTrend.data.datasets[0].pointRadius = styles.radii;
+      charts.ontimeTrend.data.datasets[0].pointHoverRadius = styles.hoverRadii;
+      charts.ontimeTrend.data.datasets[0].pointBackgroundColor = styles.bgColors;
       charts.ontimeTrend.update('none');
     }
 
-    // Highlight Fillrate Trend Chart
-    if (charts.fillrateTrend && rawData) {
-      const daily = rawData.fillrate.daily;
-      charts.fillrateTrend.data.datasets[0].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
-      charts.fillrateTrend.data.datasets[0].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
-      charts.fillrateTrend.data.datasets[0].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+    if (charts.fillrateTrend) {
+      const stylesKg = getStyleArrays(rawData.fillrate.daily, '#00e5a0', '#ff9f43');
+      charts.fillrateTrend.data.datasets[0].pointRadius = stylesKg.radii;
+      charts.fillrateTrend.data.datasets[0].pointHoverRadius = stylesKg.hoverRadii;
+      charts.fillrateTrend.data.datasets[0].pointBackgroundColor = stylesKg.bgColors;
       
-      charts.fillrateTrend.data.datasets[1].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
-      charts.fillrateTrend.data.datasets[1].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
-      charts.fillrateTrend.data.datasets[1].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#7c5cfc');
+      const stylesDon = getStyleArrays(rawData.fillrate.daily, '#7c5cfc', '#ff9f43');
+      charts.fillrateTrend.data.datasets[1].pointRadius = stylesDon.radii;
+      charts.fillrateTrend.data.datasets[1].pointHoverRadius = stylesDon.hoverRadii;
+      charts.fillrateTrend.data.datasets[1].pointBackgroundColor = stylesDon.bgColors;
       
       charts.fillrateTrend.update('none');
     }
 
-    // Highlight Vehicle Trend Chart
-    if (charts.vehicleTrend && rawData) {
-      const daily = rawData.vehicles.daily_usage;
-      charts.vehicleTrend.data.datasets[1].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
-      charts.vehicleTrend.data.datasets[1].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
-      charts.vehicleTrend.data.datasets[1].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#00e5a0');
+    if (charts.vehicleTrend) {
+      const stylesTrips = getStyleArrays(rawData.vehicles.daily_usage, '#00e5a0', '#ff9f43');
+      charts.vehicleTrend.data.datasets[1].pointRadius = stylesTrips.radii;
+      charts.vehicleTrend.data.datasets[1].pointHoverRadius = stylesTrips.hoverRadii;
+      charts.vehicleTrend.data.datasets[1].pointBackgroundColor = stylesTrips.bgColors;
       
-      charts.vehicleTrend.data.datasets[2].pointRadius = daily.map(d => (shortDate(d.date) === shortD) ? 7 : 3);
-      charts.vehicleTrend.data.datasets[2].pointHoverRadius = daily.map(d => (shortDate(d.date) === shortD) ? 9 : 6);
-      charts.vehicleTrend.data.datasets[2].pointBackgroundColor = daily.map(d => (shortDate(d.date) === shortD) ? '#ff9f43' : '#fbbf24');
+      const stylesKm = getStyleArrays(rawData.vehicles.daily_usage, '#fbbf24', '#ff9f43');
+      charts.vehicleTrend.data.datasets[2].pointRadius = stylesKm.radii;
+      charts.vehicleTrend.data.datasets[2].pointHoverRadius = stylesKm.hoverRadii;
+      charts.vehicleTrend.data.datasets[2].pointBackgroundColor = stylesKm.bgColors;
       
       charts.vehicleTrend.update('none');
     }
   }
 
-  function handleDateChange(newDate) {
-    selectedDate = newDate;
+  function handleDateChange() {
+    let startISO = '2026-05-01';
+    let endISO = '2026-05-25';
 
-    // 1. Update Date Filter UI
-    const btnPrev = $('#btnPrevDate');
-    const btnNext = $('#btnNextDate');
-    const datePicker = $('#dateInputPicker');
     const dateDisplay = $('#dateTextDisplay');
-    const chipAll = $('#chipAllMonth');
-    const chipYest = $('#chipYesterday');
+    const datePicker = $('#dateInputPicker');
+    const rangeStartInput = $('#rangeStartDate');
+    const rangeEndInput = $('#rangeEndDate');
+    
+    $$('.mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === filterMode);
+    });
 
-    if (chipAll) chipAll.classList.remove('active');
-    if (chipYest) chipYest.classList.remove('active');
+    $('#controlsSingleDay').style.display = (filterMode === 'single') ? 'flex' : 'none';
+    $('#controlsDateRange').style.display = (filterMode === 'range') ? 'flex' : 'none';
+    $('#quickChipsContainer').style.display = (filterMode !== 'all') ? 'flex' : 'none';
 
-    if (!selectedDate) {
-      if (chipAll) chipAll.classList.add('active');
+    if (filterMode === 'all') {
       if (dateDisplay) dateDisplay.textContent = 'Cả tháng MTD';
-      if (datePicker) datePicker.value = '';
-    } else {
-      if (selectedDate === MAX_DATE) {
-        if (chipYest) chipYest.classList.add('active');
-      }
+    } else if (filterMode === 'single') {
+      if (!selectedDate) selectedDate = MAX_DATE;
+      startISO = selectedDate;
+      endISO = selectedDate;
       if (dateDisplay) dateDisplay.textContent = formatVietnameseDate(selectedDate);
       if (datePicker) datePicker.value = selectedDate;
+    } else if (filterMode === 'range') {
+      startISO = startDateVal;
+      endISO = endDateVal;
+      if (rangeStartInput) rangeStartInput.value = startDateVal;
+      if (rangeEndInput) rangeEndInput.value = endDateVal;
     }
 
-    // 2. Destroy existing charts to prevent Canvas reuse warnings
     destroyAllCharts();
 
-    // 3. Get the correct data set (filtered or raw)
-    const activeData = getFilteredDataForDate(selectedDate);
+    const activeData = getFilteredDataForDate(startISO, endISO);
 
-    // 4. Render KPIs with dynamic counting animations
     renderKPIs(activeData);
 
-    // 5. Render Chart Tabs
     renderOntimeTab(activeData.ontime);
     renderFillrateTab(activeData.fillrate);
     renderVehiclesTab(activeData.vehicles);
 
-    // 6. Trigger filter on the detailed tables so they show only this day's trips
-    if (selectedDate) {
-      const shortDateStr = shortDate(selectedDate);
-      ontimeFilteredData = ontimeDetailData.filter(r => r.date === shortDateStr);
-      fillFilteredData = fillDetailData.filter(r => r.date === shortDateStr);
+    if (filterMode !== 'all') {
+      ontimeFilteredData = ontimeDetailData.filter(r => isShortDateInRange(r.date, startISO, endISO));
+      fillFilteredData = fillDetailData.filter(r => isShortDateInRange(r.date, startISO, endISO));
     } else {
       ontimeFilteredData = [...ontimeDetailData];
       fillFilteredData = [...fillDetailData];
     }
     
-    // Reset pagination
     ontimeCurrentPage = 1;
     fillCurrentPage = 1;
     
-    // Render pages
     renderOntimeDetailPage();
     renderFillDetailPage();
 
-    // Highlight the selected day on the trend line charts
-    highlightTrendChartPoints(selectedDate);
+    highlightTrendChartPoints(startISO, endISO);
   }
 
   function handlePrevDate() {
-    if (!selectedDate) {
-      handleDateChange(MAX_DATE);
-      return;
-    }
+    if (!selectedDate) selectedDate = MAX_DATE;
     const currentDate = new Date(selectedDate);
     currentDate.setDate(currentDate.getDate() - 1);
     const formatted = formatDateISO(currentDate);
     if (formatted >= MIN_DATE) {
-      handleDateChange(formatted);
+      selectedDate = formatted;
+      handleDateChange();
     } else {
-      handleDateChange(MAX_DATE); // Wrap to max
+      selectedDate = MAX_DATE;
+      handleDateChange();
     }
   }
 
   function handleNextDate() {
-    if (!selectedDate) {
-      handleDateChange(MIN_DATE);
-      return;
-    }
+    if (!selectedDate) selectedDate = MIN_DATE;
     const currentDate = new Date(selectedDate);
     currentDate.setDate(currentDate.getDate() + 1);
     const formatted = formatDateISO(currentDate);
     if (formatted <= MAX_DATE) {
-      handleDateChange(formatted);
+      selectedDate = formatted;
+      handleDateChange();
     } else {
-      handleDateChange(MIN_DATE); // Wrap to min
+      selectedDate = MIN_DATE;
+      handleDateChange();
     }
   }
 
@@ -1859,11 +1910,19 @@
   }
 
   function initDateFilterBar() {
+    ['btnModeAll', 'btnModeSingle', 'btnModeRange'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          filterMode = btn.dataset.mode;
+          handleDateChange();
+        });
+      }
+    });
+
     const btnPrev = $('#btnPrevDate');
     const btnNext = $('#btnNextDate');
     const datePicker = $('#dateInputPicker');
-    const chipAll = $('#chipAllMonth');
-    const chipYest = $('#chipYesterday');
 
     if (btnPrev) btnPrev.addEventListener('click', handlePrevDate);
     if (btnNext) btnNext.addEventListener('click', handleNextDate);
@@ -1873,19 +1932,53 @@
         const val = e.target.value;
         if (val) {
           if (val >= MIN_DATE && val <= MAX_DATE) {
-            handleDateChange(val);
+            selectedDate = val;
+            handleDateChange();
           } else {
             alert(`Vui lòng chọn ngày từ ${shortDate(MIN_DATE)} đến ${shortDate(MAX_DATE)}/2026`);
             datePicker.value = selectedDate || '';
           }
-        } else {
-          handleDateChange(null);
         }
       });
     }
 
-    if (chipAll) chipAll.addEventListener('click', () => handleDateChange(null));
-    if (chipYest) chipYest.addEventListener('click', () => handleDateChange(MAX_DATE));
+    const btnApplyRange = $('#btnApplyRange');
+    const rangeStartInput = $('#rangeStartDate');
+    const rangeEndInput = $('#rangeEndDate');
+
+    if (btnApplyRange) {
+      btnApplyRange.addEventListener('click', () => {
+        const start = rangeStartInput ? rangeStartInput.value : MIN_DATE;
+        const end = rangeEndInput ? rangeEndInput.value : MAX_DATE;
+
+        if (start > end) {
+          alert('Ngày bắt đầu không được lớn hơn ngày kết thúc!');
+          return;
+        }
+
+        if (start < MIN_DATE || end > MAX_DATE) {
+          alert(`Vui lòng chọn khoảng thời gian trong phạm vi dữ liệu từ ${shortDate(MIN_DATE)} đến ${shortDate(MAX_DATE)}/2026`);
+          return;
+        }
+
+        startDateVal = start;
+        endDateVal = end;
+        handleDateChange();
+      });
+    }
+
+    const chipYest = $('#chipYesterday');
+    if (chipYest) {
+      chipYest.addEventListener('click', () => {
+        if (filterMode === 'single') {
+          selectedDate = MAX_DATE;
+        } else if (filterMode === 'range') {
+          startDateVal = MAX_DATE;
+          endDateVal = MAX_DATE;
+        }
+        handleDateChange();
+      });
+    }
   }
 
   async function init() {
@@ -1908,7 +2001,7 @@
       initDateFilterBar();
 
       // Start with "Cả tháng" (MTD) view
-      handleDateChange(null);
+      handleDateChange();
 
     } catch (err) {
       console.error('Dashboard init error:', err);
@@ -1928,5 +2021,4 @@
   } else {
     init();
   }
-
 })();
