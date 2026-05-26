@@ -53,6 +53,23 @@
       </div>
     </header>
 
+    <!-- ==================== GLOBAL DATE FILTER BAR ==================== -->
+    <div class="date-filter-bar">
+      <div class="date-filter-container">
+        <button class="date-nav-btn" id="btnPrevDate" title="Ngày trước">‹</button>
+        <div class="date-display" id="dateTextDisplay">Cả tháng MTD</div>
+        <button class="date-nav-btn" id="btnNextDate" title="Ngày sau">›</button>
+      </div>
+      
+      <div class="date-picker-container">
+        <input type="date" id="dateInputPicker" min="2026-05-01" max="2026-05-25" />
+      </div>
+      
+      <div class="quick-date-chips">
+        <button class="chip-btn active" id="chipAllMonth">Cả tháng</button>
+        <button class="chip-btn" id="chipYesterday">Hôm qua</button>
+      </div>
+    </div>
 
     <!-- ===== KPI SUMMARY ===== -->
     <div class="kpi-grid">
