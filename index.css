@@ -1263,7 +1263,7 @@
 .mode-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-2) !important;
   padding: 8px 16px;
   font-size: 13px;
   font-weight: 600;
@@ -1275,15 +1275,15 @@
 }
 
 .mode-btn:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent-primary) !important;
+  background: rgba(242, 101, 34, 0.05) !important;
 }
 
 .mode-btn.active {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, #00b894 100%);
-  color: #050510;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #ff8c2b 100%) !important;
+  color: #ffffff !important;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.25) !important;
 }
 
 .filter-controls-group {
@@ -1597,4 +1597,52 @@
 
 #ssoModal input::placeholder, #ssoModal textarea::placeholder {
   color: var(--text-3) !important;
+}
+
+/* ─── KPI Card Upgrades ────────────────────────────── */
+.kpi-compare-row {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all var(--dur) var(--ease);
+}
+.kpi-compare-row.up {
+  color: #2ecc71 !important;
+  background: rgba(46, 204, 113, 0.08) !important;
+}
+.kpi-compare-row.down {
+  color: #e74c3c !important;
+  background: rgba(231, 76, 60, 0.08) !important;
+}
+.kpi-compare-row.neutral {
+  color: var(--text-3) !important;
+  background: rgba(0, 86, 145, 0.04) !important;
+}
+
+.kpi-detail-route {
+  font-size: 0.7rem;
+  color: var(--text-2) !important;
+  margin-top: 8px;
+  border-top: 1px dashed var(--bg-card-border);
+  padding-top: 6px;
+  font-weight: 450;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.worst-badge {
+  font-weight: 700;
+  color: #e74c3c !important;
+  margin-right: 3px;
 }
