@@ -176,20 +176,38 @@
           </div>
         </div>
 
-        <!-- Ontime by Partner -->
-        <div class="section-card">
-          <div class="section-title"><span class="title-icon">🏢</span> Ontime theo Nhà Cung Cấp</div>
-          <div class="chart-container horizontal-bar-chart" id="chartOntimePartnerWrapper">
-            <canvas id="chartOntimePartner"></canvas>
-          </div>
-        </div>
-
-        <!-- Ontime by Province -->
-        <div class="section-card">
-          <div class="section-title"><span class="title-icon">🗺️</span> Ontime theo Tỉnh/KCT Miền Bắc</div>
-          <div class="chart-container bar-chart" id="chartOntimeProvinceWrapper">
-            <canvas id="chartOntimeProvince"></canvas>
-          </div>
+        <!-- Ontime by Partner -->\r
+        <div class="section-card">\r
+          <div class="section-title"><span class="title-icon">🏢</span> Ontime theo Nhà Cung Cấp</div>\r
+          <div class="progress-table-wrapper" id="tableOntimePartnerWrapper">\r
+            <table class="progress-table" id="tableOntimePartnerBar">\r
+              <thead>\r
+                <tr>\r
+                  <th class="col-name">NCC</th>\r
+                  <th class="col-bar">Ontime</th>\r
+                  <th class="col-trips">Trips</th>\r
+                </tr>\r
+              </thead>\r
+              <tbody></tbody>\r
+            </table>\r
+          </div>\r
+        </div>\r
+\r
+        <!-- Ontime by Province -->\r
+        <div class="section-card">\r
+          <div class="section-title"><span class="title-icon">🗺️</span> Ontime theo Tỉnh/KCT Miền Bắc</div>\r
+          <div class="progress-table-wrapper" id="tableOntimeProvinceWrapper">\r
+            <table class="progress-table" id="tableOntimeProvinceBar">\r
+              <thead>\r
+                <tr>\r
+                  <th class="col-name">Tỉnh / KCT</th>\r
+                  <th class="col-bar">Ontime</th>\r
+                  <th class="col-trips">Trips</th>\r
+                </tr>\r
+              </thead>\r
+              <tbody></tbody>\r
+            </table>\r
+          </div>\r
         </div>
 
         <!-- Top 10 Worst Routes -->
