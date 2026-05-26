@@ -545,111 +545,46 @@
   }
 
   // --- Horizontal Bar: by Partner (sorted ascending) ---
-  function renderOntimePartnerBar(byPartner) {
-    const sorted = [...byPartner].sort((a, b) => a.ontime_rate - b.ontime_rate);
-    const labels = sorted.map((d) => d.partner);
-    const values = sorted.map((d) => +(d.ontime_rate * 100).toFixed(1));
-    const bgColors = sorted.map((d) => ontimeColor(d.ontime_rate));
-
-    // Dynamic height
-    const wrapper = $('#chartOntimePartnerWrapper');
-    wrapper.style.height = Math.max(350, sorted.length * 32) + 'px';
-
-    charts.ontimePartner = new Chart($('#chartOntimePartner'), {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Ontime %',
-          data: values,
-          backgroundColor: bgColors,
-          borderRadius: 4,
-          barThickness: 18
-        }]
-      },
-      options: {
-        indexAxis: 'y',
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            display: true,
-            anchor: 'end',
-            align: 'right',
-            color: '#1e272e',
-            font: { family: 'Inter', weight: '600', size: 9 },
-            formatter: (v) => v.toFixed(1) + '%'
-          },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => {
-                const item = sorted[ctx.dataIndex];
-                return 'Ontime: ' + fmtPct(item.ontime_rate) + ' | ' + fmtNum(item.trips) + ' chuyến';
-              }
-            }
-          }
-        },
-        scales: {
-          x: {
-            min: 0, max: 100,
-            ticks: { callback: (v) => v + '%' }
-          },
-          y: { grid: { display: false } }
-        }
-      }
-    });
+  function renderOntimePartnerBar(byPartner) {\r
+    const sorted = [...byPartner].sort((a, b) => b.ontime_rate - a.ontime_rate);\r
+    const tbody = document.querySelector('#tableOntimePartnerBar tbody');\r
+    if (!tbody) return;\r
+    tbody.innerHTML = sorted.map(d => {\r
+      const pct = (d.ontime_rate * 100).toFixed(1);\r
+      const cls = ontimeClass(d.ontime_rate);\r
+      const color = ontimeColor(d.ontime_rate);\r
+      return `<tr>\r
+        <td class="col-name">${d.partner || '—'}</td>\r
+        <td class="col-bar">\r
+          <div class="inline-bar-wrap">\r
+            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>\r
+          </div>\r
+          <span class="inline-bar-label ${cls}">${pct}%</span>\r
+        </td>\r
+        <td class="col-trips">${fmtNum(d.trips)}</td>\r
+      </tr>`;\r
+    }).join('');\r
   }
 
-  // --- Bar: by Province ---
-  function renderOntimeProvinceBar(byProvince) {
-    const sorted = [...byProvince].sort((a, b) => a.ontime_rate - b.ontime_rate);
-    const labels = sorted.map((d) => d.province);
-    const values = sorted.map((d) => +(d.ontime_rate * 100).toFixed(1));
-    const bgColors = sorted.map((d) => ontimeColor(d.ontime_rate));
-
-    const wrapper = $('#chartOntimeProvinceWrapper');
-    wrapper.style.height = Math.max(350, sorted.length * 36) + 'px';
-
-    charts.ontimeProvince = new Chart($('#chartOntimeProvince'), {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Ontime %',
-          data: values,
-          backgroundColor: bgColors,
-          borderRadius: 4,
-          barThickness: 22
-        }]
-      },
-      options: {
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            display: true,
-            anchor: 'end',
-            align: 'top',
-            color: '#1e272e',
-            font: { family: 'Inter', weight: '600', size: 9 },
-            formatter: (v) => v.toFixed(1) + '%'
-          },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => {
-                const item = sorted[ctx.dataIndex];
-                return 'Ontime: ' + fmtPct(item.ontime_rate) + ' | ' + fmtNum(item.trips) + ' chuyến';
-              }
-            }
-          }
-        },
-        scales: {
-          x: { grid: { display: false } },
-          y: {
-            min: 0, max: 100,
-            ticks: { callback: (v) => v + '%' }
-          }
-        }
-      }
-    });
+  function renderOntimeProvinceBar(byProvince) {\r
+    const sorted = [...byProvince].sort((a, b) => b.ontime_rate - a.ontime_rate);\r
+    const tbody = document.querySelector('#tableOntimeProvinceBar tbody');\r
+    if (!tbody) return;\r
+    tbody.innerHTML = sorted.map(d => {\r
+      const pct = (d.ontime_rate * 100).toFixed(1);\r
+      const cls = ontimeClass(d.ontime_rate);\r
+      const color = ontimeColor(d.ontime_rate);\r
+      return `<tr>\r
+        <td class="col-name">${d.province || '—'}</td>\r
+        <td class="col-bar">\r
+          <div class="inline-bar-wrap">\r
+            <div class="inline-bar" style="width:${pct}%;background:${color}"></div>\r
+          </div>\r
+          <span class="inline-bar-label ${cls}">${pct}%</span>\r
+        </td>\r
+        <td class="col-trips">${fmtNum(d.trips)}</td>\r
+      </tr>`;\r
+    }).join('');\r
   }
 
   // --- Table: Top 10 Worst Ontime Routes ---
