@@ -307,7 +307,8 @@
 
     // Date range subtitle
     const dateRange = ontime.metadata.date_range || fillrate.metadata.date_range || '';
-    $('#dateRangeSubtitle').textContent = 'Dữ liệu MTD: ' + dateRange;
+    const subtitleEl = $('#dateRangeSubtitle');
+    if (subtitleEl) subtitleEl.textContent = 'Dữ liệu MTD: ' + dateRange;
 
     // Last updated
     const lastUpdated = ontime.metadata.generated_at || fillrate.metadata.generated_at || '';
