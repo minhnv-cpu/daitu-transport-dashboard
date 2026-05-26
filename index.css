@@ -299,6 +299,44 @@ body::before {
   100% { transform: rotate(-360deg); }
 }
 
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* --- Settings Button --- */
+.settings-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  outline: none;
+  height: 38px;
+  width: 38px;
+  box-sizing: border-box;
+}
+
+.settings-btn:hover {
+  background: rgba(0, 229, 160, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 15px rgba(0, 229, 160, 0.2);
+  transform: translateY(-1px);
+}
+
+.settings-btn:active {
+  transform: translateY(1px);
+}
+
 @media (max-width: 768px) {
   .dashboard-header {
     text-align: center;
