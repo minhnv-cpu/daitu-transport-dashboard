@@ -163,10 +163,27 @@
     Chart.defaults.plugins.tooltip.borderWidth = 1;
     Chart.defaults.plugins.tooltip.cornerRadius = 8;
     Chart.defaults.plugins.tooltip.padding = 9;
-    Chart.defaults.plugins.tooltip.titleFont = { weight: '600', size: 12 };
-    Chart.defaults.plugins.tooltip.bodyFont = { size: 11 };
+    Chart.defaults.plugins.tooltip.titleFont = { weight: '600', size: 12, family: "'Exo','Inter',sans-serif" };
+    Chart.defaults.plugins.tooltip.bodyFont = { size: 11, family: "'Exo','Inter',sans-serif" };
     Chart.defaults.responsive = true;
     Chart.defaults.maintainAspectRatio = false;
+    Chart.defaults.font.family = "'Exo', 'Inter', sans-serif";
+  }
+
+  // ─── Realtime Clock ─────────────────────────────────────
+  function startClock() {
+    const clockEl = document.getElementById('headerClock');
+    const dateEl = document.getElementById('headerDate');
+    if (!clockEl) return;
+    function update() {
+      const now = new Date();
+      clockEl.textContent = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      if (dateEl) {
+        dateEl.textContent = now.toLocaleDateString('vi-VN', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' });
+      }
+    }
+    update();
+    setInterval(update, 1000);
   }
 
   // ─── Data Loading ────────────────────────────────────────
@@ -2475,6 +2492,7 @@
 
   async function init() {
     setupChartDefaults();
+    startClock();
     initTabs();
     initRefreshButton();
     initUploadModal();
