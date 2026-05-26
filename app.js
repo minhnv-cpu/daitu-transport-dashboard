@@ -7,7 +7,7 @@
 
   // ─── Chart Color Palette ─────────────────────────────────
   const CHART_COLORS = [
-    '#00e5a0', '#7c5cfc', '#f87171', '#fbbf24', '#60a5fa',
+    '#f26522', '#005691', '#f87171', '#fbbf24', '#3498db',
     '#a78bfa', '#fb7185', '#22d3ee', '#facc15', '#818cf8',
     '#f97316', '#34d399'
   ];
@@ -109,7 +109,7 @@
   function ontimeColor(rate) {
     if (rate < ONTIME_DANGER) return '#f87171';
     if (rate < ONTIME_WARNING) return '#fbbf24';
-    return '#00e5a0';
+    return '#2ecc71';
   }
 
   /** Get threshold CSS class for fill rate */
@@ -122,7 +122,7 @@
   function fillrateColor(rate) {
     if (rate < FILLRATE_DANGER) return '#f87171';
     if (rate < FILLRATE_WARNING) return '#fbbf24';
-    return '#00e5a0';
+    return '#2ecc71';
   }
 
   /** Animate a number counting up */
@@ -151,15 +151,15 @@
       display: false
     };
 
-    Chart.defaults.color = 'rgba(240,240,245,0.5)';
-    Chart.defaults.borderColor = 'rgba(255,255,255,0.04)';
+    Chart.defaults.color = '#556677';
+    Chart.defaults.borderColor = 'rgba(0,0,0,0.06)';
     Chart.defaults.font.family = "'Inter', sans-serif";
     Chart.defaults.font.size = 11;
     Chart.defaults.plugins.legend.labels.usePointStyle = true;
     Chart.defaults.plugins.legend.labels.pointStyleWidth = 7;
     Chart.defaults.plugins.legend.labels.padding = 14;
-    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(7,9,15,0.94)';
-    Chart.defaults.plugins.tooltip.borderColor = 'rgba(255,255,255,0.08)';
+    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(30,39,46,0.95)';
+    Chart.defaults.plugins.tooltip.borderColor = 'rgba(0,0,0,0.08)';
     Chart.defaults.plugins.tooltip.borderWidth = 1;
     Chart.defaults.plugins.tooltip.cornerRadius = 8;
     Chart.defaults.plugins.tooltip.padding = 9;
@@ -300,14 +300,14 @@
         datasets: [{
           label: 'Ontime %',
           data: values,
-          borderColor: '#00e5a0',
-          backgroundColor: createGradientFill('#chartOntimeTrend', '#00e5a0'),
+          borderColor: '#f26522',
+          backgroundColor: createGradientFill('#chartOntimeTrend', '#f26522'),
           fill: true,
           tension: 0.35,
           pointRadius: 3,
           pointHoverRadius: 6,
-          pointBackgroundColor: '#00e5a0',
-          pointBorderColor: '#07090f',
+          pointBackgroundColor: '#f26522',
+          pointBorderColor: '#ffffff',
           pointBorderWidth: 2,
           borderWidth: 2.5
         }]
@@ -367,7 +367,7 @@
         datasets: [{
           data: values,
           backgroundColor: colors,
-          borderColor: '#07090f',
+          borderColor: '#ffffff',
           borderWidth: 3,
           hoverOffset: 8
         }]
@@ -403,7 +403,7 @@
         datasets: [{
           data: values,
           backgroundColor: colors,
-          borderColor: '#07090f',
+          borderColor: '#ffffff',
           borderWidth: 3,
           hoverOffset: 8
         }]
@@ -457,7 +457,7 @@
             display: true,
             anchor: 'end',
             align: 'right',
-            color: '#e8e8e8',
+            color: '#1e272e',
             font: { family: 'Inter', weight: '600', size: 9 },
             formatter: (v) => v.toFixed(1) + '%'
           },
@@ -510,7 +510,7 @@
             display: true,
             anchor: 'end',
             align: 'top',
-            color: '#e8e8e8',
+            color: '#1e272e',
             font: { family: 'Inter', weight: '600', size: 9 },
             formatter: (v) => v.toFixed(1) + '%'
           },
@@ -574,25 +574,25 @@
           {
             label: 'Lấp đầy KG',
             data: kgVals,
-            borderColor: '#00e5a0',
+            borderColor: '#f26522',
             backgroundColor: 'rgba(0,229,160,0.06)',
             fill: true,
             tension: 0.35,
             pointRadius: 3,
             pointHoverRadius: 6,
-            pointBackgroundColor: '#00e5a0',
+            pointBackgroundColor: '#f26522',
             borderWidth: 2.5
           },
           {
             label: 'Lấp đầy Đơn',
             data: donVals,
-            borderColor: '#7c5cfc',
+            borderColor: '#005691',
             backgroundColor: 'rgba(124,92,252,0.06)',
             fill: true,
             tension: 0.35,
             pointRadius: 3,
             pointHoverRadius: 6,
-            pointBackgroundColor: '#7c5cfc',
+            pointBackgroundColor: '#005691',
             borderWidth: 2.5
           }
         ]
@@ -650,13 +650,13 @@
           {
             label: 'Lấp đầy KG',
             data: byLane.map((d) => +(d.fillrate_kg * 100).toFixed(1)),
-            backgroundColor: '#00e5a0',
+            backgroundColor: '#f26522',
             borderRadius: 6
           },
           {
             label: 'Lấp đầy Đơn',
             data: byLane.map((d) => +(d.fillrate_don * 100).toFixed(1)),
-            backgroundColor: '#7c5cfc',
+            backgroundColor: '#005691',
             borderRadius: 6
           }
         ]
@@ -667,7 +667,7 @@
             display: true,
             anchor: 'end',
             align: 'top',
-            color: '#e8e8e8',
+            color: '#1e272e',
             font: { family: 'Inter', weight: '600', size: 9 },
             formatter: (v) => v.toFixed(1) + '%'
           },
@@ -718,7 +718,7 @@
             display: true,
             anchor: 'end',
             align: 'right',
-            color: '#e8e8e8',
+            color: '#1e272e',
             font: { family: 'Inter', weight: '600', size: 9 },
             formatter: (v) => v.toFixed(1) + '%'
           },
@@ -802,9 +802,9 @@
             type: 'line',
             label: 'TB Chuyến/xe',
             data: dailyUsage.map((d) => d.avg_trips_per_vehicle),
-            borderColor: '#00e5a0',
+            borderColor: '#f26522',
             backgroundColor: 'transparent',
-            pointBackgroundColor: '#00e5a0',
+            pointBackgroundColor: '#f26522',
             pointRadius: 3,
             pointHoverRadius: 6,
             borderWidth: 2.5,
@@ -816,9 +816,9 @@
             type: 'line',
             label: 'TB Km',
             data: dailyUsage.map((d) => d.avg_km),
-            borderColor: '#fbbf24',
+            borderColor: '#005691',
             backgroundColor: 'transparent',
-            pointBackgroundColor: '#fbbf24',
+            pointBackgroundColor: '#005691',
             pointRadius: 3,
             pointHoverRadius: 6,
             borderWidth: 2.5,
@@ -845,15 +845,15 @@
           x: { grid: { display: false } },
           yTrips: {
             position: 'left',
-            title: { display: true, text: 'Chuyến/xe', color: '#00e5a0' },
-            grid: { color: 'rgba(255,255,255,0.03)' },
-            ticks: { color: '#00e5a0' }
+            title: { display: true, text: 'Chuyến/xe', color: '#f26522' },
+            grid: { color: 'rgba(0,0,0,0.04)' },
+            ticks: { color: '#f26522' }
           },
           yKm: {
             position: 'right',
-            title: { display: true, text: 'Km', color: '#fbbf24' },
+            title: { display: true, text: 'Km', color: '#005691' },
             grid: { display: false },
-            ticks: { color: '#fbbf24' }
+            ticks: { color: '#005691' }
           },
           yVehicles: {
             display: false
@@ -876,7 +876,7 @@
         datasets: [{
           data: values,
           backgroundColor: colors,
-          borderColor: '#07090f',
+          borderColor: '#ffffff',
           borderWidth: 3,
           hoverOffset: 8
         }]
@@ -926,7 +926,7 @@
             display: true,
             anchor: 'end',
             align: 'right',
-            color: '#e8e8e8',
+            color: '#1e272e',
             font: { family: 'Inter', weight: '600', size: 9 },
             formatter: (v) => v.toLocaleString()
           },
@@ -1010,7 +1010,7 @@
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.font = "700 22px 'Inter', sans-serif";
-        ctx.fillStyle = '#e8e8e8';
+        ctx.fillStyle = '#1e272e';
         ctx.fillText(text, centerX, centerY);
         ctx.restore();
       }
@@ -1779,7 +1779,7 @@
     }
 
     if (charts.ontimeTrend) {
-      const styles = getStyleArrays(rawData.ontime.daily, '#00e5a0', '#ff9f43');
+      const styles = getStyleArrays(rawData.ontime.daily, '#f26522', '#ff9f43');
       charts.ontimeTrend.data.datasets[0].pointRadius = styles.radii;
       charts.ontimeTrend.data.datasets[0].pointHoverRadius = styles.hoverRadii;
       charts.ontimeTrend.data.datasets[0].pointBackgroundColor = styles.bgColors;
@@ -1787,12 +1787,12 @@
     }
 
     if (charts.fillrateTrend) {
-      const stylesKg = getStyleArrays(rawData.fillrate.daily, '#00e5a0', '#ff9f43');
+      const stylesKg = getStyleArrays(rawData.fillrate.daily, '#f26522', '#ff9f43');
       charts.fillrateTrend.data.datasets[0].pointRadius = stylesKg.radii;
       charts.fillrateTrend.data.datasets[0].pointHoverRadius = stylesKg.hoverRadii;
       charts.fillrateTrend.data.datasets[0].pointBackgroundColor = stylesKg.bgColors;
       
-      const stylesDon = getStyleArrays(rawData.fillrate.daily, '#7c5cfc', '#ff9f43');
+      const stylesDon = getStyleArrays(rawData.fillrate.daily, '#005691', '#ff9f43');
       charts.fillrateTrend.data.datasets[1].pointRadius = stylesDon.radii;
       charts.fillrateTrend.data.datasets[1].pointHoverRadius = stylesDon.hoverRadii;
       charts.fillrateTrend.data.datasets[1].pointBackgroundColor = stylesDon.bgColors;
@@ -1801,12 +1801,12 @@
     }
 
     if (charts.vehicleTrend) {
-      const stylesTrips = getStyleArrays(rawData.vehicles.daily_usage, '#00e5a0', '#ff9f43');
+      const stylesTrips = getStyleArrays(rawData.vehicles.daily_usage, '#f26522', '#ff9f43');
       charts.vehicleTrend.data.datasets[1].pointRadius = stylesTrips.radii;
       charts.vehicleTrend.data.datasets[1].pointHoverRadius = stylesTrips.hoverRadii;
       charts.vehicleTrend.data.datasets[1].pointBackgroundColor = stylesTrips.bgColors;
       
-      const stylesKm = getStyleArrays(rawData.vehicles.daily_usage, '#fbbf24', '#ff9f43');
+      const stylesKm = getStyleArrays(rawData.vehicles.daily_usage, '#005691', '#ff9f43');
       charts.vehicleTrend.data.datasets[2].pointRadius = stylesKm.radii;
       charts.vehicleTrend.data.datasets[2].pointHoverRadius = stylesKm.hoverRadii;
       charts.vehicleTrend.data.datasets[2].pointBackgroundColor = stylesKm.bgColors;
