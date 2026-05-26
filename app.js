@@ -143,8 +143,14 @@
 
   // ─── Chart.js Global Defaults ────────────────────────────
   function setupChartDefaults() {
-    // Register the DataLabels plugin
-    Chart.register(ChartDataLabels);
+    // Register the DataLabels plugin (safe — may fail if CDN blocked)
+    try {
+      if (typeof ChartDataLabels !== 'undefined') {
+        Chart.register(ChartDataLabels);
+      }
+    } catch (e) {
+      console.warn('ChartDataLabels plugin not available:', e.message);
+    }
 
     // Disable DataLabels globally by default
     Chart.defaults.plugins.datalabels = {
@@ -2493,18 +2499,20 @@
   // ═══════════════════════════════════════════════════════
 
   async function init() {
-    setupChartDefaults();
+    try { setupChartDefaults(); } catch(e) { console.warn('Chart defaults error:', e); }
     startClock();
     initTabs();
-    initRefreshButton();
-    initUploadModal();
+    try { initRefreshButton(); } catch(e) { console.warn('Refresh button init error:', e); }
+    try { initUploadModal(); } catch(e) { console.warn('Upload modal init error:', e); }
 
     try {
       // Check for previously uploaded data in IndexedDB
       let activeUpload = null;
       try {
-        activeUpload = await UploadManager.getActiveUpload();
-      } catch (e) { /* IndexedDB not available */ }
+        if (typeof UploadManager !== 'undefined') {
+          activeUpload = await UploadManager.getActiveUpload();
+        }
+      } catch (e) { console.warn('IndexedDB check skipped:', e.message); }
 
       if (activeUpload && activeUpload.period) {
         // Try to load from archive
@@ -2528,12 +2536,14 @@
           }
         } catch (e) {
           console.warn('Failed to load archived upload:', e);
-          await UploadManager.clearActiveUpload();
+          try { await UploadManager.clearActiveUpload(); } catch(e2) {}
         }
       }
 
       // Default: load from JSON files
+      console.log('[Dashboard] Loading data from JSON files...');
       const data = await loadAllData();
+      console.log('[Dashboard] Data loaded successfully:', Object.keys(data));
       rawData = data;
 
       // Hide loading, show dashboard
@@ -2541,7 +2551,7 @@
       $('#dashboardContainer').style.display = '';
 
       // Load detailed tables data
-      await loadDetailData();
+      try { await loadDetailData(); } catch(e) { console.warn('Detail data load error (non-fatal):', e.message); }
 
       // Initialize the Date Filter Bar listeners
       initDateFilterBar();
@@ -2551,13 +2561,21 @@
 
     } catch (err) {
       console.error('Dashboard init error:', err);
+      // Show error details in the error message
+      const errMsg = document.querySelector('.error-message');
+      if (errMsg) {
+        errMsg.innerHTML = `<strong>Lỗi:</strong> ${err.message}<br><small>Kiểm tra Console (F12) để xem chi tiết.</small>`;
+      }
       $('#loadingOverlay').classList.add('hidden');
       $('#dashboardContainer').style.display = '';
-      $('#errorState').classList.add('visible');
+      const errState = $('#errorState');
+      if (errState) errState.classList.add('visible');
       // Hide tab content
       $$('.tab-panel').forEach((p) => p.style.display = 'none');
-      $('.tab-nav').style.display = 'none';
-      $('.kpi-grid').style.display = 'none';
+      const tabNav = $('.tab-nav');
+      if (tabNav) tabNav.style.display = 'none';
+      const kpiGrid = $('.kpi-grid');
+      if (kpiGrid) kpiGrid.style.display = 'none';
     }
   }
 
