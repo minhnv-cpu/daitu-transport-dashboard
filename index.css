@@ -1536,3 +1536,65 @@
 
 
 
+
+
+/* ─── Light Mode Modal Overrides ───────────────────── */
+.modal-overlay {
+  background: rgba(10, 15, 30, 0.4) !important; /* Soft dark overlay for light theme */
+}
+
+.modal-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 86, 145, 0.16) !important;
+  box-shadow: 0 16px 48px rgba(0, 50, 100, 0.15) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 86, 145, 0.08) !important;
+}
+
+.modal-title {
+  color: var(--accent-secondary) !important;
+}
+
+.modal-close-btn {
+  color: var(--text-3) !important;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 86, 145, 0.06) !important;
+  color: var(--accent-secondary) !important;
+}
+
+.modal-intro {
+  color: var(--text-2) !important;
+}
+
+.step {
+  background: #f1f5f9 !important;
+  border: 1px solid rgba(0, 86, 145, 0.08) !important;
+}
+
+.step-desc {
+  color: var(--text-1) !important;
+}
+
+.modal-body p {
+  color: var(--text-2) !important;
+}
+
+/* Force override of inline styles on inputs and textareas inside settings modal */
+#ssoModal input, #ssoModal textarea {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 86, 145, 0.2) !important;
+  color: var(--text-primary) !important;
+}
+
+#ssoModal input:focus, #ssoModal textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(242, 101, 34, 0.1) !important;
+}
+
+#ssoModal input::placeholder, #ssoModal textarea::placeholder {
+  color: var(--text-3) !important;
+}
