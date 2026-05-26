@@ -1,9 +1,11 @@
 /* ============================================================
    DAI TU TRANSPORTATION DASHBOARD — Design System v2
-   Modern Glassmorphism · Compact Layout · Premium Theme
+   Modern Light Theme · Orange + Blue + White
    ============================================================ */
 
-/* ─── Design Tokens ────────────────────�    --bg-body: #ffffff;
+/* ─── Design Tokens ─────────────────────────────────── */
+:root {
+    --bg-body: #ffffff;
     --bg-surface: #ffffff;
     --bg-card: #f8fafc;
     --bg-card-hover: #f1f5f9;
@@ -49,37 +51,23 @@
     /* Transitions */
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
     --dur: 0.2s;
-  }
+}
 
-  /* ─── Reset & Base ───────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ─── Reset & Base ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html {
+html {
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
 
-  body {
+body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: #ffffff;
     color: var(--text-1);
     line-height: 1.5;
     min-height: 100vh;
-  }
-
-  /* Flat pure white bg - gradient disabled */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: none;
-    pointer-events: none;
-    z-index: 0;
-  } 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(242, 101, 34, 0.03) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ─── Loading ────────────────────────────────────────── */
@@ -175,7 +163,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 86, 145, 0.08);
   padding-bottom: 16px;
 }
 
@@ -932,8 +920,8 @@
 /* ─── Scrollbar ──────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+::-webkit-scrollbar-thumb { background: rgba(0, 50, 100, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 50, 100, 0.25); }
 
 /* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 1200px) {
@@ -1240,31 +1228,30 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background: #f1f5f9;
-  border: 1px solid rgba(0, 86, 145, 0.12);
+  background: linear-gradient(135deg, #005691 0%, #003d6b 100%);
+  border: 1px solid rgba(0, 86, 145, 0.3);
   border-radius: 16px;
   padding: 12px 24px;
   margin-bottom: 24px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 50, 100, 0.15);
   flex-wrap: wrap;
 }
 
 /* Filter Mode Selector Segment */
 .filter-mode-selector {
   display: flex;
-  background: #eaeef4; /* Darker soft gray pill dock */
-  border: 1px solid rgba(0, 86, 145, 0.16);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 4px;
   border-radius: 12px;
   gap: 4px;
 }
 
 .mode-btn {
-  background: transparent;
-  border: none;
-  color: #2c3e50 !important; /* Highly visible dark charcoal for non-selected items */
-  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 18px;
   font-size: 13px;
   font-weight: 600;
   border-radius: 8px;
@@ -1272,18 +1259,21 @@
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Inter', sans-serif;
   outline: none;
+  letter-spacing: 0.02em;
 }
 
 .mode-btn:hover {
-  color: var(--accent-primary) !important;
-  background: rgba(242, 101, 34, 0.05) !important;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .mode-btn.active {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, #ff8c2b 100%) !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #f26522 0%, #ff8c2b 100%);
+  color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.25) !important;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.4);
 }
 
 .filter-controls-group {
@@ -1300,9 +1290,9 @@
 }
 
 .date-nav-btn {
-  background: #ffffff;
-  border: 1px solid rgba(0, 86, 145, 0.16);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   border-radius: 8px;
   width: 34px;
   height: 34px;
@@ -1317,9 +1307,9 @@
 }
 
 .date-nav-btn:hover {
-  background: rgba(46, 204, 113, 0.12);
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
   transform: scale(1.05);
 }
 
@@ -1330,7 +1320,7 @@
 .date-display {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   min-width: 180px;
   text-align: center;
   letter-spacing: -0.01em;
@@ -1344,11 +1334,11 @@
 }
 
 #dateInputPicker {
-  background: #ffffff;
-  border: 1px solid rgba(0, 86, 145, 0.16);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 8px 12px;
-  color: var(--text-primary);
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   outline: none;
@@ -1357,14 +1347,14 @@
 }
 
 #dateInputPicker:focus, #dateInputPicker:hover {
-  border-color: var(--accent-primary);
-  background: rgba(242, 101, 34, 0.06);
-  box-shadow: 0 0 10px rgba(242, 101, 34, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Customize date calendar icon for webkit browsers */
 #dateInputPicker::-webkit-calendar-picker-indicator {
-  filter: sepia(1) saturate(5) hue-rotate(340deg) brightness(0.9); /* Beautiful teal calendar icon */
+  filter: invert(1) brightness(2);
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.2s;
@@ -1391,17 +1381,17 @@
 .range-field label {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-2);
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .range-field input[type="date"] {
-  background: #ffffff;
-  border: 1px solid rgba(0, 86, 145, 0.16);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 8px 12px;
-  color: var(--text-primary);
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   outline: none;
@@ -1411,21 +1401,21 @@
 
 .range-field input[type="date"]:focus,
 .range-field input[type="date"]:hover {
-  border-color: var(--accent-primary);
-  background: rgba(242, 101, 34, 0.06);
-  box-shadow: 0 0 10px rgba(242, 101, 34, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .range-field input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: sepia(1) saturate(5) hue-rotate(340deg) brightness(0.9);
+  filter: invert(1) brightness(2);
   cursor: pointer;
   opacity: 0.8;
 }
 
 .apply-range-btn {
-  background: linear-gradient(135deg, #ff9f43 0%, #ff8c2b 100%);
+  background: linear-gradient(135deg, #f26522 0%, #ff8c2b 100%);
   border: none;
-  color: #0b0f19;
+  color: #ffffff;
   border-radius: 8px;
   padding: 8px 18px;
   font-family: 'Inter', sans-serif;
@@ -1433,13 +1423,13 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(255, 159, 67, 0.2);
+  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.3);
   outline: none;
 }
 
 .apply-range-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(255, 159, 67, 0.35);
+  box-shadow: 0 6px 16px rgba(242, 101, 34, 0.5);
 }
 
 .apply-range-btn:active {
@@ -1453,9 +1443,9 @@
 }
 
 .chip-btn {
-  background: rgba(255, 159, 67, 0.08);
-  border: 1px solid rgba(255, 159, 67, 0.2);
-  color: #ff9f43;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 12px;
@@ -1467,8 +1457,8 @@
 }
 
 .chip-btn:hover {
-  background: rgba(255, 159, 67, 0.15);
-  border-color: rgba(255, 159, 67, 0.4);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 @media (max-width: 1024px) {
@@ -1626,18 +1616,26 @@
 .kpi-compare-row.neutral {
   color: var(--text-3) !important;
   background: rgba(0, 86, 145, 0.04) !important;
+  cursor: pointer;
+}
+.kpi-compare-row.neutral:hover {
+  background: rgba(242, 101, 34, 0.08) !important;
+  color: var(--accent-primary) !important;
 }
 
 .kpi-detail-route {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-2) !important;
   margin-top: 8px;
   border-top: 1px dashed var(--bg-card-border);
   padding-top: 6px;
   font-weight: 450;
-  text-overflow: ellipsis;
+  line-height: 1.5;
   overflow: hidden;
-  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   max-width: 100%;
 }
 
